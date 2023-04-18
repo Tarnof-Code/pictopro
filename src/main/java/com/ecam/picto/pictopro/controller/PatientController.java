@@ -5,10 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
-    @GetMapping("/")
-    public String goConnnexionInscription(Model model) {
-        model.addAttribute("message", "Page Connexion");
-        return "connexionInscription";
+public class PatientController {
+    @GetMapping("/patients")
+    public String goPatients(Model model) {
+        model.addAttribute("message", "Mes patients");
+        return "patients";
     }
 }
