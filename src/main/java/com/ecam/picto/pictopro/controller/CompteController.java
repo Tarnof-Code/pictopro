@@ -10,6 +10,7 @@ public class CompteController {
     @GetMapping("/compte")
     public String goCompte(Model model) {
         model.addAttribute("message", "Mon compte");
+        model.addAttribute("module","compte");
         return "compte";
     }
 }

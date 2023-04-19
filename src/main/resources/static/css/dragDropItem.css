@@ -1,0 +1,108 @@
+ body {
+  background: #fff;
+}
+
+.source,
+.target {
+  margin: 20px;
+  width: 400px;
+  border: 1px solid green;
+  display:flex;
+}
+
+.target {
+  border: 1px solid blue;
+}
+
+.item {
+  height: 50px;
+  width:50px;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid gray;
+  background-color: #cd8;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.item2 {
+  height: 50px;
+  width:50px;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid gray;
+  background-color: #cd8;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.item .closer {
+  position: absolute;
+  right: 5px;
+  top: 2px;
+  font: bold 14px arial;
+  color: #666;
+  padding: 1px 3px;
+  line-height: 1;
+  cursor: pointer;
+  display: none;
+}
+
+.item .closer:hover {
+  color: #000;
+}
+
+.item2 .closer {
+  position: absolute;
+  right: 5px;
+  top: 2px;
+  font: bold 14px arial;
+  color: #666;
+  padding: 1px 3px;
+  line-height: 1;
+  cursor: pointer;
+  display: none;
+
+}
+
+.item2 .closer:hover {
+  color: #000;
+}
+
+.empty {
+  height: 50px;
+  width:50px;
+  margin: 5px;
+  padding: 5px;
+  background: #eee;
+  border: 1px dashed #999;
+}
+
+.empty .item {
+  margin: 0;
+}
+
+.item2 .closer {
+  display: block;
+}
+
+.highlight {
+  border: 1px solid red;
+  background: #fff;
+}
+
+.highlight .item {
+  opacity: 0.3;
+}
+
+.ui-draggable-dragging {
+  z-index: 99;
+  opacity: 1 !important;
+}
+ul {
+  list-style-type: none;
+}

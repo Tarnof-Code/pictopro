@@ -9,6 +9,7 @@ public class PatientController {
     @GetMapping("/patients")
     public String goPatients(Model model) {
         model.addAttribute("message", "Mes patients");
+        model.addAttribute("module","patients");
         return "patients";
     }
 }

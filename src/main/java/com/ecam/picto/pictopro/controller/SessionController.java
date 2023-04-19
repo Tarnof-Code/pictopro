@@ -9,6 +9,7 @@ public class SessionController {
     @GetMapping("/session")
     public String goSession(Model model) {
         model.addAttribute("message", "Page Nouvelle session de travail");
+        model.addAttribute("module","session");
         return "session";
     }
 }
