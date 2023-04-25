@@ -3,6 +3,7 @@ package com.ecam.picto.pictopro.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,10 +15,17 @@ public class Mot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nom;
+
+    @ManyToOne
+    private Categorie categorie;
+    @ManyToOne
+    private SousCategorie sousCategorie;
     private String pictoFile;
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private Date createdAt;
+
+    @UpdateTimestamp
     private Date updatedAt;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

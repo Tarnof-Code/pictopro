@@ -5,3 +5,11 @@
 .greyColor{
   color: #dfe6e9;
 }
+
+.centerCheck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
