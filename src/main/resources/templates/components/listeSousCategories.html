@@ -6,15 +6,15 @@
 </head>
 <body>
 
-<select th:field="${selectedSousCategorie}" th:fragment="listeSousCategories">
-  <option value="" >Choisir une sous-catégorie</option>
+<select  th:fragment="listeSousCategories">
+  <option value="-1" >Choisir une sous-catégorie</option>
   <option th:each="sousCategorie : ${categorie.listeSousCategorie}"
-          th:value="${sousCategorie}"
+          th:value="${sousCategorie.id}"
           th:text="${sousCategorie.nom}">
   </option>
 </select>
 
-<select th:field="${selectedSousCategorie}" th:fragment="listeSousCategoriesVide" class="hidden">
+<select  th:fragment="listeSousCategoriesVide" class="hidden">
 
 </select>
 

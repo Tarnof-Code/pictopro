@@ -11,30 +11,37 @@
 <div class="centerCheck">
     <h1>Ajouter un mot</h1>
 
-    <form action="#"
+    <form th:action="@{/gestionDesMots/ajouterUnMot}"
           method="post"
           th:object="${mot}">
       <div>
-         <input placeholder="Nouveau mot à ajouter" type="text" id="nomMotAjout" name="nomMotAjout"/>
+         <input placeholder="Nouveau mot à ajouter"
+                type="text"
+                id="nomMotAjout"
+                th:field="*{nom}"
+                name="nomMotAjout"/>
       </div>
       <br>
 
-          <select id="categorie" th:field="${selectedCategorie}">
-              <option value="" >Choisir une catégorie</option>
+          <select id="categorie" name="categorieId">
+              <option value="-1" >Choisir une catégorie</option>
               <option th:each="categorie : ${categories}"
-                      th:value="${categorie}"
-                      th:categorieId="${categorie.id}"
+                      th:value="${categorie.id}"
                       th:text="${categorie.nom}">
               </option>
           </select>
+      <br>
+           <select name="sousCategorieId" id="sousCategorie" class="hidden">
 
-           <div id="sousCategorie">
-
-           </div>
+           </select>
 
       <br>
         <div>
-         <input placeholder="Nom du fichier image" type="text" id="pictoFile" name="pictoFile"/>
+         <input placeholder="Nom du fichier image"
+                type="text"
+                id="pictoFile"
+                th:field="*{pictoFile}"
+                name="pictoFile"/>
       </div>
       <div>
           <br>

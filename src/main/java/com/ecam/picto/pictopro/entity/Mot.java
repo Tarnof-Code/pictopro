@@ -29,7 +29,7 @@ public class Mot {
 
     @UpdateTimestamp
     private Date updatedAt;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name="mot_tag",
             joinColumns = @JoinColumn(name="mot_id"),
@@ -85,6 +85,30 @@ public class Mot {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
+    public SousCategorie getSousCategorie() {
+        return sousCategorie;
+    }
+
+    public void setSousCategorie(SousCategorie sousCategorie) {
+        this.sousCategorie = sousCategorie;
+    }
+
+    public Irregulier getFormeIrreguliere() {
+        return formeIrreguliere;
+    }
+
+    public void setFormeIrreguliere(Irregulier formeIrreguliere) {
+        this.formeIrreguliere = formeIrreguliere;
     }
 
     @Override

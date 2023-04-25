@@ -7,13 +7,12 @@ import com.ecam.picto.pictopro.entity.Tag;
 import com.ecam.picto.pictopro.repository.CategorieRepository;
 import com.ecam.picto.pictopro.repository.TagRepository;
 import com.ecam.picto.pictopro.service.CategorieService;
+import com.ecam.picto.pictopro.service.MotService;
 import com.ecam.picto.pictopro.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +23,8 @@ public class MotController {
 private TagService tagService;
 @Autowired
 private CategorieService categorieService;
+@Autowired
+private MotService motService;
 
     @GetMapping
     public String gestionDesMots(Model model) {
@@ -61,5 +62,18 @@ private CategorieService categorieService;
             return "/components/listeSousCategories::listeSousCategoriesVide";
         }
 
+    }
+
+    @PostMapping("/ajouterUnMot")
+    public String ajouterUnMot(@ModelAttribute("mot") Mot mot,
+                               @RequestParam("categorieId") int idCat,
+                               @RequestParam("sousCategorieId") int idSousCat){
+        Categorie categorie = categorieService.findCategorieById(idCat);
+        SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
+        mot.setCategorie(categorie);
+        mot.setSousCategorie(sousCategorie);
+        motService.ajouterUnMot(mot);
+
+        return "redirect:/gestionDesMots";
     }
 }

@@ -10,7 +10,7 @@ public class Conjugaison {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nom;
+    private String temps;
     private String premierePersSing;
     private String deuxiemePersSing;
     private String troisiemePersSing;

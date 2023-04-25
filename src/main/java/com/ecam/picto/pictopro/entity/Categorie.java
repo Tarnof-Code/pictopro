@@ -3,9 +3,12 @@ package com.ecam.picto.pictopro.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Categorie {
@@ -21,9 +24,14 @@ public class Categorie {
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date createdAt;
     @UpdateTimestamp
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date updatedAt;
+
+    public Categorie() {
+    }
 
     public int getId() {
         return id;
@@ -87,9 +95,21 @@ public class Categorie {
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", pictoFile='" + pictoFile + '\'' +
-                ", listeMotsParCategorie=" + listeMotsParCategorie +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Categorie categorie = (Categorie) o;
+        return id == categorie.id && nom.equals(categorie.nom) && Objects.equals(pictoFile, categorie.pictoFile) && Objects.equals(listeMotsParCategorie, categorie.listeMotsParCategorie) && Objects.equals(listeSousCategorie, categorie.listeSousCategorie) && Objects.equals(createdAt, categorie.createdAt) && Objects.equals(updatedAt, categorie.updatedAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom, pictoFile, listeMotsParCategorie, listeSousCategorie, createdAt, updatedAt);
     }
 }

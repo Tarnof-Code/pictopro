@@ -10,7 +10,7 @@ public class Irregulier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String participePasse;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Conjugaison> conjugaisons;
     private String pluriel;
     private String feminin;
