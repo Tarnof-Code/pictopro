@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Liste sous-catégories</title>
+</head>
+<body>
+
+<select th:field="${selectedSousCategorie}" th:fragment="listeSousCategories">
+  <option value="" >Choisir une sous-catégorie</option>
+  <option th:each="sousCategorie : ${categorie.listeSousCategorie}"
+          th:value="${sousCategorie}"
+          th:text="${sousCategorie.nom}">
+  </option>
+</select>
+
+<select th:field="${selectedSousCategorie}" th:fragment="listeSousCategoriesVide" class="hidden">
+
+</select>
+
+</body>
+</html>

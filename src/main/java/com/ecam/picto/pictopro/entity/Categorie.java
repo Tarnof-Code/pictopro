@@ -18,6 +18,7 @@ public class Categorie {
     private List<Mot> listeMotsParCategorie;
     @OneToMany(mappedBy = "categorie",fetch = FetchType.EAGER)
     private List<SousCategorie> listeSousCategorie;
+
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private Date createdAt;
@@ -54,6 +55,14 @@ public class Categorie {
 
     public void setListeMotsParCategorie(List<Mot> listeMotsParCategorie) {
         this.listeMotsParCategorie = listeMotsParCategorie;
+    }
+
+    public List<SousCategorie> getListeSousCategorie() {
+        return listeSousCategorie;
+    }
+
+    public void setListeSousCategorie(List<SousCategorie> listeSousCategorie) {
+        this.listeSousCategorie = listeSousCategorie;
     }
 
     public Date getCreatedAt() {

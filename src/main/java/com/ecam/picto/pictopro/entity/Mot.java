@@ -21,6 +21,8 @@ public class Mot {
     @ManyToOne
     private SousCategorie sousCategorie;
     private String pictoFile;
+    @OneToOne
+    private Irregulier formeIrreguliere;
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private Date createdAt;
