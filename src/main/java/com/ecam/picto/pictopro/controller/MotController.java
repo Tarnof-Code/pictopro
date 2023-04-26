@@ -77,7 +77,9 @@ private MotService motService;
         mot.setCategorie(categorie);
         mot.setSousCategorie(sousCategorie);
         mot.setTags(listeTags);
-
+        mot.getIrregulier().getConjugaisons().get(0).setTemps("Present");
+        mot.getIrregulier().getConjugaisons().get(1).setTemps("Futur");
+        mot.getIrregulier().setPluriel(mot.getIrregulier().getPluriel().replace(",",""));
         motService.ajouterUnMot(mot);
 
         return "redirect:/gestionDesMots";

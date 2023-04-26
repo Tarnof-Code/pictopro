@@ -7,53 +7,101 @@
 
 </head>
 <body>
-<div class="row" id="verbForm" th:fragment="verbeIrregulier">
+<div class="row" id="verbForm" th:fragment="verbeIrregulier(conjugaisons, participePasse)">
     <div class="col-12 col-lg-4 mb-3">
         <div class="d-flex flex-column">
             <p>Présent</p>
-            <input type="text" name="je_present" placeholder="Je / J'">
-            <input type="text" name="tu_present" placeholder="Tu">
-            <input type="text" name="il_present" placeholder="Il / elle / on">
-            <input type="text" name="nous_present" placeholder="Nous">
-            <input type="text" name="vous_present" placeholder="Vous">
-            <input type="text" name="ils_present" placeholder="Ils / elles">
+            <input type="text"
+                   name="je_present"
+                   th:field="*{__${conjugaisons}__[0].premierePersSing}"
+                   placeholder="Je / J'">
+            <input type="text"
+                   name="tu_present"
+                   th:field="*{__${conjugaisons}__[0].deuxiemePersSing}"
+                   placeholder="Tu">
+            <input type="text"
+                   name="il_present"
+                   th:field="*{__${conjugaisons}__[0].troisiemePersSing}"
+                   placeholder="Il / elle / on">
+            <input type="text"
+                   name="nous_present"
+                   th:field="*{__${conjugaisons}__[0].premierePersPluriel}"
+                   placeholder="Nous">
+            <input type="text"
+                   name="vous_present"
+                   th:field="*{__${conjugaisons}__[0].deuxiemePersPluriel}"
+                   placeholder="Vous">
+            <input type="text"
+                   name="ils_present"
+                   th:field="*{__${conjugaisons}__[0].troisiemePersPluriel}"
+                   placeholder="Ils / elles">
         </div>
     </div>
     <div class="col-12 col-lg-4 mb-3">
         <div class="d-flex flex-column">
             <p>Futur</p>
-            <input type="text" name="je_futur" placeholder="Je / J'">
-            <input type="text" name="tu_futur" placeholder="Tu">
-            <input type="text" name="il_futur" placeholder="Il / elle / on">
-            <input type="text" name="nous_futur" placeholder="Nous">
-            <input type="text" name="vous_futur" placeholder="Vous">
-            <input type="text" name="ils_futur" placeholder="Ils / elles">
+            <input type="text"
+                   name="je_present"
+                   th:field="*{__${conjugaisons}__[1].premierePersSing}"
+                   placeholder="Je / J'">
+            <input type="text"
+                   name="tu_present"
+                   th:field="*{__${conjugaisons}__[1].deuxiemePersSing}"
+                   placeholder="Tu">
+            <input type="text"
+                   name="il_present"
+                   th:field="*{__${conjugaisons}__[1].troisiemePersSing}"
+                   placeholder="Il / elle / on">
+            <input type="text"
+                   name="nous_present"
+                   th:field="*{__${conjugaisons}__[1].premierePersPluriel}"
+                   placeholder="Nous">
+            <input type="text"
+                   name="vous_present"
+                   th:field="*{__${conjugaisons}__[1].deuxiemePersPluriel}"
+                   placeholder="Vous">
+            <input type="text"
+                   name="ils_present"
+                   th:field="*{__${conjugaisons}__[1].troisiemePersPluriel}"
+                   placeholder="Ils / elles">
         </div>
     </div>
     <div class="col-12 col-lg-4 mb-3">
         <div class="d-flex flex-column">
             <p>Participe passé</p>
-            <input type="text" name="participe_passe" placeholder="participe passé">
+            <input type="text"
+                   name="participe_passe"
+                   th:field="*{__${participePasse}__}"
+                   placeholder="participe passé">
         </div>
     </div>
 </div>
 
-<div id="nomForm" th:fragment="nomIrregulier">
+<div id="nomForm" th:fragment="nomIrregulier(nomPluriel)">
     <p>Pluriel irrégulier</p>
-    <input type="text" name="nomPlurielIrregulier" placeholder="Pluriel irrégulier">
+    <input type="text"
+           name="nomPlurielIrregulier"
+           th:field="*{__${nomPluriel}__}"
+           placeholder="Pluriel irrégulier">
 </div>
 
-<div class="row" id="adjectifForm" th:fragment="adjectifIrregulier">
+<div class="row" id="adjectifForm" th:fragment="adjectifIrregulier(feminin,adjPluriel)">
     <div class="col-12 col-lg-4 mb-3">
         <div class="d-flex flex-column">
             <p>Féminin</p>
-            <input type="text" name="adjectifFemininIrregulier" placeholder="Féminin">
+            <input type="text"
+                   name="adjectifFemininIrregulier"
+                   th:field="*{__${feminin}__}"
+                   placeholder="Féminin">
         </div>
     </div>
     <div class="col-12 col-lg-4 mb-3">
         <div class="d-flex flex-column">
             <p>Pluriel</p>
-            <input type="text" name="adjectifPlurielIrregulier" placeholder="Pluriel">
+            <input type="text"
+                   name="adjectifPlurielIrregulier"
+                   th:field="*{__${adjPluriel}__}"
+                   placeholder="Pluriel">
         </div>
     </div>
 </div>

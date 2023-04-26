@@ -64,15 +64,15 @@
       </div>
         <br>
         <div class="hidden">
-            <div th:replace="~{components/formulairesIrreguliers :: verbeIrregulier}"/>
+            <div th:replace="~{components/formulairesIrreguliers :: verbeIrregulier('irregulier.conjugaisons','irregulier.participePasse')}"/>
         </div>
 
         <div class="hidden">
-            <div th:replace="~{components/formulairesIrreguliers :: nomIrregulier}"/>
+            <div th:replace="~{components/formulairesIrreguliers :: nomIrregulier('irregulier.pluriel')}"/>
         </div>
 
         <div class="hidden">
-            <div th:replace="~{components/formulairesIrreguliers :: adjectifIrregulier}"/>
+            <div th:replace="~{components/formulairesIrreguliers :: adjectifIrregulier('irregulier.feminin','irregulier.pluriel')}"/>
         </div>
 
         <br>

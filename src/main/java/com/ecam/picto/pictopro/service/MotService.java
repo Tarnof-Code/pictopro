@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MotService {
     public void ajouterUnMot(Mot mot);
+
 }

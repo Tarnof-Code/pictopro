@@ -21,7 +21,7 @@ public class Mot {
     @ManyToOne
     private SousCategorie sousCategorie;
     private String pictoFile;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Irregulier irregulier;
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
@@ -107,7 +107,7 @@ public class Mot {
         return irregulier;
     }
 
-    public void setIrreguliere(Irregulier irregulier) {
+    public void setIrregulier(Irregulier irregulier) {
         this.irregulier = irregulier;
     }
 
