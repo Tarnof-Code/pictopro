@@ -67,11 +67,17 @@ private MotService motService;
     @PostMapping("/ajouterUnMot")
     public String ajouterUnMot(@ModelAttribute("mot") Mot mot,
                                @RequestParam("categorieId") int idCat,
-                               @RequestParam("sousCategorieId") int idSousCat){
+                               @RequestParam("sousCategorieId") int idSousCat,
+                               @RequestParam("selectedTags") List<String> selectedTags){
+
         Categorie categorie = categorieService.findCategorieById(idCat);
         SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
+        List<Tag> listeTags = tagService.findAllByNomIn(selectedTags);
+
         mot.setCategorie(categorie);
         mot.setSousCategorie(sousCategorie);
+        mot.setTags(listeTags);
+
         motService.ajouterUnMot(mot);
 
         return "redirect:/gestionDesMots";

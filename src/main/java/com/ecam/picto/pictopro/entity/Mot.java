@@ -22,14 +22,14 @@ public class Mot {
     private SousCategorie sousCategorie;
     private String pictoFile;
     @OneToOne
-    private Irregulier formeIrreguliere;
+    private Irregulier irregulier;
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private Date createdAt;
 
     @UpdateTimestamp
     private Date updatedAt;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
             name="mot_tag",
             joinColumns = @JoinColumn(name="mot_id"),
@@ -103,12 +103,12 @@ public class Mot {
         this.sousCategorie = sousCategorie;
     }
 
-    public Irregulier getFormeIrreguliere() {
-        return formeIrreguliere;
+    public Irregulier getIrregulier() {
+        return irregulier;
     }
 
-    public void setFormeIrreguliere(Irregulier formeIrreguliere) {
-        this.formeIrreguliere = formeIrreguliere;
+    public void setIrreguliere(Irregulier irregulier) {
+        this.irregulier = irregulier;
     }
 
     @Override

@@ -24,4 +24,14 @@ public class TagServiceImpl implements TagService{
         }
 
     }
+
+    @Override
+    public List<Tag> findAllByNomIn(List<String> listTags) {
+        try{
+            return tagRepository.findAllByNomIn(listTags);
+        } catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

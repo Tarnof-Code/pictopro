@@ -1,15 +1,14 @@
 package com.ecam.picto.pictopro.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Conjugaison {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ManyToOne
+    private Irregulier irregulier;
     private String temps;
     private String premierePersSing;
     private String deuxiemePersSing;

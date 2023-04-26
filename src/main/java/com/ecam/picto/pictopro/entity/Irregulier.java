@@ -10,11 +10,10 @@ public class Irregulier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String participePasse;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "irregulier")
     private List<Conjugaison> conjugaisons;
     private String pluriel;
     private String feminin;
-    @OneToOne
-    private Mot mot;
+
 
 }

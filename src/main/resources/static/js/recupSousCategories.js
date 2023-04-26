@@ -4,6 +4,13 @@ function getContent(){
     var url = "/gestionDesMots/sousCategories/"
     var id = $("#categorie").val()
     url = url + id;
-    $('#sousCategorie').removeClass("hidden")
-    $('#sousCategorie').load(url);
+
+    var tailleListe = $('#categorie option:selected').attr('sousCat')
+
+    if(tailleListe > 0) {
+         $('#sousCategorie').load(url);
+         $('#divSousCat').removeClass("hidden")
+    } else {
+         $('#divSousCat').removeClass("hidden").addClass("hidden")
+    }
 }

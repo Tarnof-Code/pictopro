@@ -8,4 +8,5 @@ import java.util.List;
 @Service
 public interface TagService {
     public List<Tag> afficherTags();
+    public List<Tag> findAllByNomIn(List<String> listTags);
 }

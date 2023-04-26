@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<select  th:fragment="listeSousCategories">
-  <option value="-1" >Choisir une sous-catégorie</option>
+<select th:fragment="listeSousCategories">
+  <option value="-1" >Sous-catégorie</option>
   <option th:each="sousCategorie : ${categorie.listeSousCategorie}"
           th:value="${sousCategorie.id}"
           th:text="${sousCategorie.nom}">
@@ -15,7 +15,7 @@
 </select>
 
 <select  th:fragment="listeSousCategoriesVide" class="hidden">
-
+    <option value="-1" ></option>
 </select>
 
 </body>
