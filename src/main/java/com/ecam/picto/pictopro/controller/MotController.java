@@ -1,9 +1,6 @@
 package com.ecam.picto.pictopro.controller;
 
-import com.ecam.picto.pictopro.entity.Categorie;
-import com.ecam.picto.pictopro.entity.Mot;
-import com.ecam.picto.pictopro.entity.SousCategorie;
-import com.ecam.picto.pictopro.entity.Tag;
+import com.ecam.picto.pictopro.entity.*;
 import com.ecam.picto.pictopro.repository.CategorieRepository;
 import com.ecam.picto.pictopro.repository.TagRepository;
 import com.ecam.picto.pictopro.service.CategorieService;
@@ -14,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -61,8 +59,25 @@ private MotService motService;
         } else {
             return "/components/listeSousCategories::listeSousCategoriesVide";
         }
-
     }
+
+    @RequestMapping("/verbeIrregulier")
+    public String affichageFormulaireVerbeIrregulier(@ModelAttribute("mot") Mot mot){
+        return "/components/formulairesIrreguliers::verbeIrregulier(conjugaisons='mot.irregulier.conjugaisons',participePasse='mot.irregulier.participePasse')";
+    }
+
+    @RequestMapping("/nomIrregulier")
+    public String affichageFormulaireNomIrregulier(@ModelAttribute("mot") Mot mot){
+        return "/components/formulairesIrreguliers::nomIrregulier(nomPluriel='mot.irregulier.pluriel')";
+    }
+
+    @RequestMapping("/adjectifIrregulier")
+    public String affichageFormulaireAdjectifIrregulier(@ModelAttribute("mot") Mot mot){
+        return "/components/formulairesIrreguliers::adjectifIrregulier(feminin='mot.irregulier.feminin',adjPluriel='mot.irregulier.pluriel')";
+    }
+
+
+
 
     @PostMapping("/ajouterUnMot")
     public String ajouterUnMot(@ModelAttribute("mot") Mot mot,
@@ -77,9 +92,13 @@ private MotService motService;
         mot.setCategorie(categorie);
         mot.setSousCategorie(sousCategorie);
         mot.setTags(listeTags);
-        mot.getIrregulier().getConjugaisons().get(0).setTemps("Present");
-        mot.getIrregulier().getConjugaisons().get(1).setTemps("Futur");
-        mot.getIrregulier().setPluriel(mot.getIrregulier().getPluriel().replace(",",""));
+
+        if(selectedTags.containsAll(List.of("verbe","irregulier"))){
+            mot.getIrregulier().getConjugaisons().get(0).setTemps("Present");
+            mot.getIrregulier().getConjugaisons().get(1).setTemps("Futur");
+        }
+
+
         motService.ajouterUnMot(mot);
 
         return "redirect:/gestionDesMots";

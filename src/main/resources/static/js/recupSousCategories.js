@@ -1,3 +1,5 @@
+//Afficher les sous-catégories si les catégories en ont
+
 $('#categorie').change(getContent);
 
 function getContent(){

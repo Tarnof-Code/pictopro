@@ -374,7 +374,7 @@ checkboxes.forEach(function(checkbox) {
 
   });
 });
-
+/*
 //Affichage formulaire pour verbes irréguliers
 var verbCheckbox = document.getElementById("verbe");
 var irregulierCheckbox = document.getElementById("irregulier");
@@ -382,6 +382,7 @@ var verbForm = document.getElementById("verbForm");
 
 function checkBoxesVerbAndIrregulier() {
   if (verbCheckbox.checked && irregulierCheckbox.checked) {
+
     verbForm.parentNode.classList.remove("hidden");
   } else {
     verbForm.parentNode.classList.add("hidden");
@@ -421,5 +422,32 @@ function checkBoxesAdjectifAndIrregulier() {
 }
 adjectifCheckbox.addEventListener("change", checkBoxesAdjectifAndIrregulier);
 irregulierCheckbox.addEventListener("change", checkBoxesAdjectifAndIrregulier);
+*/
+
+var irregulierCheckBox = $('#irregulier');
+var verbCheckBox = $('#verbe');
+var nomCheckbox = $('#nom');
+var adjectifCheckBox = $('#adjectif');
+var formulaireIrregulier = $('#formulaireIrregulier');
+
+
+irregulierCheckBox.change(function(){
+if(irregulierCheckBox.prop("checked")){
+ if(verbCheckBox.prop("checked")){
+        formulaireIrregulier.load("/gestionDesMots/verbeIrregulier")
+     }
+     else if(nomCheckbox.prop("checked")){
+        formulaireIrregulier.load("/gestionDesMots/nomIrregulier")
+     }
+     else if(adjectifCheckBox.prop("checked")){
+        formulaireIrregulier.load("/gestionDesMots/adjectifIrregulier")
+     }
+}    else{
+          formulaireIrregulier.empty()
+          }
+
+});
+
+
 
 
