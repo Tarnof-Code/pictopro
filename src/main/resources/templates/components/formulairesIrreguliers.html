@@ -11,7 +11,10 @@
     <div class="col-12 col-lg-4 mb-3">
         <div class="d-flex flex-column">
             <p>Présent</p>
-
+            <input type="hidden"
+                   name="irregulier.conjugaisons[0].temps"
+                   id="irregulier.conjugaisons0.temps"
+                   th:value="present">
             <input type="text"
                    name="je_present"
                    th:field="*{__${conjugaisons}__[0].premierePersSing}"
@@ -41,7 +44,10 @@
     <div class="col-12 col-lg-4 mb-3">
         <div class="d-flex flex-column">
             <p>Futur</p>
-
+            <input type="hidden"
+                   name="irregulier.conjugaisons[1].temps"
+                   id="irregulier.conjugaisons1.temps"
+                   th:value="futur">
             <input type="text"
                    name="je_present"
                    th:field="*{__${conjugaisons}__[1].premierePersSing}"

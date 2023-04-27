@@ -93,12 +93,6 @@ private MotService motService;
         mot.setSousCategorie(sousCategorie);
         mot.setTags(listeTags);
 
-        if(selectedTags.containsAll(List.of("verbe","irregulier"))){
-            mot.getIrregulier().getConjugaisons().get(0).setTemps("Present");
-            mot.getIrregulier().getConjugaisons().get(1).setTemps("Futur");
-        }
-
-
         motService.ajouterUnMot(mot);
 
         return "redirect:/gestionDesMots";
