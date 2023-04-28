@@ -5,9 +5,17 @@
 .source,
 .target {
   margin: 20px;
-  width: 400px;
   border: 1px solid green;
   display:flex;
+}
+
+.source{
+      width:80%;
+      padding: 0px;
+      text-align: left;
+      overflow: hidden;
+      overflow-x: scroll;
+      display:-webkit-inline-box;
 }
 
 .target {
@@ -15,8 +23,8 @@
 }
 
 .item {
-  height: 50px;
-  width:50px;
+  height: 100px;
+  width:100px;
   margin: 5px;
   padding: 5px;
   border: 1px solid gray;
@@ -28,8 +36,8 @@
 }
 
 .item2 {
-  height: 50px;
-  width:50px;
+  height: 100px;
+  width:100px;
   margin: 5px;
   padding: 5px;
   border: 1px solid gray;
@@ -74,8 +82,8 @@
 }
 
 .empty {
-  height: 50px;
-  width:50px;
+  height: 100px;
+  width:100px;
   margin: 5px;
   padding: 5px;
   background: #eee;

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Liste Mots</title>
+  <link rel="stylesheet" href="/css/dragDropItem.css"/>
+</head>
+
+<body>
+<div th:replace="~{components/navBar}"></div>
+
+<ul style="margin-right:100px">
+  <li th:each="mot : ${mots}">
+    <p th:text="${mot.nom}"></p>
+  </li>
+</ul>
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+
+</html>

@@ -14,8 +14,8 @@ public class Mot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true,nullable = false)
     private String nom;
-
     @ManyToOne
     private Categorie categorie;
     @ManyToOne

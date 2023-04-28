@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     @GetMapping("/")
     public String goConnnexionInscription(Model model) {
-        model.addAttribute("message", "Page Connexion");
+        model.addAttribute("message", "Page Connexion/Inscription");
         return "connexionInscription";
     }
+
 }

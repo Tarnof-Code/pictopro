@@ -3,14 +3,15 @@
 <head>
   <title>Page Echanges</title>
   <link rel="stylesheet" href="/css/dragDropItem.css"/>
+
 </head>
 <body>
-  <div th:replace="~{components/navBar :: navBar}"></div>
+  <div th:replace="~{components/navBar}"></div>
 
   <ul class="source">
     <li th:each="mot : ${mots}"
         class="item"
-        th:style="'background-image:url('+@{'/images/'+${mot.pictoFile}}+')'">
+        th:style="'background-image:url('+@{'/images/Mots/'+${mot.pictoFile}}+')'">
       <span class="closer">x</span>
     </li>
   </ul>
@@ -22,10 +23,7 @@
     <li class="empty"></li>
     <li class="empty"></li>
   </ul>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <script src="/js/dragAndDrop.js"></script>
 </body>
 <div th:replace="~{components/footer :: footer}"></div>
+<script src="/js/dragAndDrop.js"></script>
 </html>

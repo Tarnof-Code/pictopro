@@ -24,8 +24,10 @@ private CategorieService categorieService;
 @Autowired
 private MotService motService;
 
-    @GetMapping
-    public String gestionDesMots(Model model) {
+    @GetMapping("/ajouterUnMot")
+    public String ajouterUnMot(Model model) {
+
+    model.addAttribute("mots", motService.findAll());
 
     Mot motAAjouter = new Mot();
     model.addAttribute("mot",motAAjouter);
@@ -42,7 +44,7 @@ private MotService motService;
     List<Categorie> listeCategories = categorieService.afficherCategories();
     model.addAttribute("categories",categorieService.afficherCategories());
 
-        return "gestionDesMots";
+        return "ajouterUnMot";
     }
 
     @RequestMapping("/sousCategories/{id}")
@@ -95,6 +97,12 @@ private MotService motService;
 
         motService.ajouterUnMot(mot);
 
-        return "redirect:/gestionDesMots";
+        return "redirect:/ajouterUnMot";
+    }
+
+    @GetMapping("/consulterLesMots")
+    public String consulterLesMots(Model model){
+        model.addAttribute("mots", motService.findAll());
+        return "consulterLesMots";
     }
 }
