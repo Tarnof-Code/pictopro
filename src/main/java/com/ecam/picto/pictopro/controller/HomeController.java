@@ -12,4 +12,10 @@ public class HomeController {
         return "connexionInscription";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
+
+
 }

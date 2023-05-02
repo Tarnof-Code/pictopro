@@ -63,6 +63,13 @@ private MotService motService;
         }
     }
 
+    @RequestMapping("/mot/{id}")
+    public String afficherMot(Model model, @PathVariable("id") int id){
+        Mot mot = motService.findById(id);
+        model.addAttribute("motSelection",mot);
+        return "/components/consulterModifierMot";
+    }
+
     @RequestMapping("/verbeIrregulier")
     public String affichageFormulaireVerbeIrregulier(@ModelAttribute("mot") Mot mot){
         return "/components/formulairesIrreguliers::verbeIrregulier(conjugaisons='mot.irregulier.conjugaisons',participePasse='mot.irregulier.participePasse')";
@@ -82,7 +89,8 @@ private MotService motService;
 
 
     @PostMapping("/ajouterUnMot")
-    public String ajouterUnMot(@ModelAttribute("mot") Mot mot,
+    public String ajouterUnMot(Model model,
+                               @ModelAttribute("mot") Mot mot,
                                @RequestParam("categorieId") int idCat,
                                @RequestParam("sousCategorieId") int idSousCat,
                                @RequestParam("selectedTags") List<String> selectedTags){
@@ -97,12 +105,16 @@ private MotService motService;
 
         motService.ajouterUnMot(mot);
 
-        return "redirect:/ajouterUnMot";
+        model.addAttribute("module","gestionDesMots");
+
+        return "redirect:/gestionDesMots/ajouterUnMot";
     }
 
     @GetMapping("/consulterLesMots")
     public String consulterLesMots(Model model){
+        model.addAttribute("categories",categorieService.afficherCategories());
         model.addAttribute("mots", motService.findAll());
+        model.addAttribute("module","gestionDesMots");
         return "consulterLesMots";
     }
 }

@@ -2,19 +2,68 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Liste Mots</title>
-  <link rel="stylesheet" href="/css/dragDropItem.css"/>
+  <link rel="stylesheet" href="/css/consulterMots.css"/>
 </head>
 
 <body>
 <div th:replace="~{components/navBar}"></div>
 
-<ul style="margin-right:100px">
-  <li th:each="mot : ${mots}">
-    <p th:text="${mot.nom}"></p>
-  </li>
-</ul>
+
+<div th:replace="~{components/modales :: modaleInfosMots}"></div>
+
+<div class="accordion col-10 col-md-8 mx-auto" >
+  <div class="accordion-item" th:each="categorie : ${categories}">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="'#' + ${categorie.id}" aria-expanded="false" th:aria-controls="${categorie.id}">
+        <div class="d-flex align-items-center">
+          <img class="pictoCategorie" th:src="@{'/images/categories/' + ${categorie.pictoFile}}"/>
+          <p class="ms-4 fs-5 fw-semibold" th:text="${categorie.nom}"></p>
+        </div>
+      </button>
+    </h2>
+    <div th:id="${categorie.id}" class="accordion-collapse collapse mx-2" >
+      <div th:if="${categorie.listeSousCategorie.size()>0}">
+        <div class="accordion col-10 col-md-10 mx-auto" >
+          <div class="accordion-item" th:each="sousCategorie : ${categorie.listeSousCategorie}">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="'#' + ${sousCategorie.id}" aria-expanded="false" th:aria-controls="${sousCategorie.id}">
+                <div class="d-flex align-items-center">
+                  <img class="pictoSousCategorie" th:src="@{'/images/sous-categories/' + ${sousCategorie.pictoFile}}"/>
+                  <p class="ms-4 fs-5 fw-semibold" th:text="${sousCategorie.nom}"></p>
+                </div>
+              </button>
+            </h2>
+            <div th:id="${sousCategorie.id}" class="accordion-collapse collapse mx-2">
+              <div class="d-flex flex-wrap justify-content-center">
+                <div class="accordion-body text-center" th:each="mot : ${sousCategorie.listeMotsParSousCategorie}">
+                  <a data-bs-toggle="modal"
+                     data-bs-target="#modaleInfosMots"
+                     th:data-id="${mot.id}">
+                    <img class="pictoMot" th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center">
+        <div class="accordion-body text-center" th:each="mot : ${categorie.listeMotsParCategorie}">
+         <a data-bs-toggle="modal"
+            data-bs-target="#modaleInfosMots"
+            th:data-id="${mot.id}">
+            <img class="pictoMot" th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
+         </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div th:replace="~{components/footer :: footer}"></div>
+<script src="/js/modaleInfosMots.js"></script>
 </body>
 
 </html>

@@ -95,6 +95,8 @@ public class Categorie {
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", pictoFile='" + pictoFile + '\'' +
+                ", listeMotsParCategorie=" + listeMotsParCategorie +
+                ", listeSousCategorie=" + listeSousCategorie +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

@@ -10,5 +10,6 @@ import java.util.List;
 public interface MotService {
     public void ajouterUnMot(Mot mot);
     public List<Mot> findAll();
+    public Mot findById(int id);
 
 }
