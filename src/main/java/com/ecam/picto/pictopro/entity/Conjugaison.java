@@ -90,4 +90,18 @@ public class Conjugaison {
     public void setTroisiemePersPluriel(String troisiemePersPluriel) {
         this.troisiemePersPluriel = troisiemePersPluriel;
     }
+
+    @Override
+    public String toString() {
+        return "Conjugaison{" +
+                "id=" + id +
+                ", temps='" + temps + '\'' +
+                ", premierePersSing='" + premierePersSing + '\'' +
+                ", deuxiemePersSing='" + deuxiemePersSing + '\'' +
+                ", troisiemePersSing='" + troisiemePersSing + '\'' +
+                ", premierePersPluriel='" + premierePersPluriel + '\'' +
+                ", deuxiemePersPluriel='" + deuxiemePersPluriel + '\'' +
+                ", troisiemePersPluriel='" + troisiemePersPluriel + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package com.ecam.picto.pictopro.service;
 
+import com.ecam.picto.pictopro.entity.Irregulier;
 import com.ecam.picto.pictopro.entity.Mot;
 import com.ecam.picto.pictopro.repository.MotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,34 @@ public class MotServiceImpl implements MotService{
         try{
             Optional<Mot> mot = motRepository.findById(id);
             return mot.orElse(null);
+        } catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Mot modifierUnMot(Mot ancienMot, Mot nouveauMot) {
+        try{
+            Mot motAModifier = findById(ancienMot.getId());
+            System.out.println("Mot à modifier "+ motAModifier);
+
+            motAModifier.setNom(nouveauMot.getNom());
+            motAModifier.setPictoFile(nouveauMot.getPictoFile());
+            motAModifier.setCategorie(nouveauMot.getCategorie());
+            motAModifier.setTags(nouveauMot.getTags());
+
+            if(nouveauMot.getSousCategorie() != null) {
+                motAModifier.setSousCategorie(nouveauMot.getSousCategorie());
+            }
+            if(nouveauMot.getIrregulier() != null){
+                motAModifier.setIrregulier(nouveauMot.getIrregulier());
+            }
+
+            Mot motModifie = motRepository.save(motAModifier);
+
+            return motModifie;
+
         } catch(Exception e){
             e.printStackTrace();
             return null;

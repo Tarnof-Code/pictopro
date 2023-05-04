@@ -11,5 +11,6 @@ public interface MotService {
     public void ajouterUnMot(Mot mot);
     public List<Mot> findAll();
     public Mot findById(int id);
+    public Mot modifierUnMot(Mot ancienMot, Mot nouveauMot);
 
 }

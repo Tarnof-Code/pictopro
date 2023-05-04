@@ -1,0 +1,100 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<form class="d-flex"
+      th:fragment="formulaireMot"
+      th:action="@{/gestionDesMots/modifierUnMot}"
+      method="post"
+      th:object="${mot}">
+    <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-3">
+            <div>
+                <label>Mot</label>
+                <div>
+                    <input type="text"
+                           id="motAModif"
+                           th:field="*{nom}"
+                           name="nomMotModif"/>
+                </div>
+            </div>
+            <br>
+
+            <label>Catégorie</label>
+            <div>
+                <select id="categorie" name="categorieId">
+                    <option th:each="categorie : ${categories}"
+                            th:value="${categorie.id}"
+                            th:text="${categorie.nom}"
+                            th:sousCat="${categorie.listeSousCategorie.size()}"
+                            th:selected="${mot.categorie.id == categorie.id}">
+                    </option>
+                </select>
+            </div>
+            <br>
+
+            <div id="divSousCat">
+                <label>Sous-catégorie</label>
+                <div>
+                    <select name="sousCategorieId" id="sousCategorie">
+                        <option th:if="${mot.sousCategorie != null}"
+                                th:each="sousCategorie : ${mot.categorie.listeSousCategorie}"
+                                th:value="${sousCategorie.id}"
+                                th:text="${sousCategorie.nom}"
+                                th:selected="${mot.sousCategorie.id == sousCategorie.id}">
+                        </option>
+                        <option th:if="${mot.sousCategorie == null}">
+                            Pas de sous-catégorie
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <br>
+            <div>
+                <label for="pictoFile">Nom de l'image</label>
+                <div>
+                    <input type="text"
+                           id="pictoFile"
+                           th:field="*{pictoFile}"
+                           name="pictoFile"/>
+                </div>
+            </div>
+              <br>
+
+          </div>
+
+          <div class="col-12 col-lg-4">
+                <label>Tags</label>
+                <div>
+                    <ul style="list-style-type:none;">
+                        <li th:each="tag : ${tags}">
+                            <input class="tags"
+                                   th:id="${tag.nom}"
+                                   type="checkbox"
+                                   th:value="${tag.nom}"
+                                   th:checked="${mot.tags.contains(tag)}"
+                                   name="selectedTags"/>
+                            <label th:text="${tag.nom}"></label>
+                        </li>
+                    </ul>
+                </div>
+          </div>
+          <div id="formulaireIrregulier" class="col-12 col-lg-5"></div>
+            <br>
+        </div>
+        <div class="row">
+            <button type="submit"
+                    class="btn btn-primary">
+                Valider les modifications
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+

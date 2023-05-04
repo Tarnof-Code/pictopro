@@ -40,6 +40,7 @@ checkboxes.forEach(function(checkbox) {
 
     }
     if(this.value === 'verbe' && !this.checked){
+      formulaireIrregulier.empty()
       checkboxes.forEach(function(checkbox) {
       if (checkbox.value === 'premier_groupe' ||
                   checkbox.value === 'deuxieme_groupe' ||
@@ -50,6 +51,7 @@ checkboxes.forEach(function(checkbox) {
         checkbox.parentNode.classList.add('hidden');
         checkbox.checked = false;
       }
+
       checkbox.parentNode.classList.remove('greyColor')
       checkbox.disabled = false;
       });
@@ -305,6 +307,7 @@ checkboxes.forEach(function(checkbox) {
           });
         }
         if(this.value === 'nom' && !this.checked){
+          formulaireIrregulier.empty()
           checkboxes.forEach(function(checkbox) {
           if (checkbox.value === 'masculin' ||
               checkbox.value === 'feminin' ||
@@ -330,6 +333,7 @@ checkboxes.forEach(function(checkbox) {
           });
         }
         if(this.value === 'adjectif' && !this.checked){
+          formulaireIrregulier.empty()
           checkboxes.forEach(function(checkbox) {
           if (checkbox.value === 'irregulier') {
             checkbox.parentNode.classList.add('hidden');
@@ -374,55 +378,7 @@ checkboxes.forEach(function(checkbox) {
 
   });
 });
-/*
-//Affichage formulaire pour verbes irréguliers
-var verbCheckbox = document.getElementById("verbe");
-var irregulierCheckbox = document.getElementById("irregulier");
-var verbForm = document.getElementById("verbForm");
 
-function checkBoxesVerbAndIrregulier() {
-  if (verbCheckbox.checked && irregulierCheckbox.checked) {
-
-    verbForm.parentNode.classList.remove("hidden");
-  } else {
-    verbForm.parentNode.classList.add("hidden");
-  }
-}
-verbCheckbox.addEventListener("change", checkBoxesVerbAndIrregulier);
-irregulierCheckbox.addEventListener("change", checkBoxesVerbAndIrregulier);
-
-
-
-//Affichage formulaire pour les noms avec un pluriel irrégulier
-var nomCheckbox = document.getElementById("nom");
-var nomForm = document.getElementById("nomForm");
-
-function checkBoxesNomAndIrregulier() {
-  if (nomCheckbox.checked && irregulierCheckbox.checked) {
-    nomForm.parentNode.classList.remove("hidden");
-  } else {
-    nomForm.parentNode.classList.add("hidden");
-  }
-}
-nomCheckbox.addEventListener("change", checkBoxesNomAndIrregulier);
-irregulierCheckbox.addEventListener("change", checkBoxesNomAndIrregulier);
-
-
-
-//Affichage formulaire pour les adjectifs avec un féminin et/ou un pluriel irrégulier
-var adjectifCheckbox = document.getElementById("adjectif");
-var adjectifForm = document.getElementById("adjectifForm");
-
-function checkBoxesAdjectifAndIrregulier() {
-  if (adjectifCheckbox.checked && irregulierCheckbox.checked) {
-    adjectifForm.parentNode.classList.remove("hidden");
-  } else {
-    adjectifForm.parentNode.classList.add("hidden");
-  }
-}
-adjectifCheckbox.addEventListener("change", checkBoxesAdjectifAndIrregulier);
-irregulierCheckbox.addEventListener("change", checkBoxesAdjectifAndIrregulier);
-*/
 
 var irregulierCheckBox = $('#irregulier');
 var verbCheckBox = $('#verbe');
@@ -431,23 +387,29 @@ var adjectifCheckBox = $('#adjectif');
 var formulaireIrregulier = $('#formulaireIrregulier');
 
 
+function affichageFormulaireIrregulier(){
+    if(irregulierCheckBox.prop("checked")){
+     if(verbCheckBox.prop("checked")){
+            formulaireIrregulier.load("/gestionDesMots/verbeIrregulier")
+         }
+         else if(nomCheckbox.prop("checked")){
+            formulaireIrregulier.load("/gestionDesMots/nomIrregulier")
+         }
+         else if(adjectifCheckBox.prop("checked")){
+            formulaireIrregulier.load("/gestionDesMots/adjectifIrregulier")
+         }
+    }    else{
+              formulaireIrregulier.empty()
+         }
+}
+
+
+    affichageFormulaireIrregulier()
+
+
+
 irregulierCheckBox.change(function(){
-if(irregulierCheckBox.prop("checked")){
- if(verbCheckBox.prop("checked")){
-        formulaireIrregulier.load("/gestionDesMots/verbeIrregulier")
-     }
-     else if(nomCheckbox.prop("checked")){
-        formulaireIrregulier.load("/gestionDesMots/nomIrregulier")
-     }
-     else if(adjectifCheckBox.prop("checked")){
-        formulaireIrregulier.load("/gestionDesMots/adjectifIrregulier")
-     }
-}    else{
-          formulaireIrregulier.empty()
-          }
-
+    affichageFormulaireIrregulier();
 });
-
-
 
 

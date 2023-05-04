@@ -55,4 +55,15 @@ public class Irregulier {
     public void setFeminin(String feminin) {
         this.feminin = feminin;
     }
+
+    @Override
+    public String toString() {
+        return "Irregulier{" +
+                "id=" + id +
+                ", participePasse='" + participePasse + '\'' +
+                ", conjugaisons=" + conjugaisons +
+                ", pluriel='" + pluriel + '\'' +
+                ", feminin='" + feminin + '\'' +
+                '}';
+    }
 }

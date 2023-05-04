@@ -1,4 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/ajoutMot.css"/>
 
 <div th:fragment="modaleInfosMots"
      class="modal fade"
@@ -8,11 +9,12 @@
      tabindex="-1"
      aria-labelledby="modaleInfosMotsLabel"
      aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="modaleInfosMotsLabel">Consulter ou modifier un mot</h1>
+        <h1 class="modal-title fs-5" id="modaleInfosMotsLabel">Consulter / modifier un mot</h1>
         <button type="button"
+                id="closeModal"
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close">
@@ -22,8 +24,16 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary">Enregistrer</button>
+        <button type="button"
+                id="modifMotButton"
+                class="btn btn-primary">
+          Modifier le mot
+        </button>
+        <button type="button"
+                id="annulModifMotButton"
+                class="btn btn-primary hidden">
+          Annuler
+        </button>
       </div>
     </div>
   </div>

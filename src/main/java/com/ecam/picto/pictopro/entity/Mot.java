@@ -2,8 +2,8 @@ package com.ecam.picto.pictopro.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.UpdateTimestamp;
+import jakarta.validation.constraints.*;
 
 import java.util.ArrayList;
 import java.util.Date;

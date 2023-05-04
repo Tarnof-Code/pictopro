@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Consulter ou Modifier un Mot</title>
+    <link rel="stylesheet" href="/css/ajoutMot.css"/>
+</head>
+
+<body>
+
+<div class="table-responsive">
+    <table class="table table-bordered mx-auto text-center ">
+        <thead>
+            <tr class="align-middle">
+                <th>Image</th>
+                <th>Mot</th>
+                <th>Nom de l'image</th>
+                <th>Catégorie</th>
+                <th>Sous-catégorie</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="align-middle">
+                <td>
+                    <img class="pictoSousCategorie" th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
+                </td>
+                <td th:text="${mot.nom}"></td>
+                <td th:text="${mot.pictoFile}"></td>
+                <td th:text="${mot.categorie.nom}"></td>
+                <td>
+                    <div th:if="${mot.sousCategorie != null}"
+                         th:text="${mot.sousCategorie.nom}">
+                    </div>
+                </td>
+                <td>
+                    <div th:each="tag : ${mot.tags}" th:text="${tag.nom}"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/js/checkboxFilter.js"></script>
+<script src="/js/recupSousCategories.js"></script>
+    <div class="hidden" id="formModifMot">
+        <div th:replace="~{components/formulaireModifierMot}"></div>
+    </div>
+</body>
+
+</html>
