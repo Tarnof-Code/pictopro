@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Informations du professionnel</title>
+</head>
+
+<body>
+<div th:replace="~{components/navBar}"></div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title" th:text="${professionnel.nom}">Nom</h3>
+            <h5 class="card-subtitle" th:text="${professionnel.prenom}">Prénom</h5>
+            <p th:text="'Email: ' + ${professionnel.email}">Email</p>
+            <p th:text="'Téléphone: ' + ${professionnel.telephone}">Téléphone</p>
+            <a class="btn btn-primary btn-sm" href="#" th:href="@{mailto:{to}(to=${professionnel.email})}">Envoyer un Email</a>
+        </div>
+    </div>
+    <div class="container" >
+        <table class="table">
+            <thead>
+            <th scope="col">Numéro du dossier médical</th>
+            <th scope="col">Nom du patient</th>
+            </thead>
+            <tbody>
+            <tr th:each="dossierMedical : ${dossierMedicals}">
+                <td th:text="${dossierMedical.id}">Numéro du dossier médical</td>
+                <td th:text="${dossierMedical.nom}">Nom du patient</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div th:replace="~{components/footer :: footer}"></div>
+
+</body>
+
+</html>

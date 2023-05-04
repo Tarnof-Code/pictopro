@@ -23,6 +23,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+      
+       <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             th:classappend="${module == 'gestionDesPros' ? 'active' : ''}"
+             data-bs-toggle="dropdown"
+             href="#"
+             role="button"
+             aria-expanded="false"
+             th:href="@{/gestionDesPros}">
+            Gestion des professionnels de santé</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/gestionDePros/consulterLesPros">Consulter les professionnels de santé</a></li>
+          </ul>
+        </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"
