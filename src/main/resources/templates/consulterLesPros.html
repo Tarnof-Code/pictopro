@@ -15,6 +15,7 @@
     <br>
     <table class="table">
         <thead>
+        	<th scope="col">Service</th>
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
             <th scope="col">Email</th>
@@ -23,6 +24,7 @@
         </thead>
         <tbody>
             <tr th:each="professionnel : ${professionnels}">
+            <td th:text="${professionnel.service}">Service</td>
                 <td th:text="${professionnel.nom}">Nom</td>
                 <td th:text="${professionnel.prenom}">Prénom</td>
                 <td th:text="${professionnel.email}">Email</td>

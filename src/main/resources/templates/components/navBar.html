@@ -38,10 +38,52 @@ body {
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle"
+						th:classappend="${module == 'gestionDesPhrases' ? 'active' : ''}"
+						data-bs-toggle="dropdown" href="#" role="button"
+						aria-expanded="false" th:href="@{/gestionDesPhrases}">Phrases</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="/gestionDesPhrases/consulterLesPhrases">Consulter
+									les Phrases</a></li>
+							<li><a class="dropdown-item"
+								href="/gestionDesPhrases/ajouterUnePhrase">Ajouter une
+									phrase</a></li>
+						</ul></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle"
+						th:classappend="${module == 'gestionDesQuestions' ? 'active' : ''}"
+						data-bs-toggle="dropdown" href="#" role="button"
+						aria-expanded="false" th:href="@{/gestionDesQuestions}">Questions</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="/gestionDesQuestions/consulterLesQuestions">Consulter
+									les questions</a></li>
+							<li><a class="dropdown-item"
+								href="/gestionDesQuestions/ajouterUneQuestion">Ajouter une
+									question</a></li>
+						</ul></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle"
+						th:classappend="${module == 'gestionDesCategories' ? 'active' : ''}"
+						data-bs-toggle="dropdown" href="#" role="button"
+						aria-expanded="false" th:href="@{/gestionDesCategories}">Catégories/Sous
+							catégories</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="/gestionDesCategories/consulterLesCategories">Consulter
+									les catégories/sous catégories</a></li>
+							<li><a class="dropdown-item"
+								href="/gestionDesCategories/ajouterUneCategorie">Ajouter une
+									catégorie/sous catégorie</a></li>
+						</ul></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle"
 						th:classappend="${module == 'gestionDesMots' ? 'active' : ''}"
 						data-bs-toggle="dropdown" href="#" role="button"
-						aria-expanded="false" th:href="@{/gestionDesMots}"> Gestion
-							des mots</a>
+						aria-expanded="false" th:href="@{/gestionDesMots}">Mots</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item"
 								href="/gestionDesMots/consulterLesMots">Consulter les mots</a></li>
@@ -49,18 +91,32 @@ body {
 								href="/gestionDesMots/ajouterUnMot">Ajouter un mot</a></li>
 						</ul></li>
 
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle"
+						th:classappend="${module == 'gestionDesDossiers' ? 'active' : ''}"
+						data-bs-toggle="dropdown" href="#" role="button"
+						aria-expanded="false" th:href="@{/gestionDesDossiers}">Dossiers
+							médicaux</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="/gestionDesDossiers/consulterLesDossiers">Consulter
+									les dossiers</a></li>
+							<li><a class="dropdown-item"
+								href="/gestionDesDossiers/ajouterUnDossier">Ajouter un
+									dossier</a></li>
+						</ul></li>
+
 					<li class="nav-item"><a class="nav-link"
 						th:classappend="${module == 'echange' ? 'active' : ''}"
 						th:href="@{/echange}">Echange</a></li>
+
 					<li class="nav-item"><a class="nav-link"
 						th:classappend="${module == 'compte' ? 'active' : ''}"
 						th:href="@{/compte}">Mon compte</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:classappend="${module == 'patients' ? 'active' : ''}"
-						th:href="@{/patients}">Mes patients</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:classappend="${module == 'session' ? 'active' : ''}"
-						th:href="@{/session}">Démarrer une session de travail</a></li>
+
+					<!-- 					<li class="nav-item"><a class="nav-link" -->
+					<!-- 						th:classappend="${module == 'session' ? 'active' : ''}" -->
+					<!-- 						th:href="@{/session}">Démarrer une session de travail</a></li> -->
 				</ul>
 			</div>
 		</div>
