@@ -9,7 +9,10 @@
 
 
 <div class="container">
-    <h1 class="text-center">Professionnels</h1>
+<br>
+    <h1 class="text-center">Liste des professionnels de santé</h1>
+    <br>
+    <br>
     <table class="table">
         <thead>
             <th scope="col">Nom</th>
@@ -25,7 +28,7 @@
                 <td th:text="${professionnel.email}">Email</td>
                 <td th:text="${professionnel.telephone}">Téléphone</td>
                 <td>
-                    <a class="btn btn-primary" href="#" th:href="@{/professionnels/{id}(id=${professionnel.id})}">Détails</a>
+                    <a class="btn btn-primary" href="#" th:href="@{/consulterLesPros/{id}(id=${professionnel.id})}">Détails</a>
                 </td>
             </tr>
         </tbody>
