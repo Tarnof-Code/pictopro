@@ -31,11 +31,6 @@ body {
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav ms-auto mb-2 mb-md-0">
 
-					<li class="nav-item"><a class="nav-link"
-						th:classappend="${module == 'consulterLesPros' ? 'active' : ''}"
-						th:href="@{/consulterLesPros}">Liste des professionnels de
-							santé</a></li>
-
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle"
 						th:classappend="${module == 'gestionDesPhrases' ? 'active' : ''}"
@@ -43,8 +38,8 @@ body {
 						aria-expanded="false" th:href="@{/gestionDesPhrases}">Phrases</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item"
-								href="/gestionDesPhrases/consulterLesPhrases">Consulter
-									les Phrases</a></li>
+								href="/gestionDesPhrases/consulterLesPhrases">Consulter les
+									Phrases</a></li>
 							<li><a class="dropdown-item"
 								href="/gestionDesPhrases/ajouterUnePhrase">Ajouter une
 									phrase</a></li>
@@ -114,9 +109,15 @@ body {
 						th:classappend="${module == 'compte' ? 'active' : ''}"
 						th:href="@{/compte}">Mon compte</a></li>
 
-					<!-- 					<li class="nav-item"><a class="nav-link" -->
-					<!-- 						th:classappend="${module == 'session' ? 'active' : ''}" -->
-					<!-- 						th:href="@{/session}">Démarrer une session de travail</a></li> -->
+					<li class="nav-item"><a class="nav-link"
+						th:classappend="${module == 'consulterLesPros' ? 'active' : ''}"
+						th:href="@{/consulterLesPros}">Liste des professionnels de
+							santé</a></li>
+
+
+					<li class="nav-item"><a class="nav-link"
+						th:classappend="${module == 'session' ? 'active' : ''}"
+						th:href="@{/session}">Session de travail</a></li>
 				</ul>
 			</div>
 		</div>

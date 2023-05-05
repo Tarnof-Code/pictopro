@@ -35,13 +35,6 @@ public class ProfessionnelController {
 	@Autowired
 	private ProfessionnelService professionnelService;
 
-//	@RequestMapping("/pro/{id}")
-//	public String afficherPro(Model model, @PathVariable("id") int id) {
-//		Professionnel pro = professionnelService.findById(id);
-//		model.addAttribute("proSelection", pro);
-//		return "/components/consulterModifierPro";
-//	}
-
 	@GetMapping
 	public String consulterLesPros(Model model) {
 		model.addAttribute("professionnels", professionnelService.findAll());

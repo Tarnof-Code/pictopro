@@ -7,4 +7,5 @@ import com.ecam.picto.pictopro.entity.Phrase;
 
 @Repository
 public interface PhraseRepository extends JpaRepository<Phrase, Integer> {
+	Iterable<Phrase> findAllByDossierMedicalId(int id);
 }
