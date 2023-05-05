@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -26,7 +25,7 @@ import com.ecam.picto.pictopro.service.PhraseService;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
 
 @Controller
-@RequestMapping("/gestionDesDossiers")
+
 public class DossierMedicalController {
 
 	private final DossierMedicalRepository dossierMedicalRepository;
@@ -44,6 +43,29 @@ public class DossierMedicalController {
 	private PhraseService phraseService;
 	@Autowired
 	private DossierMedicalService dossierMedicalService;
+
+	@GetMapping("/consulterLesDossiers")
+	public String consulterLesDossiers(Model model) {
+		model.addAttribute("dossierMedicals", dossierMedicalService.findAll());
+		model.addAttribute("module", "gestionDesDossiers");
+		return "consulterLesDossiers";
+	}
+
+	@GetMapping("/consulterLesDossiers/{id}")
+	public String afficherDetailsDossier(@PathVariable("id") int id, Model model) {
+		Optional<DossierMedical> dossierMedical = this.dossierMedicalRepository.findById(id);
+		if (dossierMedical.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "entity not found");
+		}
+		model.addAttribute("dossierMedical", dossierMedical.get());
+		Iterable<Phrase> phrasesIterable = this.phraseRepository
+				.findAllByDossierMedicalId(dossierMedical.get().getId());
+		List<Phrase> phrases = new ArrayList<>();
+		phrasesIterable.forEach(phrases::add);
+		model.addAttribute("phrases", phrases);
+		model.addAttribute("module", "gestionDesDossiers");
+		return "detailsDossier";
+	}
 
 	@GetMapping("/ajouterUnDossier")
 	public String goDossierMedical(Model model) {
@@ -65,26 +87,4 @@ public class DossierMedicalController {
 		return "redirect:/gestionDesDossiers/ajouterUnDossier";
 	}
 
-	@GetMapping("/consulterLesDossiers")
-	public String consulterLesDossiers(Model model) {
-		model.addAttribute("dossierMedicals", dossierMedicalService.findAll());
-		model.addAttribute("module", "gestionDesDossiers");
-		return "consulterLesDossiers";
-	}
-
-	@GetMapping(path = "/{id}")
-	public String afficherDetailsDossier(@PathVariable("id") int id, Model model) {
-		Optional<DossierMedical> dossierMedical = this.dossierMedicalRepository.findById(id);
-		if (dossierMedical.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "entity not found");
-		}
-		model.addAttribute("dossierMedical", dossierMedical.get());
-		Iterable<Phrase> phrasesIterable = this.phraseRepository
-				.findAllByDossierMedicalId(dossierMedical.get().getId());
-		List<Phrase> phrases = new ArrayList<>();
-		phrasesIterable.forEach(phrases::add);
-		model.addAttribute("phrases", phrases);
-		model.addAttribute("module", "gestionDesDossiers");
-		return "detailsDossier";
-	}
 }
