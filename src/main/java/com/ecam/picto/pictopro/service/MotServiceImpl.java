@@ -59,6 +59,7 @@ public class MotServiceImpl implements MotService{
                 motAModifier.setIrregulier(nouveauMot.getIrregulier());
             }
 
+
             Mot motModifie = motRepository.save(motAModifier);
 
             return motModifie;

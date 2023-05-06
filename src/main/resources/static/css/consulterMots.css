@@ -21,4 +21,7 @@ input::placeholder {
   font-size: 12px;
 }
 
+input[type="text"] {
+  font-size: 14px;
+}
 

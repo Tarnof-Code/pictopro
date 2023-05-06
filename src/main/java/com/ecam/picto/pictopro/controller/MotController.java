@@ -1,18 +1,15 @@
 package com.ecam.picto.pictopro.controller;
 
 import com.ecam.picto.pictopro.entity.*;
-import com.ecam.picto.pictopro.repository.CategorieRepository;
-import com.ecam.picto.pictopro.repository.TagRepository;
 import com.ecam.picto.pictopro.service.CategorieService;
 import com.ecam.picto.pictopro.service.MotService;
 import com.ecam.picto.pictopro.service.TagService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -125,6 +122,31 @@ private Mot motSelection = new Mot();
 
         return "redirect:/gestionDesMots/ajouterUnMot";
     }
+
+@PostMapping("/modifierUnMot")
+@ResponseBody
+public ResponseEntity<String> modifierUnMot(@ModelAttribute("mot") Mot nouveauMot,
+                                         @RequestParam("categorieId") int idCat,
+                                         @RequestParam("sousCategorieId") int idSousCat,
+                                         @RequestParam("selectedTags") List<String> selectedTags){
+
+    Categorie categorie = categorieService.findCategorieById(idCat);
+    SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
+    List<Tag> listeTags = tagService.findAllByNomIn(selectedTags);
+
+    nouveauMot.setCategorie(categorie);
+    nouveauMot.setSousCategorie(sousCategorie);
+    nouveauMot.setTags(listeTags);
+
+    motService.modifierUnMot(motSelection,nouveauMot);
+
+    String successMessage = "Le mot '" + motSelection.getNom() + "' a été modifié avec succès";
+    String response = motSelection.getId() + ":" + successMessage;
+
+    return ResponseEntity.ok(response);
+}
+
+
 
     @GetMapping("/consulterLesMots")
     public String consulterLesMots(Model model){
