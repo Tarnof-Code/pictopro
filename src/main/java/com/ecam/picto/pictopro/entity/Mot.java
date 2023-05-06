@@ -158,9 +158,15 @@ public class Mot {
 
 	@Override
 	public String toString() {
-		return "Mot [id=" + id + ", nom=" + nom + ", categorie=" + categorie + ", sousCategorie=" + sousCategorie
-				+ ", professionnel=" + professionnel + ", pictoFile=" + pictoFile + ", irregulier=" + irregulier
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", tags=" + tags + ", phrases=" + phrases
+		return "Mot [id=" + id +
+				", nom=" + nom +
+				", professionnel=" + professionnel +
+				", pictoFile=" + pictoFile +
+				", irregulier=" + irregulier
+				+ ", createdAt=" + createdAt +
+				", updatedAt=" + updatedAt +
+				", tags=" + tags +
+				", phrases=" + phrases
 				+ "]";
 	}
 

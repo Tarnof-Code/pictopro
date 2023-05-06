@@ -104,8 +104,11 @@ private Mot motSelection = new Mot();
     }
 
 	@PostMapping("/ajouterUnMot")
-	public String ajouterUnMot(Model model, @ModelAttribute("mot") Mot mot, @RequestParam("categorieId") int idCat,
-			@RequestParam("sousCategorieId") int idSousCat, @RequestParam("selectedTags") List<String> selectedTags) {
+	public String ajouterUnMot(Model model,
+                               @ModelAttribute("mot") Mot mot,
+                               @RequestParam("categorieId") int idCat,
+                               @RequestParam("sousCategorieId") int idSousCat,
+                               @RequestParam("selectedTags") List<String> selectedTags) {
 
 		Categorie categorie = categorieService.findCategorieById(idCat);
 		SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
