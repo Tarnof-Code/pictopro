@@ -1,60 +1,127 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Header</title>
-  <link rel="stylesheet" href="/css/navbar.css"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>Header</title>
+<link rel="stylesheet" href="/css/navbar.css" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+	crossorigin="anonymous">
+
+<style type="text/css">
+body {
+	padding-top: 10%;
+}
+</style>
 </head>
 <header>
-<nav class="navbar navbar-expand-md navbar-dark mb-4"  >
-  <div class="container-fluid">
-    <a href="#" th:href="@{/}">
-      <img alt="Picto Logo" src="/images/Logos/Logo PNG.png" class="logo" />
-    </a>
-    <button class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse"
-            aria-controls="navbarCollapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+	<nav class="navbar navbar-expand-md navbar-dark mb-4 fixed-top">
+		<div class="container-fluid">
+			<a href="#" th:href="@{/}"> <img alt="Picto Logo"
+				src="/images/Logos/Logo PNG.png" class="logo" />
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+				aria-controls="navbarCollapse" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav ms-auto mb-2 mb-md-0">
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle"
-             th:classappend="${module == 'gestionDesMots' ? 'active' : ''}"
-             data-bs-toggle="dropdown"
-             href="#"
-             role="button"
-             aria-expanded="false"
-             th:href="@{/gestionDesMots}">
-            Gestion des mots</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/gestionDesMots/consulterLesMots">Consulter les mots</a></li>
-            <li><a class="dropdown-item" href="/gestionDesMots/ajouterUnMot">Ajouter un mot</a></li>
-          </ul>
-        </li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle"
+						th:classappend="${module == 'gestionDesPhrases' ? 'active' : ''}"
+						data-bs-toggle="dropdown" href="#" role="button"
+						aria-expanded="false" th:href="@{/gestionDesPhrases}">Phrases</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="/gestionDesPhrases/consulterLesPhrases">Consulter les
+									Phrases</a></li>
+							<li><a class="dropdown-item"
+								href="/gestionDesPhrases/ajouterUnePhrase">Ajouter une
+									phrase</a></li>
+						</ul></li>
 
-        <li class="nav-item">
-          <a class="nav-link" th:classappend="${module == 'echange' ? 'active' : ''}" th:href="@{/echange}">Echange</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:classappend="${module == 'compte' ? 'active' : ''}" th:href="@{/compte}">Mon compte</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:classappend="${module == 'patients' ? 'active' : ''}" th:href="@{/patients}">Mes patients</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:classappend="${module == 'session' ? 'active' : ''}" th:href="@{/session}">Démarrer une session de travail</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle"
+						th:classappend="${module == 'gestionDesQuestions' ? 'active' : ''}"
+						data-bs-toggle="dropdown" href="#" role="button"
+						aria-expanded="false" th:href="@{/gestionDesQuestions}">Questions</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="/gestionDesQuestions/consulterLesQuestions">Consulter
+									les questions</a></li>
+							<li><a class="dropdown-item"
+								href="/gestionDesQuestions/ajouterUneQuestion">Ajouter une
+									question</a></li>
+						</ul></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle"
+						th:classappend="${module == 'gestionDesCategories' ? 'active' : ''}"
+						data-bs-toggle="dropdown" href="#" role="button"
+						aria-expanded="false" th:href="@{/gestionDesCategories}">Catégories/Sous
+							catégories</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="/gestionDesCategories/consulterLesCategories">Consulter
+									les catégories/sous catégories</a></li>
+							<li><a class="dropdown-item"
+								href="/gestionDesCategories/ajouterUneCategorie">Ajouter une
+									catégorie/sous catégorie</a></li>
+						</ul></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle"
+						th:classappend="${module == 'gestionDesMots' ? 'active' : ''}"
+						data-bs-toggle="dropdown" href="#" role="button"
+						aria-expanded="false" th:href="@{/gestionDesMots}">Mots</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="/gestionDesMots/consulterLesMots">Consulter les mots</a></li>
+							<li><a class="dropdown-item"
+								href="/gestionDesMots/ajouterUnMot">Ajouter un mot</a></li>
+						</ul></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle"
+						th:classappend="${module == 'gestionDesDossiers' ? 'active' : ''}"
+						data-bs-toggle="dropdown" href="#" role="button"
+						aria-expanded="false" th:href="@{/gestionDesDossiers}">Dossiers
+							médicaux</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item"
+								href="/consulterLesDossiers">Consulter
+									les dossiers</a></li>
+							<li><a class="dropdown-item"
+								href="/ajouterUnDossier">Ajouter un
+									dossier</a></li>
+						</ul></li>
+
+					<li class="nav-item"><a class="nav-link"
+						th:classappend="${module == 'echange' ? 'active' : ''}"
+						th:href="@{/echange}">Echange</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						th:classappend="${module == 'compte' ? 'active' : ''}"
+						th:href="@{/compte}">Mon compte</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						th:classappend="${module == 'consulterLesPros' ? 'active' : ''}"
+						th:href="@{/consulterLesPros}">Liste des professionnels de
+							santé</a></li>
+
+
+					<li class="nav-item"><a class="nav-link"
+						th:classappend="${module == 'session' ? 'active' : ''}"
+						th:href="@{/session}">Session de travail</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 </header>
 </html>

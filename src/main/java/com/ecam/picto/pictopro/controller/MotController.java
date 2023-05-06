@@ -1,16 +1,20 @@
 package com.ecam.picto.pictopro.controller;
 
-import com.ecam.picto.pictopro.entity.*;
-import com.ecam.picto.pictopro.service.CategorieService;
-import com.ecam.picto.pictopro.service.MotService;
-import com.ecam.picto.pictopro.service.TagService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.ecam.picto.pictopro.entity.Categorie;
+import com.ecam.picto.pictopro.entity.Mot;
+import com.ecam.picto.pictopro.entity.SousCategorie;
+import com.ecam.picto.pictopro.entity.Tag;
+import com.ecam.picto.pictopro.service.CategorieService;
+import com.ecam.picto.pictopro.service.MotService;
+import com.ecam.picto.pictopro.service.TagService;
 
 @Controller
 @RequestMapping("/gestionDesMots")
@@ -26,7 +30,8 @@ private Mot motSelection = new Mot();
     @GetMapping("/ajouterUnMot")
     public String ajouterUnMot(Model model) {
 
-    model.addAttribute("mots", motService.findAll());
+		model.addAttribute("module", "gestionDesMots");
+		model.addAttribute("mots", motService.findAll());
 
     Mot motAAjouter = new Mot();
     motSelection = motAAjouter;
@@ -98,23 +103,17 @@ private Mot motSelection = new Mot();
         return "/components/formulairesIrreguliers::adjectifIrregulier(feminin='mot.irregulier.feminin',adjPluriel='mot.irregulier.pluriel')";
     }
 
+	@PostMapping("/ajouterUnMot")
+	public String ajouterUnMot(Model model, @ModelAttribute("mot") Mot mot, @RequestParam("categorieId") int idCat,
+			@RequestParam("sousCategorieId") int idSousCat, @RequestParam("selectedTags") List<String> selectedTags) {
 
+		Categorie categorie = categorieService.findCategorieById(idCat);
+		SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
+		List<Tag> listeTags = tagService.findAllByNomIn(selectedTags);
 
-
-    @PostMapping("/ajouterUnMot")
-    public String ajouterUnMot(Model model,
-                               @ModelAttribute("mot") Mot mot,
-                               @RequestParam("categorieId") int idCat,
-                               @RequestParam("sousCategorieId") int idSousCat,
-                               @RequestParam("selectedTags") List<String> selectedTags){
-
-        Categorie categorie = categorieService.findCategorieById(idCat);
-        SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
-        List<Tag> listeTags = tagService.findAllByNomIn(selectedTags);
-
-        mot.setCategorie(categorie);
-        mot.setSousCategorie(sousCategorie);
-        mot.setTags(listeTags);
+		mot.setCategorie(categorie);
+		mot.setSousCategorie(sousCategorie);
+		mot.setTags(listeTags);
 
         motService.ajouterUnMot(mot);
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Liste des dossiers médicaux des patients</title>
+</head>
+
+<body>
+<div th:replace="~{components/navBar}"></div>
+
+
+<div class="container">
+<br>
+    <h1 class="text-center">Liste des dossiers médicaux des patients</h1>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Date de naissance</th>
+            <th scope="col">Progression</th>
+            <th scope="col">Statistique</th>
+            <th scope="col">Date de création
+            <th scope="col">Date de mise à jour</th>
+            <th scope="col">Actions</th>
+        </thead>
+        <tbody>
+            <tr th:each="dossierMedical : ${dossierMedicals}">
+                <td th:text="${dossierMedical.nom}">Nom</td>
+                <td th:text="${dossierMedical.prenom}">Prénom</td>
+                <td th:text="${dossierMedical.dateNaissance}">Date de naissance</td>
+                <td th:text="${dossierMedical.progression}">Progression</td>
+                <td th:text="${dossierMedical.statistique}">Statistique</td>
+                <td th:text="${dossierMedical.createdAt}">Date de création</td>
+                <td th:text="${dossierMedical.updatedAt}">Date de mise à jour</td>
+                <td>
+                    <a class="btn btn-primary" href="#" th:href="@{/consulterLesDossiers/{id}(id=${dossierMedical.id})}">Détails</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div th:replace="~{components/footer :: footer}"></div>
+
+</body>
+
+</html>
