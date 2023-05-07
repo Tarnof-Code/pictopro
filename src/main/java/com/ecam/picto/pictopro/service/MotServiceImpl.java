@@ -1,5 +1,6 @@
 package com.ecam.picto.pictopro.service;
 
+import com.ecam.picto.pictopro.entity.Conjugaison;
 import com.ecam.picto.pictopro.entity.Irregulier;
 import com.ecam.picto.pictopro.entity.Mot;
 import com.ecam.picto.pictopro.repository.MotRepository;
@@ -45,7 +46,8 @@ public class MotServiceImpl implements MotService{
     public Mot modifierUnMot(Mot ancienMot, Mot nouveauMot) {
         try{
             Mot motAModifier = findById(ancienMot.getId());
-            System.out.println("Mot à modifier "+ motAModifier);
+            Irregulier irregulierMotAModifier = motAModifier.getIrregulier();
+            Irregulier irregulierNouveauMot = nouveauMot.getIrregulier();
 
             motAModifier.setNom(nouveauMot.getNom());
             motAModifier.setPictoFile(nouveauMot.getPictoFile());
@@ -55,14 +57,42 @@ public class MotServiceImpl implements MotService{
             if(nouveauMot.getSousCategorie() != null) {
                 motAModifier.setSousCategorie(nouveauMot.getSousCategorie());
             }
-            if(nouveauMot.getIrregulier() != null){
+
+            if(irregulierMotAModifier != null && irregulierNouveauMot != null){
+
+                irregulierMotAModifier.setPluriel(irregulierNouveauMot.getPluriel());
+                irregulierMotAModifier.setFeminin(irregulierNouveauMot.getFeminin());
+                irregulierMotAModifier.setParticipePasse(irregulierNouveauMot.getParticipePasse());
+
+                List<Conjugaison> conjugaisonsMotAModifier = irregulierMotAModifier.getConjugaisons();
+                List<Conjugaison> conjugaisonsNouveauMot = irregulierNouveauMot.getConjugaisons();
+
+                if(!conjugaisonsMotAModifier.isEmpty() && !conjugaisonsNouveauMot.isEmpty()){
+
+                    for (int i = 0; i < conjugaisonsMotAModifier.size(); i++) {
+
+                        Conjugaison aModif = conjugaisonsMotAModifier.get(i);
+                        Conjugaison nouvelle = conjugaisonsNouveauMot.get(i);
+
+                        aModif.setPremierePersSing(nouvelle.getPremierePersSing());
+                        aModif.setDeuxiemePersSing(nouvelle.getDeuxiemePersSing());
+                        aModif.setTroisiemePersSing(nouvelle.getTroisiemePersSing());
+                        aModif.setPremierePersPluriel(nouvelle.getPremierePersPluriel());
+                        aModif.setDeuxiemePersPluriel(nouvelle.getDeuxiemePersPluriel());
+                        aModif.setTroisiemePersPluriel(nouvelle.getTroisiemePersPluriel());
+                        }
+                    }
+
+                }
+
+           if(irregulierMotAModifier == null && irregulierNouveauMot != null){
                 motAModifier.setIrregulier(nouveauMot.getIrregulier());
-            }
+           }
 
 
-            Mot motModifie = motRepository.save(motAModifier);
+           Mot motModifie = motRepository.save(motAModifier);
 
-            return motModifie;
+           return motModifie;
 
         } catch(Exception e){
             e.printStackTrace();
