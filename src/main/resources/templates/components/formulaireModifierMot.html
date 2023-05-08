@@ -40,14 +40,14 @@
                 <label>Sous-catégorie</label>
                 <div>
                     <select name="sousCategorieId" id="sousCategorie">
-                        <option th:if="${mot.sousCategorie != null}"
-                                th:each="sousCategorie : ${mot.categorie.listeSousCategorie}"
+                        <option th:each="sousCategorie : ${mot.categorie.listeSousCategorie}"
                                 th:value="${sousCategorie.id}"
                                 th:text="${sousCategorie.nom}"
-                                th:selected="${mot.sousCategorie.id == sousCategorie.id}">
+                                th:selected="${mot.sousCategorie != null && mot.sousCategorie.id == sousCategorie.id}">
                         </option>
                         <option th:if="${mot.sousCategorie == null}"
-                                th:value="-1">
+                                th:value="-1"
+                                selected>
                             Pas de sous-catégorie
                         </option>
                     </select>
