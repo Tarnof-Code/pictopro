@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+      <title>Pictos Page Echange</title>
+      <link rel="stylesheet" href="/css/pictosPageEchange.css"/>
+  </head>
+
+  <body>
+
+
+<!--Catégories-->
+    <div class="d-flex justify-content-center">
+        <ul class="itemBox">
+            <li th:each="categorie : ${categories}">
+                <a>
+                  <img class="categorieItem"
+                       th:data-categorie-id="${categorie.id}"
+                       th:data-size="${categorie.listeSousCategorie.size()}"
+                       th:data-size2="${categorie.listeMotsParCategorie.size()}"
+                       th:src="@{'/images/categories/' + ${categorie.pictoFile}}"/>
+                </a>
+            </li>
+        </ul>
+    </div>
+<!--Catégories-->
+
+<!--Sous-catégories-->
+    <div id="divSousCatItem"
+         class="hidden justify-content-center" >
+        <ul id="sousCategorieItem"
+            class="itemBox" >
+        </ul>
+    </div>
+<!--Sous-catégories-->
+
+<!--Mots-->
+    <div id="divMotItem"
+         class="hidden justify-content-center" >
+        <ul id="motItem"
+            class="itemBox" >
+        </ul>
+    </div>
+<!--Mots-->
+
+  </body>
+
+</html>

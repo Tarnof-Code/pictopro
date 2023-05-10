@@ -1,4 +1,4 @@
-.categorieBox {
+.itemBox {
     width:80%;
     padding: 10px;
     text-align: left;
@@ -16,6 +16,14 @@
 }
 
 .sousCategorieItem {
+    height: 112px;
+    width:112px;
+    margin: 10px;
+    border-radius:20%;
+    cursor: pointer;
+}
+
+.motItem {
     height: 108px;
     width:108px;
     margin: 10px;

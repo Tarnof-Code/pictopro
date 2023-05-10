@@ -68,17 +68,17 @@ private Mot motSelection = new Mot();
         
         if(referer.contains("ajouterUnMot") || referer.contains("consulterLesMots")){
             if(categorie.getListeSousCategorie().size() > 0){
-                return "/components/listeSousCategories::listeSousCategories";
+                return "/components/listesParCategorie::dropdownSousCategories";
             } else {
-                return "/components/listeSousCategories::listeSousCategoriesVide";
+                return "/components/listesParCategorie::dropdownSousCategoriesVide";
             }
         }
 
         if (referer.contains("echange")) {
             if(categorie.getListeSousCategorie().size() > 0){
-                return "/components/listeSousCategories::sousCategorieItems";
+                return "/components/listesParCategorie::sousCategorieItems";
             } else {
-                return "/components/listeSousCategories::sousCategorieItemsVide";
+                return "/components/listesParCategorie::sousCategorieItemsVide";
             }
         } else {
             return null;

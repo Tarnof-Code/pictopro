@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Liste sous-catégories</title>
+</head>
+<body>
+
+<!--Dropdowns sous-catégories-->
+<select th:fragment="dropdownSousCategories">
+  <option value="-1" >Sous-catégorie</option>
+  <option th:each="sousCategorie : ${categorie.listeSousCategorie}"
+          th:value="${sousCategorie.id}"
+          th:text="${sousCategorie.nom}">
+  </option>
+</select>
+
+<select  th:fragment="dropdownSousCategoriesVide" class="hidden">
+    <option value="-1" ></option>
+</select>
+<!--Dropdowns sous-catégories-->
+
+
+
+<!--Pictos sous-catégories page Echange-->
+<li th:fragment="sousCategorieItems"
+    th:each="sousCategorie : ${categorie.listeSousCategorie}" >
+    <a data-categorie-id="${sousCategorie.id}">
+        <img class="sousCategorieItem"
+             th:src="@{'/images/sous-categories/' + ${sousCategorie.pictoFile}}"/>
+    </a>
+</li>
+
+<ul th:fragment="sousCategorieItemsVide" class="hidden">
+
+</ul>
+<!--Pictos sous-catégories page Echange-->
+
+
+
+<!--Pictos Mots page Echange-->
+<li th:fragment="motItems"
+    th:each="mot : ${categorie.listeMotsParCategorie}" >
+    <a data-mot-id="${mot.id}">
+        <img class="motItem"
+             th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
+    </a>
+</li>
+
+<ul th:fragment="motItemsVide" class="hidden">
+
+</ul>
+
+<!--Pictos Mots page Echange-->
+
+
+</body>
+</html>
