@@ -66,7 +66,7 @@ private Mot motSelection = new Mot();
 
         String referer = request.getHeader("referer");
         
-        if(referer.contains("ajouterUnMot")){
+        if(referer.contains("ajouterUnMot") || referer.contains("consulterLesMots")){
             if(categorie.getListeSousCategorie().size() > 0){
                 return "/components/listeSousCategories::listeSousCategories";
             } else {

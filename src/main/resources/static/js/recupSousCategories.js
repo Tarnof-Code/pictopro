@@ -9,6 +9,7 @@ function getContent(){
     console.log(id)
 
     var tailleListe = $('#categorie option:selected').attr('sousCat')
+    console.log(tailleListe)
 
     if(tailleListe > 0) {
          $('#sousCategorie').load(url);
