@@ -63,8 +63,7 @@ body {
 						class="nav-link dropdown-toggle"
 						th:classappend="${module == 'gestionDesCategories' ? 'active' : ''}"
 						data-bs-toggle="dropdown" href="#" role="button"
-						aria-expanded="false" th:href="@{/gestionDesCategories}">Catégories/Sous
-							catégories</a>
+						aria-expanded="false" th:href="@{/gestionDesCategories}">Catégories/Sous-catégories</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item"
 								href="/gestionDesCategories/consulterLesCategories">Consulter
@@ -93,12 +92,10 @@ body {
 						aria-expanded="false" th:href="@{/gestionDesDossiers}">Dossiers
 							médicaux</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item"
-								href="/consulterLesDossiers">Consulter
+							<li><a class="dropdown-item" href="/consulterLesDossiers">Consulter
 									les dossiers</a></li>
-							<li><a class="dropdown-item"
-								href="/ajouterUnDossier">Ajouter un
-									dossier</a></li>
+							<li><a class="dropdown-item" href="/ajouterUnDossier">Ajouter
+									un dossier</a></li>
 						</ul></li>
 
 					<li class="nav-item"><a class="nav-link"
