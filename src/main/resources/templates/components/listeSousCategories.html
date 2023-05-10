@@ -18,5 +18,18 @@
     <option value="-1" ></option>
 </select>
 
+
+    <li th:each="sousCategorie : ${categorie.listeSousCategorie}" th:fragment="sousCategorieItems">
+        <a data-categorie-id="${sousCategorie.id}">
+            <img class="sousCategorieItem"
+                 th:src="@{'/images/sous-categories/' + ${sousCategorie.pictoFile}}"/>
+        </a>
+    </li>
+
+
+<ul th:fragment="sousCategorieItemsVide" class="hidden">
+
+</ul>
+
 </body>
 </html>

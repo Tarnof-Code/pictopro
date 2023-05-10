@@ -1,4 +1,3 @@
-
 $('#submitModifMot').click(function(){
     event.preventDefault();
     var formData = $('#formulaireModifMot').serialize();

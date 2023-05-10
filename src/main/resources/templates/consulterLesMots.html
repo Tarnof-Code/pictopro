@@ -58,12 +58,12 @@
       <div class="d-flex flex-wrap justify-content-center">
         <div class="accordion-body text-center"
              th:each="mot : ${categorie.listeMotsParCategorie}">
-         <a th:if="${mot.sousCategorie == null}"
-            data-bs-toggle="modal"
-            data-bs-target="#modaleInfosMots"
-            th:data-id="${mot.id}">
-            <img class="pictoMot" th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
-         </a>
+             <a th:if="${mot.sousCategorie == null}"
+                data-bs-toggle="modal"
+                data-bs-target="#modaleInfosMots"
+                th:data-id="${mot.id}">
+              <img class="pictoMot" th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
+            </a>
         </div>
       </div>
     </div>

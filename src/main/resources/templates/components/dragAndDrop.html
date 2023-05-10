@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="/css/dragDropItem.css"/>
+    </head>
+
+    <body>
+        <div class="d-flex justify-content-center">
+            <ul class="source" >
+                <li th:each="mot : ${mots}"
+                    class="item"
+                    th:style="'background-image:url('+@{'/images/Mots/'+${mot.pictoFile}}+')'">
+                    <span class="closer">x</span>
+                </li>
+            </ul>
+        </div>
+        <ul class="target" id="sortable">
+            <li class="empty"></li>
+            <li class="empty"></li>
+            <li class="empty"></li>
+            <li class="empty"></li>
+            <li class="empty"></li>
+        </ul>
+
+    </body>
+</html>

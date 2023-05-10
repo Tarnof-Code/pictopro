@@ -2,6 +2,7 @@ package com.ecam.picto.pictopro.controller;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,9 @@ private Mot motSelection = new Mot();
     }
 
     @RequestMapping("/sousCategories/{id}")
-    public String affichageSousCategories(Model model, @PathVariable("id") int id){
+    public String affichageSousCategories(Model model, 
+                                          HttpServletRequest request,
+                                          @PathVariable("id") int id){
 
         Categorie categorie = categorieService.findCategorieById(id);
         model.addAttribute("categorie",categorie);
@@ -61,11 +64,27 @@ private Mot motSelection = new Mot();
         SousCategorie selectedSousCategorie = new SousCategorie();
         model.addAttribute("selectedSousCategorie",selectedSousCategorie);
 
-        if(categorie.getListeSousCategorie().size() > 0){
-            return "/components/listeSousCategories::listeSousCategories";
-        } else {
-            return "/components/listeSousCategories::listeSousCategoriesVide";
+        String referer = request.getHeader("referer");
+        
+        if(referer.contains("ajouterUnMot")){
+            if(categorie.getListeSousCategorie().size() > 0){
+                return "/components/listeSousCategories::listeSousCategories";
+            } else {
+                return "/components/listeSousCategories::listeSousCategoriesVide";
+            }
         }
+
+        if (referer.contains("echange")) {
+            if(categorie.getListeSousCategorie().size() > 0){
+                return "/components/listeSousCategories::sousCategorieItems";
+            } else {
+                return "/components/listeSousCategories::sousCategorieItemsVide";
+            }
+        } else {
+            return null;
+        }
+
+
     }
 
     @RequestMapping("/mot/{id}")

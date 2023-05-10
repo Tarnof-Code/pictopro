@@ -18,4 +18,5 @@ public interface CategorieService {
 	public Categorie findCategorieById(int id);
 
 	public SousCategorie findSousCategorieById(int id);
+
 }
