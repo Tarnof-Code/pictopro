@@ -9,6 +9,9 @@ $('a[data-bs-toggle="modal"]').click(function() {
 });
 
 $('#modifMotButton').click(function(){
+    var url ='/gestionDesMots/infosMot'
+    $('#formModifMot').load(url);
+
     $('#formModifMot').removeClass("hidden")
     $('#annulModifMotButton').removeClass("hidden")
     $('#modifMotButton').addClass("hidden")
@@ -28,6 +31,7 @@ $('#closeModal').click(function(){
     $('#annulModifMotButton').addClass("hidden")
     $('#modifMotButton').removeClass("hidden")
     $('#formModifMot').addClass("hidden")
+
 })
 
 

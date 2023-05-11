@@ -1,5 +1,6 @@
 package com.ecam.picto.pictopro.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,6 +27,9 @@ private TagService tagService;
 private CategorieService categorieService;
 @Autowired
 private MotService motService;
+
+private List<Categorie> listeCategories = new ArrayList<>();
+private List<Tag> listeTags = new ArrayList<>();
 private Mot motSelection = new Mot();
 
     @GetMapping("/ajouterUnMot")
@@ -93,16 +97,30 @@ private Mot motSelection = new Mot();
         Mot mot = motService.findById(id);
         model.addAttribute("mot",mot);
         motSelection = mot;
-        model.addAttribute("irregulier",mot.getIrregulier());
 
+        model.addAttribute("irregulier",mot.getIrregulier());
+/*
         List<Categorie> listeCategories = categorieService.afficherCategories();
-        model.addAttribute("categories",categorieService.afficherCategories());
+        model.addAttribute("categories",listeCategories);
 
         List<Tag> listeTags = tagService.afficherTags();
         model.addAttribute("tags",listeTags);
-
+*/
         return "/components/infosMots";
     }
+
+    @RequestMapping("/infosMot")
+    public  String afficherInfosMot(Model model) {
+        System.out.println(motSelection.getIrregulier());
+        model.addAttribute("irregulier",motSelection.getIrregulier());
+        model.addAttribute("mot", motSelection);
+        model.addAttribute("categories", listeCategories);
+        model.addAttribute("tags",listeTags);
+
+        return "/components/formulaireModifierMot";
+
+    }
+
 
     @RequestMapping("/verbeIrregulier")
     public String affichageFormulaireVerbeIrregulier(Model model){
@@ -171,7 +189,10 @@ public ResponseEntity<String> modifierUnMot(@ModelAttribute("mot") Mot nouveauMo
 
     @GetMapping("/consulterLesMots")
     public String consulterLesMots(Model model){
-        model.addAttribute("categories",categorieService.afficherCategories());
+        listeCategories = categorieService.afficherCategories();
+        listeTags = tagService.afficherTags();
+
+        model.addAttribute("categories",listeCategories);
         model.addAttribute("mots", motService.findAll());
         model.addAttribute("module","gestionDesMots");
         return "consulterLesMots";
