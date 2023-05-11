@@ -29,23 +29,22 @@ $(".categorieItem").click(function(){
     var url = "/gestionDesMots/sousCategories/"
     var id = $(this).data("categorie-id");
     url = url + id;
-
+    console.log("click sur la catégorie " + id)
     var tailleListeSousCats = $(this).data('size');
 
     if(tailleListeSousCats > 0) {
-             $('#sousCategorieItem').load(url);
+             $('#sousCategorieItem').load(url,motsSousCat);
              $('#divSousCatItem').removeClass("hidden").addClass("d-flex")
+
         } else {
              $('#divSousCatItem').removeClass("d-flex").addClass("hidden")
         }
 
     // Afficher les mots
-    var url2 = "/listeMots/"
+    var url2 = "/listeMotsCat/"
     url2 = url2 + id;
-    console.log(id);
 
     var tailleListeMots = $(this).data('size2')
-    console.log(tailleListeMots)
 
     if(tailleListeMots > 0 && tailleListeSousCats == 0) {
         $('#motItem').load(url2);
@@ -54,4 +53,31 @@ $(".categorieItem").click(function(){
         $('#divMotItem').removeClass("d-flex").addClass("hidden")
     }
 
-})
+});
+
+
+
+
+// Au click sur une sous-catégorie, afficher les mots dans "echange"
+// Fonction appelée après le load des sous-catégories
+
+function motsSousCat(){
+  $(".sousCategorieItem").click(function(){
+    var url = "/listeMotsSousCat/"
+        var id = $(this).data("souscategorie-id");
+        url = url + id;
+        console.log("click sur la sous-catégorie " + id)
+
+        var tailleListeMots = $(this).data('size')
+        console.log(tailleListeMots)
+
+        if(tailleListeMots > 0) {
+            $('#motItem').load(url);
+            $('#divMotItem').removeClass("hidden").addClass("d-flex")
+        } else {
+            $('#divMotItem').removeClass("d-flex").addClass("hidden")
+        }
+    })
+}
+
+

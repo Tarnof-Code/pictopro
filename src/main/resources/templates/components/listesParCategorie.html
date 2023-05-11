@@ -25,8 +25,10 @@
 <!--Pictos sous-catégories page Echange-->
 <li th:fragment="sousCategorieItems"
     th:each="sousCategorie : ${categorie.listeSousCategorie}" >
-    <a data-categorie-id="${sousCategorie.id}">
+    <a>
         <img class="sousCategorieItem"
+             th:data-souscategorie-id="${sousCategorie.id}"
+             th:data-size="${sousCategorie.listeMotsParSousCategorie.size()}"
              th:src="@{'/images/sous-categories/' + ${sousCategorie.pictoFile}}"/>
     </a>
 </li>
@@ -38,14 +40,26 @@
 
 
 
-<!--Pictos Mots page Echange-->
-<li th:fragment="motItems"
+<!--Pictos Mots par catégorie page Echange-->
+<li th:fragment="motItemsCat"
     th:each="mot : ${categorie.listeMotsParCategorie}" >
     <a data-mot-id="${mot.id}">
         <img class="motItem"
              th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
     </a>
 </li>
+<!--Pictos Mots par catégorie page Echange-->
+
+
+<!--Pictos Mots par sous-catégorie page Echange-->
+<li th:fragment="motItemsSousCat"
+    th:each="mot : ${sousCategorie.listeMotsParSousCategorie}" >
+    <a data-mot-id="${mot.id}">
+        <img class="motItem"
+             th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
+    </a>
+</li>
+<!--Pictos Mots par sous-catégorie page Echange-->
 
 <ul th:fragment="motItemsVide" class="hidden">
 

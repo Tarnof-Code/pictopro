@@ -1,6 +1,7 @@
 package com.ecam.picto.pictopro.controller;
 
 import com.ecam.picto.pictopro.entity.Categorie;
+import com.ecam.picto.pictopro.entity.SousCategorie;
 import com.ecam.picto.pictopro.repository.MotRepository;
 import com.ecam.picto.pictopro.service.CategorieService;
 import com.ecam.picto.pictopro.service.MotService;
@@ -27,14 +28,27 @@ public class EchangeController {
         return "echange";
     }
 
-    @RequestMapping("/listeMots/{id}")
+    @RequestMapping("/listeMotsCat/{id}")
     public String listeParCategorie(Model model, @PathVariable("id") int id){
 
         Categorie categorie = categorieService.findCategorieById(id);
         model.addAttribute("categorie",categorie);
 
         if(categorie.getListeMotsParCategorie().size() > 0 && categorie.getListeSousCategorie().size() == 0){
-            return "/components/listesParCategorie::motItems";
+            return "/components/listesParCategorie::motItemsCat";
+        } else {
+            return "/components/listesParCategorie::motItemsVide";
+        }
+    }
+
+    @RequestMapping("/listeMotsSousCat/{id}")
+    public  String listeParSousCategorie(Model model, @PathVariable("id") int id){
+
+        SousCategorie sousCategorie = categorieService.findSousCategorieById(id);
+        model.addAttribute("sousCategorie",sousCategorie);
+
+        if(sousCategorie.getListeMotsParSousCategorie().size() > 0) {
+            return "/components/listesParCategorie::motItemsSousCat";
         } else {
             return "/components/listesParCategorie::motItemsVide";
         }
