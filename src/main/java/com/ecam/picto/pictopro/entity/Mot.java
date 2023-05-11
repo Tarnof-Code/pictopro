@@ -1,10 +1,5 @@
 package com.ecam.picto.pictopro.entity;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +26,7 @@ public class Mot {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(unique = true, nullable = false)
+	@Column(unique = false, nullable = false)
 	private String nom;
 
 	@ManyToOne
@@ -158,16 +153,9 @@ public class Mot {
 
 	@Override
 	public String toString() {
-		return "Mot [id=" + id +
-				", nom=" + nom +
-				", professionnel=" + professionnel +
-				", pictoFile=" + pictoFile +
-				", irregulier=" + irregulier
-				+ ", createdAt=" + createdAt +
-				", updatedAt=" + updatedAt +
-				", tags=" + tags +
-				", phrases=" + phrases
-				+ "]";
+		return "Mot [id=" + id + ", nom=" + nom + ", professionnel=" + professionnel + ", pictoFile=" + pictoFile
+				+ ", irregulier=" + irregulier + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", tags="
+				+ tags + ", phrases=" + phrases + "]";
 	}
 
 }
