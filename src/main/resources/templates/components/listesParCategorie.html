@@ -42,22 +42,23 @@
 
 <!--Pictos Mots par catégorie page Echange-->
 <li th:fragment="motItemsCat"
-    th:each="mot : ${categorie.listeMotsParCategorie}" >
-    <a data-mot-id="${mot.id}">
-        <img class="motItem"
-             th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
-    </a>
+    class="item"
+    th:each="mot : ${categorie.listeMotsParCategorie}"
+    data-mot-id="${mot.id}"
+    th:style="'background-image:url('+@{'/images/Mots/'+${mot.pictoFile}}+')'">
+    <span class="closer">x</span>
 </li>
 <!--Pictos Mots par catégorie page Echange-->
 
 
+
 <!--Pictos Mots par sous-catégorie page Echange-->
 <li th:fragment="motItemsSousCat"
-    th:each="mot : ${sousCategorie.listeMotsParSousCategorie}" >
-    <a data-mot-id="${mot.id}">
-        <img class="motItem"
-             th:src="@{'/images/Mots/' + ${mot.pictoFile}}"/>
-    </a>
+    class="item"
+    th:each="mot : ${sousCategorie.listeMotsParSousCategorie}"
+    data-mot-id="${mot.id}"
+    th:style="'background-image:url('+@{'/images/Mots/'+${mot.pictoFile}}+')'">
+    <span class="closer">x</span>
 </li>
 <!--Pictos Mots par sous-catégorie page Echange-->
 

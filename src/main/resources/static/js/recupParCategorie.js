@@ -47,7 +47,7 @@ $(".categorieItem").click(function(){
     var tailleListeMots = $(this).data('size2')
 
     if(tailleListeMots > 0 && tailleListeSousCats == 0) {
-        $('#motItem').load(url2);
+        $('#motItem').load(url2,dragAndDrop);
         $('#divMotItem').removeClass("hidden").addClass("d-flex")
     } else {
         $('#divMotItem').removeClass("d-flex").addClass("hidden")
@@ -72,7 +72,7 @@ function motsSousCat(){
         console.log(tailleListeMots)
 
         if(tailleListeMots > 0) {
-            $('#motItem').load(url);
+            $('#motItem').load(url,dragAndDrop);
             $('#divMotItem').removeClass("hidden").addClass("d-flex")
         } else {
             $('#divMotItem').removeClass("d-flex").addClass("hidden")
