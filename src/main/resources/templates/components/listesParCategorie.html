@@ -44,9 +44,11 @@
 <li th:fragment="motItemsCat"
     class="item"
     th:each="mot : ${categorie.listeMotsParCategorie}"
-    data-mot-id="${mot.id}"
+    th:data-mot-id="${mot.id}"
+    th:data-mot-nom="${mot.nom}"
+    th:data-mot-tags="${mot.tags}"
     th:style="'background-image:url('+@{'/images/Mots/'+${mot.pictoFile}}+')'">
-    <span class="closer">x</span>
+    <span class="closer"><i class="bi bi-trash"></i></span>
 </li>
 <!--Pictos Mots par catégorie page Echange-->
 
@@ -56,9 +58,11 @@
 <li th:fragment="motItemsSousCat"
     class="item"
     th:each="mot : ${sousCategorie.listeMotsParSousCategorie}"
-    data-mot-id="${mot.id}"
+    th:data-mot-id="${mot.id}"
+    th:data-mot-nom="${mot.nom}"
+    th:data-mot-tags="${mot.tags}"
     th:style="'background-image:url('+@{'/images/Mots/'+${mot.pictoFile}}+')'">
-    <span class="closer">x</span>
+    <span class="closer"><i class="bi bi-trash"></i></span>
 </li>
 <!--Pictos Mots par sous-catégorie page Echange-->
 

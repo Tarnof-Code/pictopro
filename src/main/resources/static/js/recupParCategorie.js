@@ -29,7 +29,7 @@ $(".categorieItem").click(function(){
     var url = "/gestionDesMots/sousCategories/"
     var id = $(this).data("categorie-id");
     url = url + id;
-    console.log("click sur la catégorie " + id)
+
     var tailleListeSousCats = $(this).data('size');
 
     if(tailleListeSousCats > 0) {
@@ -66,10 +66,8 @@ function motsSousCat(){
     var url = "/listeMotsSousCat/"
         var id = $(this).data("souscategorie-id");
         url = url + id;
-        console.log("click sur la sous-catégorie " + id)
 
         var tailleListeMots = $(this).data('size')
-        console.log(tailleListeMots)
 
         if(tailleListeMots > 0) {
             $('#motItem').load(url,dragAndDrop);
