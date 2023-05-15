@@ -1,5 +1,6 @@
 package com.ecam.picto.pictopro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +11,7 @@ public class Conjugaison {
 
     @ManyToOne
     @JoinColumn(name="irregulier_id",insertable = false,updatable = false)
+    @JsonIgnore
     private Irregulier irregulier;
     private String temps;
     private String premierePersSing;

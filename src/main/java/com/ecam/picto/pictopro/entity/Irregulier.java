@@ -1,5 +1,7 @@
 package com.ecam.picto.pictopro.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,6 +14,7 @@ public class Irregulier {
     private String participePasse;
     @JoinColumn(name="irregulier_id")
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Conjugaison> conjugaisons;
     private String pluriel;
     private String feminin;
@@ -32,6 +35,7 @@ public class Irregulier {
         this.participePasse = participePasse;
     }
 
+    @JsonBackReference
     public List<Conjugaison> getConjugaisons() {
         return conjugaisons;
     }

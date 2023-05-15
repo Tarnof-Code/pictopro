@@ -99,13 +99,7 @@ private Mot motSelection = new Mot();
         motSelection = mot;
 
         model.addAttribute("irregulier",mot.getIrregulier());
-/*
-        List<Categorie> listeCategories = categorieService.afficherCategories();
-        model.addAttribute("categories",listeCategories);
 
-        List<Tag> listeTags = tagService.afficherTags();
-        model.addAttribute("tags",listeTags);
-*/
         return "/components/infosMots";
     }
 

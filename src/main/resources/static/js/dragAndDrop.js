@@ -1,21 +1,3 @@
-var tableauMots = [];
-
-  function updateTableauMots() {
-            tableauMots = [];
-
-            $(".target .item2").each(function() {
-              var nomMot = $(this).data('mot-nom');
-              tableauMots.push(nomMot);
-            });
-
-            console.log(tableauMots);
-
-            var phrase = tableauMots.join(' ');
-            console.log(phrase);
-
-            $("#contenuPhrase").text(phrase);
-}
-
 function dragAndDrop() {
   $(".source .item").draggable({
     revert: "invalid",
@@ -47,14 +29,8 @@ function dragAndDrop() {
         temp.removeClass('item');
         temp.addClass('item2');
 
-
-
-// Construction de la phrase
         var tags = item.data('mot-tags');
    //     console.log(tags);
-
-// Construction de la phrase
-
 
         this.replaceWith(temp[0]);
 

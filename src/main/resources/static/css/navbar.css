@@ -1,9 +1,10 @@
 .navbar {
   background-color: #2F9DAE;
+  height: 90px
 }
 
 .navbar-nav{
-margin-right:7rem;
+margin-right:5rem;
 }
 
 .nav-link {
@@ -20,5 +21,6 @@ color: #E5FF48 !important;
 
 .logo{
 margin-left:7rem;
+height:70px;
 }
 

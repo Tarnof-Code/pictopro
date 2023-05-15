@@ -4,26 +4,24 @@
 
 .source,
 .target {
-  margin: 20px;
   display:flex;
 }
 
 .source{
-      width:80%;
-      padding: 0px;
-      text-align: left;
-      overflow: hidden;
-      overflow-x: scroll;
-      display:-webkit-inline-box;
+  width:80%;
+  padding: 0px;
+  text-align: left;
+  overflow: hidden;
+  overflow-x: scroll;
+  display:-webkit-inline-box;
 }
 
 .item {
-  height: 100px;
-  width:100px;
+  height: 7em;
+  width:7em;
   margin: 5px;
   padding: 5px;
   border: 1px solid gray;
-  background-color: #cd8;
   position: relative;
   background-repeat: no-repeat;
   background-position: center;
@@ -32,12 +30,11 @@
 }
 
 .item2 {
-  height: 100px;
-  width:100px;
+  height: 7em;
+  width:7em;
   margin: 5px;
   padding: 5px;
   border: 1px solid gray;
-  background-color: #cd8;
   position: relative;
   background-repeat: no-repeat;
   background-position: center;
@@ -81,13 +78,13 @@
 }
 
 .empty {
-  height: 100px;
-  width:100px;
+  height: 7em;
+  width:7em;
   margin: 5px;
   padding: 5px;
-  background: #eee;
-  border: 1px dashed #999;
+  background: rgba(34, 89, 97, 0.33);
   border-radius:20%;
+  box-shadow: inset -4px -4px 10px #3D9FAE, inset 4px 4px 20px rgba(21, 55, 60, 0.75);
 }
 
 .empty .item {
