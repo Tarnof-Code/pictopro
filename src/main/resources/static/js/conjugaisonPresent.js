@@ -188,7 +188,7 @@ function conjugaisonPresent(){
       if(tags.includes("irregulier")){
 
             $.ajax({
-              url: '/conjugaisonsIrregulier/' + idMot,
+              url: '/getConjugaisonsIrregulier/' + idMot,
               method: 'GET',
               dataType: 'json',
               async : false,
@@ -222,4 +222,17 @@ function conjugaisonPresent(){
 
        };
 
+      if(motPrecedent == 'je' && mot[0] == "a" ||
+         motPrecedent == 'je' && mot[0] == "e" ||
+         motPrecedent == 'je' && mot[0] == "é" ||
+         motPrecedent == 'je' && mot[0] == "i" ||
+         motPrecedent == 'je' && mot[0] == "o" ||
+         motPrecedent == 'je' && mot[0] == "u" ||
+         motPrecedent == 'je' && mot[0] == "y") {
+            if(tableauMots.length == 1){
+                tableauMots[tableauMots.length - 1] = "J'"
+            } else {
+                tableauMots[tableauMots.length - 1] = "j'"
+            }
+         }
 }
