@@ -1,10 +1,14 @@
 function accordNom(){
 
 // Check des tags précédents pour l'accord
-     var tagsPrecedents =  tableauTags[tableauTags.length - 1]
+     var motPrecedent = tableauMots[tableauMots.length - 1]
+     var derniersTags =  tableauTags[tableauTags.length - 1]
+     var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.length - 1]
+     var femininPlurielPrecedent = tableauFemininMasculin[tableauFemininMasculin.length - 1]
 
 
-    if(tagsPrecedents != null && tagsPrecedents.includes("pluriel")){
+
+      if(singulierPlurielPrecedent != null && singulierPlurielPrecedent == "pluriel"){
 
         if(tags.includes("irregulier")){
             $.ajax({
@@ -24,4 +28,7 @@ function accordNom(){
             mot = mot + "s"
         }
     }
+
+
+
 }
