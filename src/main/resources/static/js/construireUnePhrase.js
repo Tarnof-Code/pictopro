@@ -2,6 +2,7 @@ var tags;
 var mot;
 var idMot;
 var tableauMots;
+var tableauId;
 var tableauTags;
 var tableauSingulierPluriel;
 var tableauFemininMasculin;
@@ -10,6 +11,7 @@ var tableauFemininMasculin;
 function updateTableauMots() {
 
     tableauMots = [];
+    tableauId = [];
     tableauTags = [];
     tableauSingulierPluriel = [];
     tableauFemininMasculin = [];
@@ -26,12 +28,10 @@ function updateTableauMots() {
     //  verifClasseGrammaticale();
     //  tableauMots.push(mot);
 
-      tableauTags.push(tags);
+   //  tableauTags.push(tags);
 
       var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.length - 1];
       var femininMasculinPrecedent = tableauFemininMasculin[tableauFemininMasculin.length - 1];
-      var derniersTags = tableauTags[tableauTags.length - 1]
-      var tagsPrecedents = tableauTags[tableauTags.length - 2]
 
       if(tags.includes("pronom_ou_determinant") && tags.includes("'singulier'")){
             tableauSingulierPluriel.push("singulier")
@@ -49,25 +49,10 @@ function updateTableauMots() {
          tableauFemininMasculin.push("masculin")
       }
 
-console.log("avant = "+tableauFemininMasculin)
-console.log("tags = "+tags)
-console.log("derniersTags = "+derniersTags)
-
-         if (tags.includes("'nom'") && tags.includes("'feminin'")) {
-              if(tagsPrecedents !=null &&
-                 tagsPrecedents.includes("'adjectif'") &&
-                 tableauFemininMasculin.length > 1){
-
-                  tableauFemininMasculin[tableauFemininMasculin.length - 3] = "feminin";
-
-console.log("après "+tableauFemininMasculin)
-
-              }
-          }
-
-
         verifClasseGrammaticale();
         tableauMots.push(mot);
+        tableauId.push(idMot);
+        tableauTags.push(tags);
 
     });
 

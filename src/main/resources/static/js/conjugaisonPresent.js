@@ -6,6 +6,9 @@ function conjugaisonPresent(){
         motPrecedent = motPrecedent.toLowerCase()
      }
 
+// Check mot précédent si c'est un nom pour conjugaison
+var tagsPrecedents =  tableauTags[tableauTags.length - 1]
+var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.length - 1];
 
 // Si verbe pronominal
 
@@ -65,6 +68,15 @@ function conjugaisonPresent(){
 
         // Fonction de conjugaison
         function conjugaisonPremierGroupe(){
+
+        if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+            if(singulierPlurielPrecedent == "singulier"){
+                mot = radical + "e"
+            } else {
+                mot = radical + "ent"
+            }
+        }
+
              switch(motPrecedent){
                 case 'je': mot = radical + "e";
                     break;
@@ -109,13 +121,16 @@ function conjugaisonPresent(){
 
                 conjugaisonPremierGroupe()
 
-                console.log(motPrecedent)
-
                 if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
                     motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
                     motPrecedent == 'ils' || motPrecedent == 'elles') {
                     mot = mot + ' ' + resteDeLaPhrase;
                 }
+
+                if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+                    mot = mot + ' ' + resteDeLaPhrase;
+                }
+
             } else {
 
             // Si pas d'autres mots après le verbe
@@ -131,6 +146,15 @@ function conjugaisonPresent(){
 
         //Fonction de conjugaison
             function conjugaisonDeuxiemeGroupe(){
+
+                if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+                    if(singulierPlurielPrecedent == "singulier"){
+                        mot = radical + "it"
+                    } else {
+                        mot = radical + "issent"
+                    }
+                }
+
                 switch(motPrecedent){
                      case 'je': mot = radical + "is";
                          break;
@@ -173,6 +197,11 @@ function conjugaisonPresent(){
                     motPrecedent == 'ils' || motPrecedent == 'elles') {
                     mot = mot + ' ' + resteDeLaPhrase;
                 }
+
+                if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+                    mot = mot + ' ' + resteDeLaPhrase;
+                }
+
             } else {
 
             // Si pas d'autres mots après le verbe
@@ -195,6 +224,14 @@ function conjugaisonPresent(){
               success: function(data) {
 
                 var present = data[0]
+
+                if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+                    if(singulierPlurielPrecedent == "singulier"){
+                        mot = present.troisiemePersSing
+                    } else {
+                        mot = present.troisiemePersPluriel;
+                    }
+                }
 
                 switch(motPrecedent){
                        case 'je': mot = present.premierePersSing;

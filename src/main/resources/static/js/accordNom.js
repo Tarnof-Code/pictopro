@@ -1,8 +1,9 @@
 function accordNom(){
 
 // Check des tags précédents pour l'accord
-     var motPrecedent = tableauMots[tableauMots.length - 1]
-     var derniersTags =  tableauTags[tableauTags.length - 1]
+     var tagsPrecedents =  tableauTags[tableauTags.length - 1]
+     var tagsMoinsDeux = tableauTags[tableauTags.length - 2]
+     var idMotPrecedent = tableauId[tableauId.length - 1]
      var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.length - 1]
      var femininPlurielPrecedent = tableauFemininMasculin[tableauFemininMasculin.length - 1]
 
@@ -27,8 +28,14 @@ function accordNom(){
         } else {
             mot = mot + "s"
         }
-    }
+      }
 
+      if (tags.includes("'feminin'")) {
+        if(tagsPrecedents != undefined && tagsPrecedents.includes("'adjectif'")){
+                var adjectifMisAJour;
+                misAJourAdjectif(idMotPrecedent,tagsPrecedents,tagsMoinsDeux)
 
+        }
+      }
 
 }

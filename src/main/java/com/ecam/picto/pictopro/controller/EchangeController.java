@@ -7,13 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.ecam.picto.pictopro.service.CategorieService;
 import com.ecam.picto.pictopro.service.MotService;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -58,6 +55,14 @@ public class EchangeController {
 		} else {
 			return "/components/listesParCategorie::motItemsVide";
 		}
+	}
+
+	@RequestMapping("/getMot/{id}")
+	@ResponseBody
+	public ResponseEntity<String> getMot(@PathVariable("id") int id) throws JsonProcessingException{
+		Mot mot = motService.findById(id);
+		String json = objectMapper.writeValueAsString(mot);
+		return ResponseEntity.ok(json);
 	}
 
 	@RequestMapping("/getConjugaisonsIrregulier/{id}")
