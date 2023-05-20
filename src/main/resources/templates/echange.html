@@ -10,14 +10,25 @@
         <div  th:replace="~{components/navBar}"></div>
     </div>
 
-
-  <div th:replace="~{components/pictosPageEchange}"></div>
-
-  <div th:replace="~{components/dragAndDrop}"></div>
-
-  <div class="d-flex justify-content-center">
-    <span id="contenuPhrase" class="display-4"></span>
-  </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-lg-11">
+              <div th:replace="~{components/pictosPageEchange}"></div>
+              <div th:replace="~{components/dragAndDrop}"></div>
+              <div class="d-flex justify-content-center">
+                <span id="contenuPhrase" class="display-4"></span>
+              </div>
+        </div>
+        <div class="col-12 col-lg-1 d-md-block justify-content-end">
+              <div class="text-center" style="margin-top:10px">
+                <button
+                   type="button"
+                   id="lecturePhrase"
+                   class="btn btn-primary">Lire la phrase</button>
+              </div>
+        </div>
+      </div>
+    </div>
 
   <div th:replace="~{components/footer :: footer}"></div>
 

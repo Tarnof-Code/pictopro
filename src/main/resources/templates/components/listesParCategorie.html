@@ -28,6 +28,7 @@
     <a>
         <img class="sousCategorieItem"
              th:data-souscategorie-id="${sousCategorie.id}"
+             th:data-souscategorie-nom="${sousCategorie.nom}"
              th:data-size="${sousCategorie.listeMotsParSousCategorie.size()}"
              th:src="@{'/images/sous-categories/' + ${sousCategorie.pictoFile}}"/>
     </a>

@@ -69,7 +69,8 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
         // Fonction de conjugaison
         function conjugaisonPremierGroupe(){
 
-        if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+        if(tagsPrecedents != undefined &&
+            (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ){
             if(singulierPlurielPrecedent == "singulier"){
                 mot = radical + "e"
             } else {
@@ -127,7 +128,8 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
                     mot = mot + ' ' + resteDeLaPhrase;
                 }
 
-                if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+                if(tagsPrecedents != undefined &&
+                    (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
                     mot = mot + ' ' + resteDeLaPhrase;
                 }
 
@@ -147,7 +149,8 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
         //Fonction de conjugaison
             function conjugaisonDeuxiemeGroupe(){
 
-                if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+                if(tagsPrecedents != undefined &&
+                    (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
                     if(singulierPlurielPrecedent == "singulier"){
                         mot = radical + "it"
                     } else {
@@ -198,7 +201,8 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
                     mot = mot + ' ' + resteDeLaPhrase;
                 }
 
-                if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+                if(tagsPrecedents != undefined &&
+                    (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
                     mot = mot + ' ' + resteDeLaPhrase;
                 }
 
@@ -225,7 +229,8 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
 
                 var present = data[0]
 
-                if(tagsPrecedents != undefined && tagsPrecedents.includes("'nom'")) {
+                if(tagsPrecedents != undefined &&
+                    (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
                     if(singulierPlurielPrecedent == "singulier"){
                         mot = present.troisiemePersSing
                     } else {

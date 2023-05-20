@@ -40,6 +40,11 @@ $(".categorieItem").click(function() {
 		$('#divSousCatItem').removeClass("d-flex").addClass("hidden")
 	}
 
+    // TextToSpeech des catégories
+    var nomCategorie = $(this).data("categorie-nom");
+    textToSpeech(nomCategorie); // Fonction définie dans construireUnePhrase.js
+
+
 	// Afficher les mots
 	var url2 = "/listeMotsCat/"
 	url2 = url2 + id;
@@ -79,6 +84,11 @@ function motsSousCat(){
 		} else {
 			$('#divMotItem').removeClass("d-flex").addClass("hidden")
 		}
+
+	// TextToSpeech des sous-catégories
+        var nomSousCategorie = $(this).data("souscategorie-nom");
+        textToSpeech(nomSousCategorie); // Fonction définie dans construireUnePhrase.js
+
 	})
 }
 

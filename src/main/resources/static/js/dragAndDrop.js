@@ -57,6 +57,12 @@ function dragAndDrop() {
     updateDroppables();
     updateTableauMots();
   });
+
+  $(".source .item").mousedown(function(){
+      var nomMot = $(this).data("mot-nom");
+      textToSpeech(nomMot); // Fonction définie dans construireUnePhrase.js
+  });
 }
 
 dragAndDrop();
+

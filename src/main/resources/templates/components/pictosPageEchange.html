@@ -15,6 +15,7 @@
                 <a>
                   <img class="categorieItem"
                        th:data-categorie-id="${categorie.id}"
+                       th:data-categorie-nom="${categorie.nom}"
                        th:data-size="${categorie.listeSousCategorie.size()}"
                        th:data-size2="${categorie.listeMotsParCategorie.size()}"
                        th:src="@{'/images/categories/' + ${categorie.pictoFile}}"/>

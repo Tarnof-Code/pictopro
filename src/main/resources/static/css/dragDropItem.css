@@ -2,10 +2,7 @@
   background: #fff;
 }
 
-.source,
-.target {
-  display:flex;
-}
+
 
 .source{
   width:80%;

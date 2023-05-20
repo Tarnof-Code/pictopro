@@ -6,7 +6,7 @@ var tableauId;
 var tableauTags;
 var tableauSingulierPluriel;
 var tableauFemininMasculin;
-
+var phrase;
 
 function updateTableauMots() {
 
@@ -56,7 +56,7 @@ function updateTableauMots() {
 
     });
 
-    var phrase = tableauMots.join(' ');
+    phrase = tableauMots.join(' ');
 
     $("#contenuPhrase").text(phrase);
 }
@@ -72,6 +72,26 @@ function verifClasseGrammaticale(){
         accordAdjectif();
     }
 }
+
+// Fonction textToSpeech
+function textToSpeech(messageToSpeech){
+    if ('speechSynthesis' in window) {
+      var message = new SpeechSynthesisUtterance();
+      message.text = messageToSpeech;
+
+      var voices = speechSynthesis.getVoices();
+      message.voice = voices[0];
+      message.rate = 1;
+      message.volume = 0.8;
+
+      speechSynthesis.speak(message);
+    }
+}
+
+// Lecture de la phrase
+$("#lecturePhrase").click(function(){
+    textToSpeech(phrase);
+});
 
 
 
