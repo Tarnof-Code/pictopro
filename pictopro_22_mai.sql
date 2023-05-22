@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 22 mai 2023 à 06:01
+-- Généré le : lun. 22 mai 2023 à 13:03
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `conjugaison` (
   `irregulier_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKhls5j2091cwwb1weyqf2ny34h` (`irregulier_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `conjugaison`
@@ -128,7 +128,9 @@ INSERT INTO `conjugaison` (`id`, `deuxieme_pers_pluriel`, `deuxieme_pers_sing`, 
 (31, 'mordez', 'mords', 'mordons', 'mords', 'present', 'mordent', 'mord', 16),
 (32, 'mordrez', 'mordras', 'mordrons', 'mordrai', 'futur', 'mordront', 'mordra', 16),
 (33, 'voulez', 'veux', 'voulons', 'veux', 'present', 'veulent', 'veut', 42),
-(34, 'voudrez', 'voudras', 'voudrons', 'voudrai', 'futur', 'voudront', 'voudra', 42);
+(34, 'voudrez', 'voudras', 'voudrons', 'voudrai', 'futur', 'voudront', 'voudra', 42),
+(35, 'jetez', ' jettes', 'jetons', ' jette', 'present', 'jettent', ' jette', 86),
+(36, ' jetterez', ' jetteras', ' jetterons', ' jetterai', 'futur', ' jetteront', ' jettera', 86);
 
 -- --------------------------------------------------------
 
@@ -174,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `irregulier` (
   `participe_passe` varchar(255) DEFAULT NULL,
   `pluriel` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `irregulier`
@@ -265,7 +267,8 @@ INSERT INTO `irregulier` (`id`, `feminin`, `participe_passe`, `pluriel`) VALUES
 (82, NULL, NULL, 'maisons de poupées'),
 (83, NULL, NULL, 'pistolets à eau'),
 (84, NULL, NULL, 'jeux de société'),
-(85, NULL, NULL, 'bateaux');
+(85, NULL, NULL, 'bateaux'),
+(86, NULL, 'jeté', NULL);
 
 -- --------------------------------------------------------
 
@@ -382,7 +385,7 @@ INSERT INTO `mot` (`id`, `created_at`, `nom`, `picto_file`, `updated_at`, `categ
 (84, '1900-01-01 00:00:00.000000', 'crier', 'crier.png', '1900-01-01 00:00:00.000000', 4, NULL, NULL, NULL),
 (85, '1900-01-01 00:00:00.000000', 'disputer', 'disputer.png', '1900-01-01 00:00:00.000000', 4, NULL, NULL, NULL),
 (86, '1900-01-01 00:00:00.000000', 'frapper', 'frapper.png', '1900-01-01 00:00:00.000000', 4, NULL, NULL, NULL),
-(87, '1900-01-01 00:00:00.000000', 'jeter', 'jeter.png', '1900-01-01 00:00:00.000000', 4, NULL, NULL, NULL),
+(87, '1900-01-01 00:00:00.000000', 'jeter', 'jeter.png', '2023-05-22 13:23:46.998000', 4, 86, NULL, NULL),
 (88, '1900-01-01 00:00:00.000000', 'griffer', 'griffer.png', '1900-01-01 00:00:00.000000', 4, NULL, NULL, NULL),
 (89, '1900-01-01 00:00:00.000000', 'mordre', 'mordre.png', '1900-01-01 00:00:00.000000', 4, 16, NULL, NULL),
 (90, '1900-01-01 00:00:00.000000', 'trépigner', 'trepigner.png', '1900-01-01 00:00:00.000000', 4, NULL, NULL, NULL),
@@ -1077,9 +1080,6 @@ INSERT INTO `mot_tag` (`mot_id`, `tag_id`) VALUES
 (86, 1),
 (86, 7),
 (86, 14),
-(87, 1),
-(87, 7),
-(87, 14),
 (88, 1),
 (88, 7),
 (88, 14),
@@ -1947,7 +1947,10 @@ INSERT INTO `mot_tag` (`mot_id`, `tag_id`) VALUES
 (531, 3),
 (531, 11),
 (98, 4),
-(100, 4);
+(100, 4),
+(87, 1),
+(87, 13),
+(87, 14);
 
 -- --------------------------------------------------------
 

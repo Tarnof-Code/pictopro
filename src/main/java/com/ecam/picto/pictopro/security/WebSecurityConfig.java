@@ -30,13 +30,13 @@ public class WebSecurityConfig {
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
 
-	@Bean
-	public AuthTokenFilter authenticationJwtTokenFilter() {
+    @Bean
+    AuthTokenFilter authenticationJwtTokenFilter() {
 		return new AuthTokenFilter();
 	}
 
-	@Bean
-	public DaoAuthenticationProvider authenticationProvider() {
+    @Bean
+    DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
 		authProvider.setUserDetailsService(userDetailsService);
@@ -45,21 +45,21 @@ public class WebSecurityConfig {
 		return authProvider;
 	}
 
-	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		return authConfig.getAuthenticationManager();
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
+    @Bean
+    PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.requestMatchers("/api/auth/**").permitAll().requestMatchers("/api/test/**").permitAll().anyRequest()
+				.requestMatchers("/**").permitAll().requestMatchers("/api/test/**").permitAll().anyRequest()
 				.authenticated();
 
 		http.authenticationProvider(authenticationProvider());
