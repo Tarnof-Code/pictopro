@@ -79,7 +79,7 @@ public class DossierMedicalController {
 
 	@PostMapping("/ajouterUnDossier")
 	public String ajouterUnDossierMedical(Model model, @ModelAttribute("dossierMedical") DossierMedical dossierMedical,
-			@RequestParam("professionnelId") int idPro) {
+			@RequestParam("professionnelId") Long idPro) {
 		Professionnel professionnel = professionnelService.findById(idPro);
 		dossierMedical.setProfessionnel(professionnel);
 		dossierMedicalService.ajouterUnDossierMedical(dossierMedical);

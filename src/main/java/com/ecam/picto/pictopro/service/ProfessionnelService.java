@@ -12,5 +12,5 @@ public interface ProfessionnelService {
 
 	public List<Professionnel> findAll();
 
-	public Professionnel findById(int id);
+	public Professionnel findById(Long id);
 }

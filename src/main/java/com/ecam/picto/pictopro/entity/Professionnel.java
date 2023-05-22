@@ -1,7 +1,9 @@
 package com.ecam.picto.pictopro.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,19 +14,28 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Professionnel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
+
+	@NotBlank
+	@Size(max = 20)
+	@Column(unique = true, nullable = false)
+	private String username;
+
 	@NotEmpty(message = "* Le champ nom ne peut pas être vide.")
 	@Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", message = "* Format de caractère non autorisé")
 	private String nom;
@@ -44,7 +55,7 @@ public class Professionnel {
 	@NotEmpty(message = "* Le champ numéro de tél. ne peut pas être vide")
 	private String telephone;
 
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	@NotEmpty(message = "* Le champ email ne peut pas être vide.")
 	private String email;
 
@@ -57,6 +68,9 @@ public class Professionnel {
 
 	@OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
 	private List<Mot> listeMotsParProfessionnel;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	private Set<Role> roles = new HashSet<>();
 
 //	@DateTimeFormat(pattern = "yyyy-MM-dd")
 //	@Temporal(TemporalType.DATE)
@@ -71,12 +85,34 @@ public class Professionnel {
 	public Professionnel() {
 	}
 
-	public int getId() {
+	public Professionnel(String username, String email, String password) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public String getNom() {
@@ -169,10 +205,11 @@ public class Professionnel {
 
 	@Override
 	public String toString() {
-		return "Professionnel [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance
-				+ ", service=" + service + ", telephone=" + telephone + ", email=" + email + ", password=" + password
-				+ ", listeDossiersParProfessionnel=" + listeDossiersParProfessionnel + ", listeMotsParProfessionnel="
-				+ listeMotsParProfessionnel + ", createdAt=" + createdAt + ", confirmPassword=" + confirmPassword + "]";
+		return "Professionnel [id=" + id + ", username=" + username + ", nom=" + nom + ", prenom=" + prenom
+				+ ", dateNaissance=" + dateNaissance + ", service=" + service + ", telephone=" + telephone + ", email="
+				+ email + ", password=" + password + ", listeDossiersParProfessionnel=" + listeDossiersParProfessionnel
+				+ ", listeMotsParProfessionnel=" + listeMotsParProfessionnel + ", roles=" + roles + ", createdAt="
+				+ createdAt + ", confirmPassword=" + confirmPassword + "]";
 	}
 
 }

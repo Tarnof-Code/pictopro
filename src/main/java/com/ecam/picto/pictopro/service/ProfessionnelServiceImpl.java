@@ -31,7 +31,7 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
 	}
 
 	@Override
-	public Professionnel findById(int id) {
+	public Professionnel findById(Long id) {
 		try {
 			Optional<Professionnel> professionnel = professionnelRepository.findById(id);
 			return professionnel.orElse(null);
