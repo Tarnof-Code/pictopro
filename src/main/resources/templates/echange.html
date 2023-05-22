@@ -3,6 +3,7 @@
 
 <head>
   <title>Page Echanges</title>
+  <link rel="stylesheet" href="/css/phrasePageEchange.css"/>
 </head>
 
 <body>
@@ -19,19 +20,15 @@
                 <span id="contenuPhrase" class="display-4"></span>
               </div>
         </div>
-        <div class="col-12 col-lg-1 d-md-block justify-content-end">
-              <div class="text-center" style="margin-top:10px">
-                <button
-                   type="button"
-                   id="lecturePhrase"
-                   class="btn btn-primary">Lire la phrase</button>
-              </div>
+        <div class="col-12 col-lg-1 d-md-block justify-content-end vh-100">
+            <div th:replace="~{components/sideBar}"></div>
         </div>
       </div>
     </div>
 
   <div th:replace="~{components/footer :: footer}"></div>
 
+  <script src="/js/sidebar.js"></script>
   <script src="/js/accordAdjectif.js"></script>
   <script src="/js/accordNom.js"></script>
   <script src="/js/conjugaisonPresent.js"></script>

@@ -1,0 +1,41 @@
+.sidebar {
+  height: 90vh;
+  background-color: #2F9DAE;
+  margin-top: 2em;
+  overflow-y: auto;
+  box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.6), inset 2px 2px 4px rgba(255, 255, 255, 0.6);
+}
+
+.iconButton {
+  border:none;
+  border-radius:50%;
+  width:1.7em;
+  font-size:2em;
+  color:#F8F9FA;
+  margin:0.1em;
+  overflow-x: auto;
+  transition: transform 0.2s;
+}
+
+.iconButton.clicked {
+  transform: scale(0.95);
+}
+
+#lecturePhrase {
+  background:#20C997;
+  box-shadow: inset -2px -2px 4px rgba(18, 114, 86, 0.60), inset 2px 2px 4px #69E7C2;
+}
+
+#lectureMotAmot {
+  background:#007bff;
+  box-shadow: inset -2px -2px 4px #0e3d91, inset 2px 2px 4px rgba(0, 123, 255, .7);
+}
+
+#lectureMotAmotReverse {
+  background:#007bff;
+  box-shadow: inset -2px -2px 4px #0e3d91, inset 2px 2px 4px rgba(0, 123, 255, .7);
+}
+
+ul {
+  list-style-type: none;
+}
