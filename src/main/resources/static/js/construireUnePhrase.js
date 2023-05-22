@@ -83,10 +83,11 @@ function textToSpeech(messageToSpeech){
       var message = new SpeechSynthesisUtterance();
       message.text = messageToSpeech;
 
-      var voices = speechSynthesis.getVoices();
-      message.voice = voices[0];
-      message.rate = 1;
-      message.volume = 0.8;
+		var voices = speechSynthesis.getVoices();
+		// message.voice = voices[0];
+		message.lang = "fr-FR"; // voix en français
+		message.rate = 1;
+		message.volume = 0.8;
 
       speechSynthesis.speak(message);
     }
