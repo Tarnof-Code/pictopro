@@ -93,9 +93,17 @@ function textToSpeech(messageToSpeech){
     }
 }
 
+// Fonction mise en surbrillance
+function motEnSurbrillance(phrase,mot){
+    let phraseMotSurbrillance = phrase.replace(mot, '<span class="surbrillance">' + mot + '</span>')
+    $("#contenuPhrase").html(phraseMotSurbrillance);
+}
+
+
+
 // Lecture de la phrase
 $("#lecturePhrase").click(function(){
-    if(phrase == undefined){
+    if(phrase == undefined || phrase == ""){
         phrase = "La phrase est vide";
     }
     textToSpeech(phrase);
@@ -104,41 +112,22 @@ $("#lecturePhrase").click(function(){
 
 // Lecture mot à mot
 var indexMotActuel = 0;
-var motPrecedent
 
 $("#lectureMotAmot").click(function(){
       if (phrase != undefined) {
         var phraseALire = phrase.split(" ");
         if(indexMotActuel < phraseALire.length){
             var motActuel = phraseALire[indexMotActuel];
-            if(motActuel == motPrecedent){
-                motActuel = phraseALire[indexMotActuel + 1]
-            }
             textToSpeech(motActuel);
-            let phraseMotSurbrillance = phrase.replace(motActuel, '<span class="surbrillance">' + motActuel + '</span>')
-            $("#contenuPhrase").html(phraseMotSurbrillance);
+            motEnSurbrillance(phrase,motActuel)
             indexMotActuel++;
         }
-
         if(indexMotActuel == phraseALire.length){
-            indexMotActuel--;
+            indexMotActuel = 0;
         }
       }
 });
 
-//Mot à mot à l'envers
-$("#lectureMotAmotReverse").click(function(){
-     if (phrase != undefined) {
-       var phraseALire = phrase.split(" ");
-       if(indexMotActuel > 0){
-           indexMotActuel--;
-           motPrecedent = phraseALire[indexMotActuel];
-           let phraseMotSurbrillance = phrase.replace(motPrecedent, '<span class="surbrillance">' + motPrecedent + '</span>')
-           $("#contenuPhrase").html(phraseMotSurbrillance);
-           textToSpeech(motPrecedent);
-       }
-     }
-});
 
 
 
