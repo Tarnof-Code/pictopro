@@ -7,7 +7,10 @@ var tableauTags;
 var tableauSingulierPluriel;
 var tableauFemininMasculin;
 var phrase;
+var temps = "present";
 
+
+//Mettre à jour le tableau des mots
 function updateTableauMots() {
 
     tableauMots = [];
@@ -24,11 +27,6 @@ function updateTableauMots() {
       if (index === 0) {
         mot = mot.charAt(0).toUpperCase() + mot.slice(1);
       }
-
-    //  verifClasseGrammaticale();
-    //  tableauMots.push(mot);
-
-   //  tableauTags.push(tags);
 
       var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.length - 1];
       var femininMasculinPrecedent = tableauFemininMasculin[tableauFemininMasculin.length - 1];
@@ -53,11 +51,9 @@ function updateTableauMots() {
         tableauMots.push(mot);
         tableauId.push(idMot);
         tableauTags.push(tags);
-
     });
 
     phrase = tableauMots.join(' ').replace(/'\s+/g, "'"); // Le replace supprime l'espace du join si le mot finit par une apostrophe
-
     $("#contenuPhrase").text(phrase);
 
     indexMotActuel = 0;
@@ -68,7 +64,7 @@ function updateTableauMots() {
 // Vérification de la nature du mot
 function verifClasseGrammaticale(){
     if(tags.includes("'verbe'")){
-        conjugaisonPresent();
+        conjugaison(temps);
 
     } else if (tags.includes("'nom'")) {
         accordNom();
@@ -93,6 +89,7 @@ function textToSpeech(messageToSpeech){
     }
 }
 
+
 // Fonction mise en surbrillance
 function motEnSurbrillance(phrase,mot){
     let phraseMotSurbrillance = phrase.replace(mot, '<span class="surbrillance">' + mot + '</span>')
@@ -112,7 +109,6 @@ $("#lecturePhrase").click(function(){
 
 // Lecture mot à mot
 var indexMotActuel = 0;
-
 $("#lectureMotAmot").click(function(){
       if (phrase != undefined) {
         var phraseALire = phrase.split(" ");
@@ -129,6 +125,11 @@ $("#lectureMotAmot").click(function(){
 });
 
 
+// Mettre au futur
+$("#mettreAuFutur").click(function(){
+      temps = "futur";
+      updateTableauMots();
+});
 
 
 

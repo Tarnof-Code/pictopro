@@ -1,73 +1,10 @@
 function conjugaisonPresent(){
 
-// Check du mot précédent pour la conjugaison
-     var motPrecedent =  tableauMots[tableauMots.length - 1]
-     if (motPrecedent != null){
-        motPrecedent = motPrecedent.toLowerCase()
-     }
-
-// Check mot précédent si c'est un nom pour conjugaison
-var tagsPrecedents =  tableauTags[tableauTags.length - 1]
-var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.length - 1];
-
-// Si verbe pronominal
-
-    if(mot.startsWith("se ")){
-        // Enlever "se"
-        var resteDuMot = mot.substring(2);
-
-        switch(motPrecedent){
-            case 'je': mot = "me" + resteDuMot
-                break;
-            case 'tu': mot = "te" + resteDuMot
-            case 'il':
-            case 'elle':
-            case 'ils':
-            case 'elles': mot = "se" + resteDuMot
-                break;
-            case 'nous': mot = "nous" + resteDuMot
-                break;
-            case 'vous': mot = "vous" + resteDuMot
-                break;
-            default : mot = mot;
-        }
-    }
-
-    if(mot.startsWith("s'")){
-            // Enlever "s'"
-            var resteDuMot = mot.substring(2);
-
-            switch(motPrecedent){
-                case 'je': mot = "m'" + resteDuMot
-                    break;
-                case 'tu': mot = "t'" + resteDuMot
-                case 'il':
-                case 'elle':
-                case 'ils':
-                case 'elles': mot = "s'" + resteDuMot
-                    break;
-                case 'nous': mot = "nous " + resteDuMot
-                    break;
-                case 'vous': mot = "vous " + resteDuMot
-                    break;
-                default : mot = mot;
-            }
-        }
-
-
-
-//Radical des verbes du premier et deuxième groupe
-    if(!tags.includes('irregulier')){
-        var radical = mot.substring(0, mot.length - 2)
-    }
-
-
-
-// Conjugaison pour les verbes du 1er groupe
+// Conjugaison présent pour les verbes du 1er groupe
      if(tags.includes("premier_groupe")){
 
         // Fonction de conjugaison
-        function conjugaisonPremierGroupe(){
+        function presentPremierGroupe(){
 
         if(tagsPrecedents != undefined &&
             (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ){
@@ -120,7 +57,7 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
                   }
                 radical = verbePrincipal.substring(0, verbePrincipal.length - 2)
 
-                conjugaisonPremierGroupe()
+                presentPremierGroupe()
 
                 if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
                     motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
@@ -136,7 +73,7 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
             } else {
 
             // Si pas d'autres mots après le verbe
-                    conjugaisonPremierGroupe()
+                    presentPremierGroupe()
             }
      };
 
@@ -147,7 +84,7 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
       if(tags.includes("deuxieme_groupe")){
 
         //Fonction de conjugaison
-            function conjugaisonDeuxiemeGroupe(){
+            function presentDeuxiemeGroupe(){
 
                 if(tagsPrecedents != undefined &&
                     (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
@@ -193,7 +130,7 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
                   }
                 radical = verbePrincipal.substring(0, verbePrincipal.length - 2)
 
-                conjugaisonDeuxiemeGroupe()
+                presentDeuxiemeGroupe()
 
                 if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
                     motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
@@ -209,7 +146,7 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
             } else {
 
             // Si pas d'autres mots après le verbe
-                    conjugaisonDeuxiemeGroupe()
+                    presentDeuxiemeGroupe()
             }
 
       };
@@ -263,18 +200,4 @@ var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.
             });
 
        };
-
-      if(motPrecedent == 'je' && mot[0] == "a" ||
-         motPrecedent == 'je' && mot[0] == "e" ||
-         motPrecedent == 'je' && mot[0] == "é" ||
-         motPrecedent == 'je' && mot[0] == "i" ||
-         motPrecedent == 'je' && mot[0] == "o" ||
-         motPrecedent == 'je' && mot[0] == "u" ||
-         motPrecedent == 'je' && mot[0] == "y") {
-            if(tableauMots.length == 1){
-                tableauMots[tableauMots.length - 1] = "J'"
-            } else {
-                tableauMots[tableauMots.length - 1] = "j'"
-            }
-         }
 }
