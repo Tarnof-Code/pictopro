@@ -10,9 +10,9 @@
   border:none;
   border-radius:50%;
   width:1.7em;
-  font-size:2em;
+  font-size:1.8em;
   color:#F8F9FA;
-  margin:0.1em;
+  margin:0.2em;
   overflow-x: auto;
   transition: transform 0.2s;
 }
@@ -34,4 +34,9 @@
 #mettreAuFutur {
   background:#38b000;
   box-shadow: inset -2px -2px 4px #79c699, inset 2px 2px 4px #38b000;
+}
+
+#mettreAuPasse {
+  background:#de16a2;
+  box-shadow: inset -2px -2px 4px rgb(209, 13, 173), inset 2px 2px 4px #b34392;
 }

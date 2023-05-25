@@ -105,7 +105,7 @@ private Mot motSelection = new Mot();
 
     @RequestMapping("/infosMot")
     public  String afficherInfosMot(Model model) {
-        System.out.println(motSelection.getIrregulier());
+
         model.addAttribute("irregulier",motSelection.getIrregulier());
         model.addAttribute("mot", motSelection);
         model.addAttribute("categories", listeCategories);

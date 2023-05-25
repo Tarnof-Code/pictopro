@@ -6,6 +6,8 @@ var tableauId;
 var tableauTags;
 var tableauSingulierPluriel;
 var tableauFemininMasculin;
+var femininMasculinPrecedent;
+var singulierPlurielPrecedent;
 var phrase;
 var temps = "present";
 
@@ -28,8 +30,8 @@ function updateTableauMots() {
         mot = mot.charAt(0).toUpperCase() + mot.slice(1);
       }
 
-      var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.length - 1];
-      var femininMasculinPrecedent = tableauFemininMasculin[tableauFemininMasculin.length - 1];
+      singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.length - 1];
+      femininMasculinPrecedent = tableauFemininMasculin[tableauFemininMasculin.length - 1];
 
       if(tags.includes("pronom_ou_determinant") && tags.includes("'singulier'")){
             tableauSingulierPluriel.push("singulier")
@@ -89,15 +91,6 @@ function textToSpeech(messageToSpeech){
     }
 }
 
-
-// Fonction mise en surbrillance
-function motEnSurbrillance(phrase,mot){
-    let phraseMotSurbrillance = phrase.replace(mot, '<span class="surbrillance">' + mot + '</span>')
-    $("#contenuPhrase").html(phraseMotSurbrillance);
-}
-
-
-
 // Lecture de la phrase
 $("#lecturePhrase").click(function(){
     if(phrase == undefined || phrase == ""){
@@ -107,15 +100,30 @@ $("#lecturePhrase").click(function(){
 });
 
 
+// Fonction pour mettre en surbrillance
+function motEnSurbrillance(phrase, mot,indexMotActuel) {
+  let mots = phrase.split(" ");
+  for (let i = 0; i < mots.length; i++) {
+    if (mots[i] === mot && i == indexMotActuel) {
+      mots[i] = '<span class="surbrillance">' + mot + '</span>';
+      break; // Arrêter la boucle une fois le mot trouvé et mis en surbrillance
+    }
+  }
+  let phraseMotSurbrillance = mots.join(" ");
+  $("#contenuPhrase").html(phraseMotSurbrillance);
+}
+
+
 // Lecture mot à mot
 var indexMotActuel = 0;
 $("#lectureMotAmot").click(function(){
       if (phrase != undefined) {
         var phraseALire = phrase.split(" ");
+
         if(indexMotActuel < phraseALire.length){
             var motActuel = phraseALire[indexMotActuel];
             textToSpeech(motActuel);
-            motEnSurbrillance(phrase,motActuel)
+            motEnSurbrillance(phrase,motActuel,indexMotActuel)
             indexMotActuel++;
         }
         if(indexMotActuel == phraseALire.length){
@@ -127,7 +135,21 @@ $("#lectureMotAmot").click(function(){
 
 // Mettre au futur
 $("#mettreAuFutur").click(function(){
-      temps = "futur";
+      if(temps == "passe"){
+        temps = "present"
+      } else {
+        temps = "futur";
+      }
+      updateTableauMots();
+});
+
+// Mettre au passé
+$("#mettreAuPasse").click(function(){
+     if(temps =="futur"){
+        temps = "present"
+     } else {
+        temps = "passe"
+     }
       updateTableauMots();
 });
 

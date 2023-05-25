@@ -25,6 +25,7 @@ singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.leng
             case 'je': mot = "me" + resteDuMot
                 break;
             case 'tu': mot = "te" + resteDuMot
+                break;
             case 'il':
             case 'elle':
             case 'ils':
@@ -46,6 +47,7 @@ singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.leng
                 case 'je': mot = "m'" + resteDuMot
                     break;
                 case 'tu': mot = "t'" + resteDuMot
+                    break;
                 case 'il':
                 case 'elle':
                 case 'ils':
@@ -70,12 +72,12 @@ singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.leng
     if(temps == "present"){
         conjugaisonPresent();
     }
-
     if(temps == "futur"){
         conjugaisonFutur();
     }
-
-
+    if(temps == "passe"){
+        conjugaisonPasse();
+    }
 
 
       if(motPrecedent == 'je' && mot[0] == "a" ||
