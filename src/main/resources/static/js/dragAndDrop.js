@@ -1,19 +1,3 @@
-function dragAndDrop() {
-  $(".source .item").draggable({
-    revert: "invalid",
-    helper: 'clone',
-    start: function(ev, ui) {
-      ui.helper.width($(this).width());
-    } // ensure helper width
-  });
-
-  $("#sortable").sortable({
-    update: function(event,ui){
-        updateTableauMots()
-    }
-  });
-
-
   function updateDroppables() {
     $(".empty").droppable({
       accept: ".item",
@@ -39,6 +23,22 @@ function dragAndDrop() {
       }
     });
   }
+
+
+function dragAndDrop() {
+  $(".source .item").draggable({
+    revert: "invalid",
+    helper: 'clone',
+    start: function(ev, ui) {
+      ui.helper.width($(this).width());
+    } // ensure helper width
+  });
+
+  $("#sortable").sortable({
+    update: function(event,ui){
+        updateTableauMots()
+    }
+  });
 
   updateDroppables();
 

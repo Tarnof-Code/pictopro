@@ -2,3 +2,18 @@
   font-weight: 900;
   color: blue;
 }
+
+.phraseConteneur {
+    width:80%;
+    height: 9vh;
+    background:#A9BEC1;
+    box-shadow: inset -1px -4px 10px rgba(82, 206, 224, 0.5), inset 4px 4px 20px #225961;
+    margin:1em auto 1em auto;
+}
+
+#contenuPhrase{
+    color: white;
+    font-weight: bold;
+    font-size: 5vh;
+}
+

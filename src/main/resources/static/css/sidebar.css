@@ -1,10 +1,13 @@
 .sidebar {
-  height: 90vh;
   background-color: #2F9DAE;
-  margin-top: 2em;
+  margin-top: 3em;
+  padding-top:1em;
+  padding-bottom:1em;
   overflow-y: auto;
   box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.6), inset 2px 2px 4px rgba(255, 255, 255, 0.6);
 }
+
+
 
 .iconButton {
   border:none;
@@ -37,6 +40,11 @@
 }
 
 #mettreAuPasse {
-  background:#de16a2;
+  background:#9E262D;
   box-shadow: inset -2px -2px 4px rgb(209, 13, 173), inset 2px 2px 4px #b34392;
+}
+
+#supprimerPictos{
+  background:#de16a2;
+  box-shadow: inset -2px -2px 4px #d01222, inset 2px 2px 4px rgb(188, 32, 48);
 }

@@ -7,24 +7,24 @@
 }
 
 .categorieItem {
-    height: 7em;
-    width:7em;
+    height: 12vh;
+    width:12vh;
     margin: 10px;
     border-radius:20%;
     cursor: pointer;
 }
 
 .sousCategorieItem {
-    height: 7em;
-    width:7em;
+    height: 12vh;
+    width:12vh;
     margin: 10px;
     border-radius:20%;
     cursor: pointer;
 }
 
 .motItem {
-    height: 7em;
-    width:7em;
+    height: 12vh;
+    width:12vh;
     margin: 10px;
     border-radius:20%;
 }

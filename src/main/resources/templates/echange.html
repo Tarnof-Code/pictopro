@@ -14,14 +14,23 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-lg-11">
-              <div class="d-flex justify-content-center">
-                <span id="contenuPhrase" class="display-4"></span>
+              <div class="dropdown mt-3 d-flex justify-content-center rounded-4">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Choisir une question
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Question 1</a></li>
+                    <li><a class="dropdown-item" href="#">Question 2</a></li>
+                    <li><a class="dropdown-item" href="#">Question 3</a></li>
+                </ul>
               </div>
-              <div th:replace="~{components/pictosPageEchange}"></div>
+              <div class="phraseConteneur d-flex justify-content-center rounded-4">
+                <span id="contenuPhrase"></span>
+              </div>
               <div th:replace="~{components/dragAndDrop}"></div>
-
+              <div th:replace="~{components/pictosPageEchange}"></div>
         </div>
-        <div class="col-12 col-lg-1 d-md-block justify-content-end vh-100">
+        <div class="sidebarConteneur col-12 col-lg-1">
             <div th:replace="~{components/sideBar}"></div>
         </div>
       </div>
@@ -29,7 +38,7 @@
 
   <div th:replace="~{components/footer :: footer}"></div>
 
-  <script src="/js/sidebar.js"></script>
+
   <script src="/js/accordAdjectif.js"></script>
   <script src="/js/accordNom.js"></script>
   <script src="/js/present.js"></script>
@@ -38,6 +47,7 @@
   <script src="/js/conjugaison.js"></script>
   <script src="/js/construireUnePhrase.js"></script>
   <script src="/js/dragAndDrop.js"></script>
+  <script src="/js/sidebar.js"></script>
   <script src="/js/recupParCategorie.js"></script>
 </body>
 
