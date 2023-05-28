@@ -2,8 +2,11 @@ var motPrecedent;
 var tagsPrecedents;
 var singulierPlurielPrecedent;
 var radical;
+var motMoinsDeux;
 
 function conjugaison(temps){
+
+motMoinsDeux = tableauMots[tableauMots.length - 2];
 
 // Check du mot précédent pour la conjugaison
      motPrecedent =  tableauMots[tableauMots.length - 1]
@@ -36,7 +39,15 @@ singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.leng
             case 'vous': mot = "vous" + resteDuMot
                 break;
             default : mot = mot;
-        }
+        };
+
+        // Si sujet composé d'un mot suivi de "et moi"
+        if(tableauMots.length > 2){
+             if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                mot = "nous" + resteDuMot
+             }
+        };
+
     }
 
     if(mot.startsWith("s'")){
@@ -58,7 +69,13 @@ singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.leng
                 case 'vous': mot = "vous " + resteDuMot
                     break;
                 default : mot = mot;
-            }
+            };
+             // Si sujet composé d'un mot suivi de "et moi"
+            if(tableauMots.length > 2){
+                 if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                    mot = "nous " + resteDuMot
+                 }
+            };
         }
 
 

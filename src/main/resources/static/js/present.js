@@ -39,7 +39,25 @@ function conjugaisonPresent(){
                     break;
                 default : mot = mot;
             }
+
+             // Si le sujet est composé de 2 mots reliés par "et"
+              if(tableauMots.length > 2){
+                if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                    if (radical.endsWith("g")) {
+                        mot = radical + "eons";
+                    } else if (radical.endsWith("c")) {
+                        mot = radical.replace(/c$/, "ç") + "ons";
+                    } else {
+                        mot = radical + "ons";
+                    }
+                }
+                if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
+                    mot = radical + "ent";
+                }
+              }
         };
+
+
 
             // Si d'autres mots après le verbe
             var listeMots = mot.split(' ');
@@ -59,7 +77,9 @@ function conjugaisonPresent(){
 
                 presentPremierGroupe()
 
-                if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
+                mot = mot + ' ' + resteDeLaPhrase;
+
+            /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
                     motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
                     motPrecedent == 'ils' || motPrecedent == 'elles') {
                     mot = mot + ' ' + resteDeLaPhrase;
@@ -68,7 +88,7 @@ function conjugaisonPresent(){
                 if(tagsPrecedents != undefined &&
                     (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
                     mot = mot + ' ' + resteDeLaPhrase;
-                }
+                } */
 
             } else {
 
@@ -111,7 +131,18 @@ function conjugaisonPresent(){
                      case 'elles': mot = radical + "issent";
                          break;
                      default : mot = mot;
-                 }
+                 };
+
+                 // Si le sujet est composé de 2 mots reliés par "et"
+                 if(tableauMots.length > 2){
+                     if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                             mot = radical + "issons";
+                     }
+                     if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
+                         mot = radical + "issent";
+                     }
+                 };
+
             }
 
         // Si d'autres mots après le verbe
@@ -132,16 +163,18 @@ function conjugaisonPresent(){
 
                 presentDeuxiemeGroupe()
 
-                if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
-                    motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
-                    motPrecedent == 'ils' || motPrecedent == 'elles') {
-                    mot = mot + ' ' + resteDeLaPhrase;
-                }
+                 mot = mot + ' ' + resteDeLaPhrase;
 
-                if(tagsPrecedents != undefined &&
-                    (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
-                    mot = mot + ' ' + resteDeLaPhrase;
-                }
+                /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
+                        motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
+                        motPrecedent == 'ils' || motPrecedent == 'elles') {
+                        mot = mot + ' ' + resteDeLaPhrase;
+                    }
+
+                    if(tagsPrecedents != undefined &&
+                        (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
+                        mot = mot + ' ' + resteDeLaPhrase;
+                    } */
 
             } else {
 
@@ -191,6 +224,15 @@ function conjugaisonPresent(){
                        case 'elles': mot = present.troisiemePersPluriel;
                            break;
                        default : mot = mot;
+               };
+
+               if(tableauMots.length > 2){
+                   if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                           mot = present.premierePersPluriel;
+                   }
+                   if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
+                       mot = present.troisiemePersPluriel;
+                   }
                }
 
               },

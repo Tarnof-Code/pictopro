@@ -58,6 +58,11 @@ var mettreParticipeAuSingulier = false
                 if(singulierPlurielPrecedent == "pluriel") {
                     participePasse = participePasse + "s"
                 }
+                if(tableauMots.length > 2){
+                    if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                        participePasse = participePasse + "s"
+                    }
+                }
             } else {
                 participePasse = radical + "é"
             }
@@ -89,7 +94,17 @@ var mettreParticipeAuSingulier = false
                 case 'elles': mot = auxiliaire[5] + " " + participePasse;
                     break;
                 default : mot = mot;
-            }
+            };
+
+             // Si le sujet est composé de 2 mots reliés par "et"
+             if(tableauMots.length > 2){
+                 if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                         mot = auxiliaire[3] + " " + participePasse;
+                 }
+                 if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
+                     mot = auxiliaire[5] + " " + participePasse;
+                 }
+             };
 
         };
 
@@ -119,16 +134,18 @@ var mettreParticipeAuSingulier = false
 
                 passe();
 
-                if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
-                    motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
-                    motPrecedent == 'ils' || motPrecedent == 'elles') {
-                    mot = mot + ' ' + resteDeLaPhrase;
-                }
+                 mot = mot + ' ' + resteDeLaPhrase;
 
-                if(tagsPrecedents != undefined &&
-                    (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
-                    mot = mot + ' ' + resteDeLaPhrase;
-                }
+                /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
+                        motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
+                        motPrecedent == 'ils' || motPrecedent == 'elles') {
+                        mot = mot + ' ' + resteDeLaPhrase;
+                    }
+
+                    if(tagsPrecedents != undefined &&
+                        (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
+                        mot = mot + ' ' + resteDeLaPhrase;
+                    } */
 
             } else {
 
@@ -184,7 +201,18 @@ var mettreParticipeAuSingulier = false
             case 'elles': mot = auxiliaire[5] + " " + participePasse;
                 break;
             default : mot = mot;
-        }
+        };
+
+         // Si le sujet est composé de 2 mots reliés par "et"
+         if(tableauMots.length > 2){
+             if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                     mot = auxiliaire[3] + " " + participePasse;
+             }
+             if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
+                 mot = auxiliaire[5] + " " + participePasse;
+             }
+         };
+
     };
 
         // Si d'autres mots après le verbe
@@ -213,16 +241,18 @@ var mettreParticipeAuSingulier = false
 
             passe();
 
-            if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
-                motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
-                motPrecedent == 'ils' || motPrecedent == 'elles') {
-                mot = mot + ' ' + resteDeLaPhrase;
-            }
+           mot = mot + ' ' + resteDeLaPhrase;
 
-            if(tagsPrecedents != undefined &&
-                (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
-                mot = mot + ' ' + resteDeLaPhrase;
-            }
+          /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
+                  motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
+                  motPrecedent == 'ils' || motPrecedent == 'elles') {
+                  mot = mot + ' ' + resteDeLaPhrase;
+              }
+
+              if(tagsPrecedents != undefined &&
+                  (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
+                  mot = mot + ' ' + resteDeLaPhrase;
+              } */
 
         } else {
 
@@ -315,7 +345,18 @@ var mettreParticipeAuSingulier = false
                        case 'elles': mot = auxiliaire[5] + " " + participePasse;
                            break;
                        default : mot = mot;
-               }
+               };
+
+                // Si le sujet est composé de 2 mots reliés par "et"
+                if(tableauMots.length > 2){
+                    if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                            mot = auxiliaire[3] + " " + participePasse;
+                    }
+                    if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
+                        mot = auxiliaire[5] + " " + participePasse;
+                    }
+                };
+
                if(reste != undefined){
                     mot = mot + " " + reste
                }

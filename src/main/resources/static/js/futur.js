@@ -32,7 +32,17 @@ function conjugaisonFutur(){
                 case 'elles': mot = mot + "ont";
                     break;
                 default : mot = mot;
-            }
+            };
+
+            // Si le sujet est composé de 2 mots reliés par "et"
+             if(tableauMots.length > 2){
+                 if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                         mot = mot + "ons";
+                 }
+                 if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
+                     mot = mot + "ont";
+                 }
+             };
         };
 
             // Si d'autres mots après le verbe
@@ -53,16 +63,18 @@ function conjugaisonFutur(){
 
                 futur()
 
-                if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
-                    motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
-                    motPrecedent == 'ils' || motPrecedent == 'elles') {
-                    mot = mot + ' ' + resteDeLaPhrase;
-                }
+                 mot = mot + ' ' + resteDeLaPhrase;
 
-                if(tagsPrecedents != undefined &&
-                    (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
-                    mot = mot + ' ' + resteDeLaPhrase;
-                }
+                /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
+                        motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
+                        motPrecedent == 'ils' || motPrecedent == 'elles') {
+                        mot = mot + ' ' + resteDeLaPhrase;
+                    }
+
+                    if(tagsPrecedents != undefined &&
+                        (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
+                        mot = mot + ' ' + resteDeLaPhrase;
+                    } */
 
             } else {
 
@@ -109,7 +121,17 @@ function conjugaisonFutur(){
                        case 'elles': mot = futur.troisiemePersPluriel;
                            break;
                        default : mot = mot;
-               }
+               };
+
+               // Si le sujet est composé de 2 mots reliés par "et"
+                if(tableauMots.length > 2){
+                    if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                            mot = futur.premierePersPluriel;
+                    }
+                    if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
+                       mot = futur.troisiemePersPluriel;
+                    }
+                };
 
               },
               error: function(error) {

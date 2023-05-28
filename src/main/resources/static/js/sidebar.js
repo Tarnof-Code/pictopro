@@ -9,27 +9,32 @@ $(document).ready(function() {
   });
 });
 
-// Fonction textToSpeech
-function textToSpeech(messageToSpeech){
-    if ('speechSynthesis' in window) {
-      var message = new SpeechSynthesisUtterance();
-      message.text = messageToSpeech;
-
-		var voices = speechSynthesis.getVoices();
-		// message.voice = voices[0];
-		message.lang = "fr-FR"; // voix en français
-		message.rate = 1;
-		message.volume = 0.8;
-
-      speechSynthesis.speak(message);
+// Chargement et choix de la voix
+var voices;
+if ('speechSynthesis' in window) {
+    speechSynthesis.onvoiceschanged = function() {
+        voices = window.speechSynthesis.getVoices();
     }
 }
 
-// Lecture de la phrase
-$("#lecturePhrase").click(function(){
-    if(phrase == undefined || phrase == ""){
-        phrase = "La phrase est vide";
+// Fonction textToSpeech
+function textToSpeech(messageToSpeech){
+    if ('speechSynthesis' in window) {
+        var message = new SpeechSynthesisUtterance();
+        message.voice = voices[9];
+        message.text = messageToSpeech;
+        message.lang = "fr-FR"; // voix en français
+        message.rate = 1;
+        message.volume = 0.8;
+
+        speechSynthesis.speak(message);
     }
+}
+
+// Lecture de la phrase au présent
+$("#lecturePhrase").click(function(){
+    temps = "present";
+    updateTableauMots();
     textToSpeech(phrase);
 });
 
@@ -69,22 +74,16 @@ $("#lectureMotAmot").click(function(){
 
 // Mettre au futur
 $("#mettreAuFutur").click(function(){
-      if(temps == "passe"){
-        temps = "present"
-      } else {
-        temps = "futur";
-      }
+      temps = "futur";
       updateTableauMots();
+      textToSpeech(phrase);
 });
 
 // Mettre au passé
 $("#mettreAuPasse").click(function(){
-     if(temps =="futur"){
-        temps = "present"
-     } else {
-        temps = "passe"
-     }
+      temps = "passe"
       updateTableauMots();
+      textToSpeech(phrase);
 });
 
 

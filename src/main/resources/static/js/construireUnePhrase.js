@@ -4,6 +4,7 @@ var idMot;
 var tableauMots;
 var tableauId;
 var tableauTags;
+var tagsMoinsDeux;
 var tableauSingulierPluriel;
 var tableauFemininMasculin;
 var femininMasculinPrecedent;
@@ -26,6 +27,7 @@ function updateTableauMots() {
       tags = $(this).data('mot-tags');
       idMot = $(this).data('mot-id');
 
+      // Si premier mot, commence par une majuscule
       if (index === 0) {
         mot = mot.charAt(0).toUpperCase() + mot.slice(1);
       }
@@ -40,6 +42,16 @@ function updateTableauMots() {
       } else {
          tableauSingulierPluriel.push("singulier")
       }
+
+      tagsMoinsDeux =  tableauTags[tableauTags.length - 2];
+      motPrecedent = tableauMots[tableauMots.length - 1];
+
+      if(tableauMots.length > 1){
+          if(tags.includes("'nom'") && tagsMoinsDeux.includes("'nom'") && motPrecedent == "et") {
+             tableauSingulierPluriel.push("pluriel")
+          }
+      }
+
 
       if(tags.includes("'feminin'") || femininMasculinPrecedent == "feminin"){
          tableauFemininMasculin.push("feminin")

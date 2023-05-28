@@ -1,12 +1,11 @@
 .sidebar {
   background-color: #2F9DAE;
-  margin-top: 3em;
+  margin-top: 6em;
   padding-top:1em;
   padding-bottom:1em;
   overflow-y: auto;
   box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.6), inset 2px 2px 4px rgba(255, 255, 255, 0.6);
 }
-
 
 
 .iconButton {
