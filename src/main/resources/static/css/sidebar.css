@@ -47,3 +47,8 @@
   background:#de16a2;
   box-shadow: inset -2px -2px 4px #d01222, inset 2px 2px 4px rgb(188, 32, 48);
 }
+
+#negation{
+  background:#A02B36;
+  box-shadow: inset -2px -2px 4px #941A25, inset 2px 2px 4px #eb8e97;
+}

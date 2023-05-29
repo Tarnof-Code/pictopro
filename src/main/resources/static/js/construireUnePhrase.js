@@ -67,7 +67,7 @@ function updateTableauMots() {
         tableauTags.push(tags);
     });
 
-    phrase = tableauMots.join(' ').replace(/'\s+/g, "'"); // Le replace supprime l'espace du join si le mot finit par une apostrophe
+    phrase = tableauMots.join(' ').replace(/'\s+/g, "'"); // Le "replace" supprime l'espace du join si le mot finit par une apostrophe
     $("#contenuPhrase").text(phrase);
 
     indexMotActuel = 0;
@@ -79,7 +79,6 @@ function updateTableauMots() {
 function verifClasseGrammaticale(){
     if(tags.includes("'verbe'")){
         conjugaison(temps);
-
     } else if (tags.includes("'nom'")) {
         accordNom();
     } else if (tags.includes("'adjectif'")) {

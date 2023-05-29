@@ -1,6 +1,8 @@
 function conjugaisonPasse(){
 
 var auxiliaire;
+var tagsMoinsTrois;
+
 if (tags.includes("auxiliaire_avoir")) {
     auxiliaire = ["ai","as","a","avons","avez","ont"];
 } else if (tags.includes("auxiliaire_etre")) {
@@ -47,7 +49,6 @@ var mettreParticipeAuSingulier = false
         function passe(){
 
             var participePasse;
-            console.log(mettreParticipeAuSingulier)
 
             if(tags.includes("auxiliaire_etre") && mettreParticipeAuSingulier == false){
                 if(femininMasculinPrecedent == "feminin"){
@@ -157,63 +158,68 @@ var mettreParticipeAuSingulier = false
 // Conjugaison au passé-composé pour les verbes du 2e groupe
      if(tags.includes("deuxieme_groupe")){
 
-    // Fonction de conjugaison
-    function passe(){
+        // Fonction de conjugaison
+        function passe(){
 
-     var participePasse;
+         var participePasse;
 
-     if(tags.includes("auxiliaire_etre") && mettreParticipeAuSingulier == false){
-         if(femininMasculinPrecedent == "feminin"){
-             participePasse = radical + "ie"
+         if(tags.includes("auxiliaire_etre") && mettreParticipeAuSingulier == false){
+             if(femininMasculinPrecedent == "feminin"){
+                 participePasse = radical + "ie"
+             } else {
+                 participePasse = radical + "i"
+             }
+             if(singulierPlurielPrecedent == "pluriel") {
+                 participePasse = participePasse + "s"
+             }
+             if(tableauMots.length > 2){
+                 if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                     participePasse = participePasse + "s"
+                 }
+             }
          } else {
              participePasse = radical + "i"
          }
-         if(singulierPlurielPrecedent == "pluriel") {
-             participePasse = participePasse + "s"
-         }
-     } else {
-         participePasse = radical + "i"
-     }
 
-        if(tagsPrecedents != undefined &&
-        (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ){
-                if(singulierPlurielPrecedent == "singulier"){
-                    mot = auxiliaire[2] + " " + participePasse;
-                } else {
-                    mot = auxiliaire[5] + " " + participePasse;
-                }
-        }
+            if(tagsPrecedents != undefined &&
+            (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ){
+                    if(singulierPlurielPrecedent == "singulier"){
+                        mot = auxiliaire[2] + " " + participePasse;
+                    } else {
+                        mot = auxiliaire[5] + " " + participePasse;
+                    }
+            }
 
-         switch(motPrecedent){
-            case 'je': mot = auxiliaire[0] + " " + participePasse;
-                break;
-            case 'tu': mot = auxiliaire[1] + " " + participePasse;
-                break;
-            case 'il':
-            case 'elle': mot = auxiliaire[2] + " " + participePasse;
-                break;
-            case 'nous': mot = auxiliaire[3] + " " + participePasse;
+             switch(motPrecedent){
+                case 'je': mot = auxiliaire[0] + " " + participePasse;
+                    break;
+                case 'tu': mot = auxiliaire[1] + " " + participePasse;
+                    break;
+                case 'il':
+                case 'elle': mot = auxiliaire[2] + " " + participePasse;
+                    break;
+                case 'nous': mot = auxiliaire[3] + " " + participePasse;
 
-                break;
-            case 'vous': mot = auxiliaire[4] + " " + participePasse;
-                break;
-            case 'ils':
-            case 'elles': mot = auxiliaire[5] + " " + participePasse;
-                break;
-            default : mot = mot;
+                    break;
+                case 'vous': mot = auxiliaire[4] + " " + participePasse;
+                    break;
+                case 'ils':
+                case 'elles': mot = auxiliaire[5] + " " + participePasse;
+                    break;
+                default : mot = mot;
+            };
+
+             // Si le sujet est composé de 2 mots reliés par "et"
+             if(tableauMots.length > 2){
+                 if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                         mot = auxiliaire[3] + " " + participePasse;
+                 }
+                 if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
+                     mot = auxiliaire[5] + " " + participePasse;
+                 }
+             };
+
         };
-
-         // Si le sujet est composé de 2 mots reliés par "et"
-         if(tableauMots.length > 2){
-             if(motMoinsDeux == "et" && motPrecedent == "moi"){
-                     mot = auxiliaire[3] + " " + participePasse;
-             }
-             if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
-                 mot = auxiliaire[5] + " " + participePasse;
-             }
-         };
-
-    };
 
         // Si d'autres mots après le verbe
         var listeMots = mot.split(' ');
@@ -300,6 +306,7 @@ var mettreParticipeAuSingulier = false
 
                 var participePasse = data.participePasse
                 var reste; // Si d'autres mots après le verbe
+                tagsMoinsTrois = tableauTags[tableauTags.length - 3]; // Tags du moi avant le "et"
 
                 // Accord du participe si auxiliaire être
                 if(tags.includes("auxiliaire_etre")){
@@ -308,14 +315,25 @@ var mettreParticipeAuSingulier = false
                     participePasse = tableauMotsParticipe[0];
                     reste = tableauMotsParticipe.slice(1).join(" ");
 
-                    //Si mot précédent est féminin, ajouter un "e"
+                    //Si mot précédent est féminin, ajouter un "e" sauf si mot masculin avant "et"
                     if(femininMasculinPrecedent == "feminin"){
-                        participePasse = participePasse + "e"
+                        if(motMoinsDeux == "et" && tagsMoinsTrois.includes("'masculin'")){
+                            participePasse = participePasse
+                        } else {
+                            participePasse = participePasse + "e"
+                        }
                     }
 
                     //Si mot précédent est pluriel, ajouter un "s"
                     if(singulierPlurielPrecedent == "pluriel") {
                         participePasse = participePasse + "s"
+                    }
+
+                    // "....et moi", ajouter un "s"
+                    if(tableauMots.length > 2){
+                        if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                            participePasse = participePasse + "s"
+                        }
                     }
 
                 }

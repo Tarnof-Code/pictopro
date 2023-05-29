@@ -1,5 +1,27 @@
 function conjugaisonPresent(){
 
+    // Fonction pour mettre au négatif
+    function mettreAuNegatif(){
+        if(mot.split(' ').length > 2) {
+           var motsDuVerbe = mot.split(' ');
+           var reste;
+
+           mot = motsDuVerbe[0];
+           reste = motsDuVerbe.slice(1).join(' ');
+        }
+        const voyelles = ["a","e","i","o","u","y"];
+        var premiereLettre = mot[0];
+        if(voyelles.includes(premiereLettre)){
+            mot = "n'" + mot + " pas";
+        } else {
+            mot = "ne " + mot + " pas" + " ";
+        }
+        if(reste != undefined) {
+            mot = mot + " " + reste;
+        }
+        negatif = false;
+    }
+
 // Conjugaison présent pour les verbes du 1er groupe
      if(tags.includes("premier_groupe")){
 
@@ -55,9 +77,12 @@ function conjugaisonPresent(){
                     mot = radical + "ent";
                 }
               }
+
+             // A la négative
+             if(negation == true){
+                mettreAuNegatif();
+             };
         };
-
-
 
             // Si d'autres mots après le verbe
             var listeMots = mot.split(' ');
@@ -79,16 +104,7 @@ function conjugaisonPresent(){
 
                 mot = mot + ' ' + resteDeLaPhrase;
 
-            /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
-                    motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
-                    motPrecedent == 'ils' || motPrecedent == 'elles') {
-                    mot = mot + ' ' + resteDeLaPhrase;
-                }
 
-                if(tagsPrecedents != undefined &&
-                    (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
-                    mot = mot + ' ' + resteDeLaPhrase;
-                } */
 
             } else {
 
@@ -142,8 +158,10 @@ function conjugaisonPresent(){
                          mot = radical + "issent";
                      }
                  };
-
-            }
+                  if(negation == true){
+                     mettreAuNegatif();
+                  };
+            };
 
         // Si d'autres mots après le verbe
             var listeMots = mot.split(' ');
@@ -165,16 +183,6 @@ function conjugaisonPresent(){
 
                  mot = mot + ' ' + resteDeLaPhrase;
 
-                /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
-                        motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
-                        motPrecedent == 'ils' || motPrecedent == 'elles') {
-                        mot = mot + ' ' + resteDeLaPhrase;
-                    }
-
-                    if(tagsPrecedents != undefined &&
-                        (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
-                        mot = mot + ' ' + resteDeLaPhrase;
-                    } */
 
             } else {
 
@@ -234,6 +242,11 @@ function conjugaisonPresent(){
                        mot = present.troisiemePersPluriel;
                    }
                }
+               // A la négative
+
+                   if(negation == true){
+                      mettreAuNegatif();
+                   };
 
               },
               error: function(error) {
@@ -242,4 +255,5 @@ function conjugaisonPresent(){
             });
 
        };
+
 }

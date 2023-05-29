@@ -3,6 +3,8 @@ var tagsPrecedents;
 var singulierPlurielPrecedent;
 var radical;
 var motMoinsDeux;
+var negation;
+
 
 function conjugaison(temps){
 

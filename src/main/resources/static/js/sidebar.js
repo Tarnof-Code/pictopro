@@ -34,6 +34,7 @@ function textToSpeech(messageToSpeech){
 // Lecture de la phrase au présent
 $("#lecturePhrase").click(function(){
     temps = "present";
+    negation = false;
     updateTableauMots();
     textToSpeech(phrase);
 });
@@ -75,13 +76,15 @@ $("#lectureMotAmot").click(function(){
 // Mettre au futur
 $("#mettreAuFutur").click(function(){
       temps = "futur";
+      negation = false;
       updateTableauMots();
       textToSpeech(phrase);
 });
 
 // Mettre au passé
 $("#mettreAuPasse").click(function(){
-      temps = "passe"
+      temps = "passe";
+      negation = false;
       updateTableauMots();
       textToSpeech(phrase);
 });
@@ -89,12 +92,20 @@ $("#mettreAuPasse").click(function(){
 
 // Supprimer tous les pictos
 $('#supprimerPictos').click(function(){
-console.log("COUCOU")
    $(".item2").each(function() {
    console.log("JSUIS LA")
      var empty = $("<li>", {"class": "empty"});
      $(this).replaceWith(empty);
    });
+   negation = false;
    updateDroppables();
    updateTableauMots();
+
+});
+
+// Négation
+$('#negation').click(function(){
+    negation = true
+    updateTableauMots();
+    textToSpeech(phrase);
 });
