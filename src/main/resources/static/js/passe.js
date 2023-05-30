@@ -106,6 +106,10 @@ var mettreParticipeAuSingulier = false
                      mot = auxiliaire[5] + " " + participePasse;
                  }
              };
+             // A la négative
+              if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
+                 mettreAuNegatif();
+              };
 
         };
 
@@ -136,17 +140,6 @@ var mettreParticipeAuSingulier = false
                 passe();
 
                  mot = mot + ' ' + resteDeLaPhrase;
-
-                /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
-                        motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
-                        motPrecedent == 'ils' || motPrecedent == 'elles') {
-                        mot = mot + ' ' + resteDeLaPhrase;
-                    }
-
-                    if(tagsPrecedents != undefined &&
-                        (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
-                        mot = mot + ' ' + resteDeLaPhrase;
-                    } */
 
             } else {
 
@@ -218,7 +211,10 @@ var mettreParticipeAuSingulier = false
                      mot = auxiliaire[5] + " " + participePasse;
                  }
              };
-
+             // A la négative
+              if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
+                 mettreAuNegatif();
+              };
         };
 
         // Si d'autres mots après le verbe
@@ -249,17 +245,6 @@ var mettreParticipeAuSingulier = false
 
            mot = mot + ' ' + resteDeLaPhrase;
 
-          /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
-                  motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
-                  motPrecedent == 'ils' || motPrecedent == 'elles') {
-                  mot = mot + ' ' + resteDeLaPhrase;
-              }
-
-              if(tagsPrecedents != undefined &&
-                  (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
-                  mot = mot + ' ' + resteDeLaPhrase;
-              } */
-
         } else {
 
         // Si pas d'autres mots après le verbe
@@ -275,7 +260,7 @@ var mettreParticipeAuSingulier = false
             var splitMot = mot.split(/[\s']/);
 
             // S'il y a un pronom
-            if(splitMot.length > 1 && splitMot[0].length < 3){
+            if(splitMot.length > 1 && (splitMot[0].length < 3 || splitMot[0] == "nous" | splitMot[0] == "vous")){
 
                 let pronomPerso = splitMot[0];
 
@@ -378,6 +363,10 @@ var mettreParticipeAuSingulier = false
                if(reste != undefined){
                     mot = mot + " " + reste
                }
+                    // A la négative
+                  if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
+                     mettreAuNegatif();
+                  };
               },
               error: function(error) {
                 console.error(error);

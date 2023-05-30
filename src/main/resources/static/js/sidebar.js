@@ -34,7 +34,6 @@ function textToSpeech(messageToSpeech){
 // Lecture de la phrase au présent
 $("#lecturePhrase").click(function(){
     temps = "present";
-    negation = false;
     updateTableauMots();
     textToSpeech(phrase);
 });
@@ -76,7 +75,6 @@ $("#lectureMotAmot").click(function(){
 // Mettre au futur
 $("#mettreAuFutur").click(function(){
       temps = "futur";
-      negation = false;
       updateTableauMots();
       textToSpeech(phrase);
 });
@@ -84,7 +82,6 @@ $("#mettreAuFutur").click(function(){
 // Mettre au passé
 $("#mettreAuPasse").click(function(){
       temps = "passe";
-      negation = false;
       updateTableauMots();
       textToSpeech(phrase);
 });
@@ -103,9 +100,16 @@ $('#supprimerPictos').click(function(){
 
 });
 
-// Négation
-$('#negation').click(function(){
-    negation = true
+// Mettre à la forme négative
+$('#formeNegative').click(function(){
+    negation = true;
+    updateTableauMots();
+    textToSpeech(phrase);
+});
+
+// Mettre à la forme affirmative
+$('#formeAffirmative').click(function(){
+    negation = false;
     updateTableauMots();
     textToSpeech(phrase);
 });

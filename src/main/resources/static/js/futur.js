@@ -43,6 +43,11 @@ function conjugaisonFutur(){
                      mot = mot + "ont";
                  }
              };
+
+              // A la négative
+              if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
+                 mettreAuNegatif();
+              };
         };
 
             // Si d'autres mots après le verbe
@@ -64,17 +69,6 @@ function conjugaisonFutur(){
                 futur()
 
                  mot = mot + ' ' + resteDeLaPhrase;
-
-                /*    if (motPrecedent == 'je' || motPrecedent == 'tu' || motPrecedent == 'il' ||
-                        motPrecedent == 'elle' || motPrecedent == 'nous' || motPrecedent == 'vous' ||
-                        motPrecedent == 'ils' || motPrecedent == 'elles') {
-                        mot = mot + ' ' + resteDeLaPhrase;
-                    }
-
-                    if(tagsPrecedents != undefined &&
-                        (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {
-                        mot = mot + ' ' + resteDeLaPhrase;
-                    } */
 
             } else {
 
@@ -132,6 +126,10 @@ function conjugaisonFutur(){
                        mot = futur.troisiemePersPluriel;
                     }
                 };
+                    // A la négative
+                   if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
+                      mettreAuNegatif();
+                   };
 
               },
               error: function(error) {

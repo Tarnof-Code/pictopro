@@ -1,20 +1,28 @@
 var motPrecedent;
+var motMoinsDeux;
+var motMoinsTrois;
 var tagsPrecedents;
 var singulierPlurielPrecedent;
 var radical;
-var motMoinsDeux;
 var negation;
 
 
 function conjugaison(temps){
 
-motMoinsDeux = tableauMots[tableauMots.length - 2];
-
-// Check du mot précédent pour la conjugaison
+// Check des mots précédents pour la conjugaison
      motPrecedent =  tableauMots[tableauMots.length - 1]
      if (motPrecedent != null){
         motPrecedent = motPrecedent.toLowerCase()
-     }
+     };
+     motMoinsDeux =  tableauMots[tableauMots.length - 2]
+     if (motMoinsDeux != null){
+        motMoinsDeux = motMoinsDeux.toLowerCase()
+     };
+     motMoinsTrois =  tableauMots[tableauMots.length - 3]
+     if (motMoinsTrois != null){
+        motMoinsTrois = motMoinsTrois.toLowerCase()
+     };
+
 
 // Check mot précédent si c'est un nom pour conjugaison
 tagsPrecedents =  tableauTags[tableauTags.length - 1]
@@ -22,8 +30,8 @@ singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.leng
 
 // Si verbe pronominal
 
+    // Enlever "se"
     if(mot.startsWith("se ")){
-        // Enlever "se"
         var resteDuMot = mot.substring(2);
 
         switch(motPrecedent){
@@ -50,14 +58,65 @@ singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.leng
              }
         };
 
+
+        // Si verbe avant
+        switch(motMoinsDeux){
+            case 'je':
+            case "j'": mot = "me" + resteDuMot
+                break;
+            case 'tu': mot = "te" + resteDuMot
+                break;
+            case 'il':
+            case 'elle':
+            case 'ils':
+            case 'elles': mot = "se" + resteDuMot
+                break;
+            case 'nous': mot = "nous" + resteDuMot
+                break;
+            case 'vous': mot = "vous" + resteDuMot
+                break;
+            default : mot = mot;
+        };
+
+        // Si sujet composé d'un mot suivi de "et moi"
+        if(tableauMots.length > 2){
+             if(motMoinsTrois == "et" && motMoinsDeux == "moi"){
+                mot = "nous" + resteDuMot
+             }
+        };
     }
 
+    // Enlever "s'"
     if(mot.startsWith("s'")){
-            // Enlever "s'"
             var resteDuMot = mot.substring(2);
 
             switch(motPrecedent){
                 case 'je': mot = "m'" + resteDuMot
+                    break;
+                case 'tu': mot = "t'" + resteDuMot
+                    break;
+                case 'il':
+                case 'elle':
+                case 'ils':
+                case 'elles': mot = "s'" + resteDuMot
+                    break;
+                case 'nous': mot = "nous " + resteDuMot
+                    break;
+                case 'vous': mot = "vous " + resteDuMot
+                    break;
+                default : mot = mot;
+            };
+             // Si sujet composé d'un mot suivi de "et moi"
+            if(tableauMots.length > 2){
+                 if(motMoinsDeux == "et" && motPrecedent == "moi"){
+                    mot = "nous " + resteDuMot
+                 }
+            };
+
+            // Si verbe avant
+            switch(motPrecedent){
+                case 'je':
+                case "j'": mot = "m'" + resteDuMot
                     break;
                 case 'tu': mot = "t'" + resteDuMot
                     break;

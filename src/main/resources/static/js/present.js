@@ -1,27 +1,5 @@
 function conjugaisonPresent(){
 
-    // Fonction pour mettre au négatif
-    function mettreAuNegatif(){
-        if(mot.split(' ').length > 2) {
-           var motsDuVerbe = mot.split(' ');
-           var reste;
-
-           mot = motsDuVerbe[0];
-           reste = motsDuVerbe.slice(1).join(' ');
-        }
-        const voyelles = ["a","e","i","o","u","y"];
-        var premiereLettre = mot[0];
-        if(voyelles.includes(premiereLettre)){
-            mot = "n'" + mot + " pas";
-        } else {
-            mot = "ne " + mot + " pas" + " ";
-        }
-        if(reste != undefined) {
-            mot = mot + " " + reste;
-        }
-        negatif = false;
-    }
-
 // Conjugaison présent pour les verbes du 1er groupe
      if(tags.includes("premier_groupe")){
 
@@ -76,10 +54,10 @@ function conjugaisonPresent(){
                 if(motMoinsDeux == "et" && (motPrecedent == "elle" || motPrecedent == "eux")){
                     mot = radical + "ent";
                 }
-              }
+              };
 
              // A la négative
-             if(negation == true){
+             if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
                 mettreAuNegatif();
              };
         };
@@ -158,7 +136,8 @@ function conjugaisonPresent(){
                          mot = radical + "issent";
                      }
                  };
-                  if(negation == true){
+                 // A la négative
+                  if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
                      mettreAuNegatif();
                   };
             };
@@ -242,9 +221,8 @@ function conjugaisonPresent(){
                        mot = present.troisiemePersPluriel;
                    }
                }
-               // A la négative
-
-                   if(negation == true){
+                    // A la négative
+                   if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
                       mettreAuNegatif();
                    };
 

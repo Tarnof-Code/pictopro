@@ -48,7 +48,12 @@
   box-shadow: inset -2px -2px 4px #d01222, inset 2px 2px 4px rgb(188, 32, 48);
 }
 
-#negation{
+#formeAffirmative{
+  background:#87DB4B;
+  box-shadow: inset inset -2px -2px 4px #68A839, inset 2px 2px 4px #9DFF57;
+}
+
+#formeNegative{
   background:#A02B36;
   box-shadow: inset -2px -2px 4px #941A25, inset 2px 2px 4px #eb8e97;
 }
