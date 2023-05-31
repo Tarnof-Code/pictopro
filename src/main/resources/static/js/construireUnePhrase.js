@@ -12,7 +12,7 @@ var femininMasculinPrecedent;
 var singulierPlurielPrecedent;
 var phrase;
 var temps = "present";
-
+const voyelles = ["a","e","i","o","u","y"];
 
 //Mettre à jour le tableau des mots
 function updateTableauMots() {
@@ -65,12 +65,19 @@ function updateTableauMots() {
               if(tags.includes("'nom'") && tagsMoinsDeux.includes("'nom'") && motPrecedent == "et") {
                  tableauSingulierPluriel.push("pluriel")
               }
-              if(!tags.includes("'pluriel'") && tagsMoinsDeux.includes("'verbe'") && motPrecedent == "et") {
+              if(!tags.includes("'pluriel'") &&
+                    tagsMoinsDeux != undefined &&
+                    tagsMoinsDeux.includes("'verbe'") &&
+                    motPrecedent == "et") {
                  tableauSingulierPluriel.push("singulier")
               }
         }
 
     });
+
+     if(interrogation == true){
+        transformerEnQuestion();
+     }
 
     phrase = tableauMots.join(' ').replace(/'\s+/g, "'"); // Le "replace" supprime l'espace du join si le mot finit par une apostrophe
     $("#contenuPhrase").text(phrase);
@@ -91,7 +98,6 @@ function verifClasseGrammaticale(){
         accordAdjectif();
     }
 }
-
 
 
 

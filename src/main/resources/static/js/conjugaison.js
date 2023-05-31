@@ -6,7 +6,7 @@ var tagsMoinsDeux;
 var singulierPlurielPrecedent;
 var radical;
 var negation;
-const voyelles = ["a","e","i","o","u","y"];
+var interrogation;
 const pronomsVerbePronominaux = ["me","m'","te","t'","se","s'","nous","vous"]
 
 

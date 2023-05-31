@@ -94,6 +94,7 @@ $('#supprimerPictos').click(function(){
      $(this).replaceWith(empty);
    });
    negation = false;
+   interrogation = false;
    updateDroppables();
    updateTableauMots();
 
@@ -109,6 +110,17 @@ $('#formeNegative').click(function(){
 // Mettre à la forme affirmative
 $('#formeAffirmative').click(function(){
     negation = false;
+    updateTableauMots();
+    textToSpeech(phrase);
+});
+
+// Transformer en question
+$('#formeInterrogative').click(function(){
+    if(interrogation == true) {
+        interrogation = false;
+    } else {
+        interrogation =true
+    }
     updateTableauMots();
     textToSpeech(phrase);
 });
