@@ -208,7 +208,8 @@ checkboxes.forEach(function(checkbox) {
         if (checkbox.value != 'pronom_ou_determinant' &&
             checkbox.value != 'singulier' &&
             checkbox.value != 'masculin' &&
-            checkbox.value != 'feminin'
+            checkbox.value != 'feminin' &&
+            checkbox.value != 'nombre'
             ) {
            checkbox.parentNode.classList.add('greyColor')
            checkbox.disabled = true;
@@ -353,7 +354,7 @@ checkboxes.forEach(function(checkbox) {
 //Checkbox nombre
         if (this.value === 'nombre' && this.checked) {
           checkboxes.forEach(function(checkbox) {
-          if (checkbox.value === 'pluriel') {
+          if (checkbox.value === 'pluriel' || checkbox.value === 'singulier') {
              checkbox.parentNode.classList.remove('hidden');
           } else if (checkbox.value != 'nombre') {
                checkbox.parentNode.classList.add('greyColor')
@@ -363,7 +364,7 @@ checkboxes.forEach(function(checkbox) {
         }
         if(this.value === 'nombre' && !this.checked){
           checkboxes.forEach(function(checkbox) {
-            if (checkbox.value === 'pluriel') {
+            if (checkbox.value === 'pluriel' || checkbox.value === 'singulier') {
               checkbox.parentNode.classList.add('hidden');
               checkbox.checked = false;
             }

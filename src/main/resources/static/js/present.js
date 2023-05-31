@@ -60,16 +60,19 @@ function conjugaisonPresent(){
              if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
                 mettreAuNegatif();
              };
+
         };
 
             // Si d'autres mots après le verbe
             var listeMots = mot.split(' ');
 
             if(listeMots.length > 2){
+
                 for (var i = 0; i < listeMots.length; i++) {
                     var motDeLaListe = listeMots[i];
                     if (motDeLaListe.endsWith('er')) {
                        var verbePrincipal = motDeLaListe;
+
                        var resteDeLaPhrase = listeMots.slice(i + 1).join(' ');
                        if(i > 0){
                            verbePrincipal = listeMots[i-1] + ' ' + verbePrincipal;
@@ -140,6 +143,7 @@ function conjugaisonPresent(){
                   if(negation == true && tagsPrecedents != undefined && !tagsPrecedents.includes("'verbe'")){
                      mettreAuNegatif();
                   };
+
             };
 
         // Si d'autres mots après le verbe

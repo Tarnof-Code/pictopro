@@ -10,7 +10,6 @@ function accordNom(){
 
 
       if(singulierPlurielPrecedent != null && singulierPlurielPrecedent == "pluriel"){
-
         if(tags.includes("irregulier")){
             $.ajax({
               url: '/getIrregulier/' + idMot,
@@ -34,7 +33,6 @@ function accordNom(){
         if(tagsPrecedents != undefined && tagsPrecedents.includes("'adjectif'")){
                 var adjectifMisAJour;
                 misAJourAdjectif(idMotPrecedent,tagsPrecedents,tagsMoinsDeux)
-
         }
       }
 

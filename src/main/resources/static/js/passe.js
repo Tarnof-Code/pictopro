@@ -9,9 +9,8 @@ if (tags.includes("auxiliaire_avoir")) {
     auxiliaire = ["suis","es","est","sommes","êtes","sont"];
 }
 
-// Pour les verbes pronominaux sans mots après
+// Pour les verbes pronominaux
   if(radical != undefined){
-
     var tableauMotsRadical = radical.split(/[\s']/); //
     var premierMot = tableauMotsRadical[0];
 
@@ -24,7 +23,7 @@ if (tags.includes("auxiliaire_avoir")) {
         if(tableauMotsRadical.length > 1){
             for (var i in auxiliaire) {
                  // Si les mots qui se suivent finissent et commencent par une voyelle
-                 const voyelles = ["a","e","i","o","u","y"]
+
                  const derniereLettre = pronom.slice(-1)
                  const premiereLettre = auxiliaire[i][0]
                  if(voyelles.includes(derniereLettre) && voyelles.includes(premiereLettre)){
@@ -40,7 +39,7 @@ if (tags.includes("auxiliaire_avoir")) {
   }
 
 // Pour ne pas accorder le participe passé avec les verbes du style "se laver les dents"
-var mettreParticipeAuSingulier = false
+    var mettreParticipeAuSingulier = false
 
 // Conjugaison au passé-composé pour les verbes du 1er groupe
      if(tags.includes("premier_groupe")){
@@ -374,4 +373,5 @@ var mettreParticipeAuSingulier = false
             });
 
        };
+
 }

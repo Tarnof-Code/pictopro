@@ -25,7 +25,7 @@ function textToSpeech(messageToSpeech){
         message.text = messageToSpeech;
         message.lang = "fr-FR"; // voix en français
         message.rate = 1;
-        message.volume = 0.8;
+        message.volume = 0.6;
 
         speechSynthesis.speak(message);
     }
@@ -90,7 +90,6 @@ $("#mettreAuPasse").click(function(){
 // Supprimer tous les pictos
 $('#supprimerPictos').click(function(){
    $(".item2").each(function() {
-   console.log("JSUIS LA")
      var empty = $("<li>", {"class": "empty"});
      $(this).replaceWith(empty);
    });
