@@ -147,14 +147,14 @@ singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.leng
     var dejaUnVerbe = false;
 
     // Si dans les tags précédents il y a un verbe on passe la variable dejaUnVerbe à "true" pour mettre le 2e verbe à l'infinitif
-    for(let i = 0; i < tableauTags.length - 1; i++){
+    for(let i = 0; i < tableauTags.length; i++){
         if(tableauTags[i].includes("'verbe'")){
             dejaUnVerbe = true;
         }
     }
 
     // Par contre s'il y a le mot "et" on la remet à false (ex : Je mange et tu dors = 2 verbes à conjuguer)
-    for(let i =0; i < tableauMots.length - 1; i++){
+    for(let i =0; i < tableauMots.length; i++){
         if(tableauMots[i] == "et"){
             dejaUnVerbe = false;
         }
