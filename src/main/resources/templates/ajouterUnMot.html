@@ -13,7 +13,8 @@
     <div>
         <form th:action="@{/gestionDesMots/ajouterUnMot}"
               method="post"
-              th:object="${mot}">
+              th:object="${mot}"
+              enctype="multipart/form-data">
             <div>
                 <input placeholder="Nouveau mot à ajouter"
                        type="text"
@@ -42,11 +43,11 @@
 
             <br>
             <div>
-                <input placeholder="Nom du fichier image"
-                       type="text"
-                       id="pictoFile"
-                       th:field="*{pictoFile}"
-                       name="pictoFile"/>
+
+
+            <div class="d-flex flex-column">
+                <label for="pictoFileImage">Sélectionner une image :</label>
+                <input type="file" id="pictoFileImage" name="pictoFileImage" accept="image/*" />
             </div>
             <div>
                 <br>

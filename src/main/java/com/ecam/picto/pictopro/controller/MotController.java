@@ -1,5 +1,9 @@
 package com.ecam.picto.pictopro.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
 import com.ecam.picto.pictopro.entity.Categorie;
 import com.ecam.picto.pictopro.entity.Mot;
 import com.ecam.picto.pictopro.entity.SousCategorie;
@@ -17,6 +21,12 @@ import com.ecam.picto.pictopro.entity.Tag;
 import com.ecam.picto.pictopro.service.CategorieService;
 import com.ecam.picto.pictopro.service.MotService;
 import com.ecam.picto.pictopro.service.TagService;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @Controller
 @RequestMapping("/gestionDesMots")
@@ -139,16 +149,29 @@ private Mot motSelection = new Mot();
                                @ModelAttribute("mot") Mot mot,
                                @RequestParam("categorieId") int idCat,
                                @RequestParam("sousCategorieId") int idSousCat,
-                               @RequestParam("selectedTags") List<String> selectedTags) {
+                               @RequestParam("selectedTags") List<String> selectedTags,
+                               @RequestParam("pictoFileImage") MultipartFile pictoFileImage ) throws IOException{
 
 		Categorie categorie = categorieService.findCategorieById(idCat);
 		SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
 		List<Tag> listeTags = tagService.findAllByNomIn(selectedTags);
 
+        if (!pictoFileImage.isEmpty()) {
+            try {
+                String fileName = pictoFileImage.getOriginalFilename();
+                mot.setPictoFile(fileName);
+                byte[] bytes = pictoFileImage.getBytes();
+                Path path = Paths.get("src/main/resources/static/images/Mots/"+fileName);
+                Files.write(path, bytes);
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+        }
+
 		mot.setCategorie(categorie);
 		mot.setSousCategorie(sousCategorie);
 		mot.setTags(listeTags);
-
         motService.ajouterUnMot(mot);
 
         model.addAttribute("module","gestionDesMots");

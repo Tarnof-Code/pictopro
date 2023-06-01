@@ -1,6 +1,5 @@
 .sidebar {
   background-color: #2F9DAE;
-  margin-top: 6em;
   padding-top:1em;
   padding-bottom:1em;
   overflow-y: auto;
@@ -14,7 +13,7 @@
   width:1.7em;
   font-size:1.8em;
   color:#F8F9FA;
-  margin:0.2em;
+  margin:0.3em;
   overflow-x: auto;
   transition: transform 0.2s;
 }
