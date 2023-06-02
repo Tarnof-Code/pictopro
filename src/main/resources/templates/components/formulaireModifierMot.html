@@ -1,14 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<!--th:action="@{/gestionDesMots/modifierUnMot}"
-    th:method="post"
--->
 <form class="d-flex"
       id="formulaireModifMot"
       th:fragment="formulaireMot"
       th:action="@{/gestionDesMots/modifierUnMot}"
       th:method="post"
-      th:object="${mot}">
+      th:object="${mot}"
+      enctype="multipart/form-data">
     <div class="container">
         <div class="row">
           <div class="col-12 col-lg-3">
@@ -55,16 +53,11 @@
             </div>
 
             <br>
-            <div>
-                <label for="pictoFile">Nom de l'image</label>
-                <div>
-                    <input type="text"
-                           id="pictoFile"
-                           th:field="*{pictoFile}"
-                           name="pictoFile"/>
-                </div>
-            </div>
-              <br>
+              <div class="d-flex flex-column">
+                  <label for="pictoFileModifImage">Modifier l'image</label>
+                  <input type="file" id="pictoFileModifImage" name="pictoFileModifImage" accept="image/*"/>
+              </div>
+            <br>
 
           </div>
 

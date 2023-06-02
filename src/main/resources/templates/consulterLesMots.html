@@ -42,7 +42,7 @@
               </button>
             </h2>
             <div th:id="'sousCategorie-' + ${sousCategorie.id}" class="accordion-collapse collapse mx-2">
-            <div class="d-flex flex-wrap justify-content-center">
+              <div class="d-flex flex-wrap justify-content-center">
                 <div class="accordion-body text-center" th:each="mot : ${sousCategorie.listeMotsParSousCategorie}">
                   <a data-bs-toggle="modal"
                      data-bs-target="#modaleInfosMots"

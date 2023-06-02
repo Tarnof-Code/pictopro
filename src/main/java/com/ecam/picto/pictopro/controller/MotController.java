@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +30,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 
 @Controller
@@ -37,7 +42,8 @@ private TagService tagService;
 private CategorieService categorieService;
 @Autowired
 private MotService motService;
-
+@Autowired
+private SpringTemplateEngine templateEngine;
 private List<Categorie> listeCategories = new ArrayList<>();
 private List<Tag> listeTags = new ArrayList<>();
 private Mot motSelection = new Mot();
@@ -163,8 +169,8 @@ private Mot motSelection = new Mot();
                 byte[] bytes = pictoFileImage.getBytes();
                 Path path = Paths.get("src/main/resources/static/images/Mots/"+fileName);
                 Files.write(path, bytes);
+                templateEngine.clearTemplateCache();
             } catch (IOException e) {
-
                 e.printStackTrace();
             }
         }
@@ -179,28 +185,68 @@ private Mot motSelection = new Mot();
         return "redirect:/gestionDesMots/ajouterUnMot";
     }
 
-@PostMapping("/modifierUnMot")
-@ResponseBody
-public ResponseEntity<String> modifierUnMot(@ModelAttribute("mot") Mot nouveauMot,
-                                         @RequestParam("categorieId") int idCat,
-                                         @RequestParam("sousCategorieId") int idSousCat,
-                                         @RequestParam("selectedTags") List<String> selectedTags){
+    @PostMapping("/modifierUnMot")
+    @ResponseBody
+    public ResponseEntity<String> modifierUnMot(@ModelAttribute("mot") Mot nouveauMot,
+                                                @RequestParam("categorieId") int idCat,
+                                                @RequestParam("sousCategorieId") int idSousCat,
+                                                @RequestParam("selectedTags") List<String> selectedTags,
+                                                @RequestPart("pictoFileModifImage") MultipartFile pictoFileModifImage) throws IOException{
 
-    Categorie categorie = categorieService.findCategorieById(idCat);
-    SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
-    List<Tag> listeTags = tagService.findAllByNomIn(selectedTags);
+        Categorie categorie = categorieService.findCategorieById(idCat);
+        SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
+        List<Tag> listeTags = tagService.findAllByNomIn(selectedTags);
 
-    nouveauMot.setCategorie(categorie);
-    nouveauMot.setSousCategorie(sousCategorie);
-    nouveauMot.setTags(listeTags);
+        nouveauMot.setCategorie(categorie);
+        nouveauMot.setSousCategorie(sousCategorie);
+        nouveauMot.setTags(listeTags);
 
-    motService.modifierUnMot(motSelection,nouveauMot);
+        if (!pictoFileModifImage.isEmpty()) {
 
-    String successMessage = "Le mot '" + motSelection.getNom() + "' a été modifié avec succès";
-    String response = motSelection.getId() + ":" + successMessage;
+            try {
+                // Formatage de la date pour rendre unique le nom de fichier
+                long timestamp = System.currentTimeMillis();
+                LocalDateTime date = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+                String formattedDate = date.format(formatter);
 
-    return ResponseEntity.ok(response);
-}
+                String originalFileName  = pictoFileModifImage.getOriginalFilename(); // Récupération du nom de l'image uploadé
+                String extensionDuFichier = originalFileName.substring(originalFileName.lastIndexOf("."));  // Extendion du fichier
+                String nomFichierSansExtension = originalFileName.substring(0, originalFileName.lastIndexOf("."));
+
+                // Nouveau nom du fichier
+                String fileName = nomFichierSansExtension + "_" + formattedDate + extensionDuFichier;
+
+                // Assignation du nom de l'image dans l'objet Mot
+                nouveauMot.setPictoFile(fileName);
+
+                // Enregistrement de l'image dans le dossier static
+                byte[] bytes = pictoFileModifImage.getBytes();
+                Path path = Paths.get("src/main/resources/static/images/Mots/" + fileName);
+                Files.write(path, bytes);
+
+                // Supprimer l'ancien fichier du dossier static
+                String nomAncienneImage = motSelection.getPictoFile();
+                Path path2 = Paths.get("src/main/resources/static/images/Mots/" + nomAncienneImage);
+                    Files.delete(path2);
+
+                templateEngine.clearTemplateCache();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(nouveauMot.getPictoFile() == null){
+            nouveauMot.setPictoFile(motSelection.getPictoFile());
+        }
+        motService.modifierUnMot(motSelection, nouveauMot);
+
+        String successMessage = "Le mot '" + motSelection.getNom() + "' a été modifié avec succès";
+        String response = motSelection.getId() + ":" + successMessage;
+
+        return ResponseEntity.ok(response);
+    }
+
 
 
 
