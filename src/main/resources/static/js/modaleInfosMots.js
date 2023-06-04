@@ -15,7 +15,7 @@ $('#modifMotButton').click(function(){
     $('#formModifMot').removeClass("hidden")
     $('#annulModifMotButton').removeClass("hidden")
     $('#modifMotButton').addClass("hidden")
-    console.log('Modifier')
+
 })
 
 $('#annulModifMotButton').click(function(){

@@ -241,7 +241,7 @@ private Mot motSelection = new Mot();
         }
         motService.modifierUnMot(motSelection, nouveauMot);
 
-        String successMessage = "Le mot '" + motSelection.getNom() + "' a été modifié avec succès";
+        String successMessage = "Le mot '" + motSelection.getNom() + "' a été modifié avec succès. Si vous avez modifié l'image, veuillez rafraîchir le page pour voir les modifications !";
         String response = motSelection.getId() + ":" + successMessage;
 
         return ResponseEntity.ok(response);

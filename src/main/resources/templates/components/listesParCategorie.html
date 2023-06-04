@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<!--Dropdowns sous-catégories-->
+<!--Dropdowns sous-catégories page consulter les mots-->
 <select th:fragment="dropdownSousCategories">
   <option value="-1" >Sous-catégorie</option>
   <option th:each="sousCategorie : ${categorie.listeSousCategorie}"
@@ -18,7 +18,7 @@
 <select  th:fragment="dropdownSousCategoriesVide" class="hidden">
     <option value="-1" ></option>
 </select>
-<!--Dropdowns sous-catégories-->
+<!--Dropdowns sous-catégories page consulter les mots-->
 
 
 

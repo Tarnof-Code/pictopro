@@ -22,8 +22,7 @@ $('#submitModifMot').click(function(){
             var url2 = '/gestionDesMots/mot/' + motId;
             $('#modaleInfosMots .modal-body').load(url2);
 
-            console.log("Le mot a été modifié (ID du mot : " + motId + ")");
-            location.reload();
+            //location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert('Echec de la modification');

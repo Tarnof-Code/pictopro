@@ -7,72 +7,89 @@
 <body>
 <div th:replace="~{components/navBar}"></div>
 
-<div class="centerCheck">
-    <h1>Ajouter un mot</h1>
-<div class="d-flex">
-    <div>
-        <form th:action="@{/gestionDesMots/ajouterUnMot}"
-              method="post"
-              th:object="${mot}"
-              enctype="multipart/form-data">
-            <div>
-                <input placeholder="Nouveau mot à ajouter"
-                       type="text"
-                       id="motAjout"
-                       th:field="*{nom}"
-                       name="motAjout"/>
-            </div>
-            <br>
+<h1 class="text-center mb-5 mt-4">Ajouter un mot</h1>
 
-            <select id="categorie" name="categorieId">
-                <option value="-1" >Choisir une catégorie</option>
-                <option th:each="categorie : ${categories}"
-                        th:value="${categorie.id}"
-                        th:text="${categorie.nom}"
-                        th:sousCat="${categorie.listeSousCategorie.size()}">
-                </option>
-            </select>
-            <br>
-
-            <div class="hidden mt-3" id="divSousCat">
-                <select name="sousCategorieId" id="sousCategorie">
-                    <option value="-1" ></option>
-                </select>
-            </div>
-
-
-            <br>
-
-            <div class="d-flex flex-column">
-                <label for="pictoFileImage">Sélectionner une image :</label>
-                <input type="file" id="pictoFileImage" name="pictoFileImage" accept="image/*" />
-            </div>
-            <div>
+<form class="d-flex"
+      th:action="@{/gestionDesMots/ajouterUnMot}"
+      th:method="post"
+      th:object="${mot}"
+      enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <div>
+                    <div>
+                        <input placeholder="Mot à ajouter"
+                               type="text"
+                               id="motAjout"
+                               th:field="*{nom}"
+                               name="motAjout"/>
+                    </div>
+                </div>
                 <br>
+
+                <div>
+                    <select id="categorie" name="categorieId">
+                        <option value="-1" >Choisir une catégorie</option>
+                        <option th:each="categorie : ${categories}"
+                                th:value="${categorie.id}"
+                                th:text="${categorie.nom}"
+                                th:sousCat="${categorie.listeSousCategorie.size()}">
+                        </option>
+                    </select>
+                </div>
+
+
+                <div class="hidden mt-3" id="divSousCat">
+                    <select name="sousCategorieId" id="sousCategorie">
+                        <option value="-1" ></option>
+                    </select>
+                </div>
+
+                <br><br>
+                <div class="d-flex flex-column">
+                    <label for="pictoFileImage">Sélectionner une image :</label>
+                    <input type="file"
+                           id="pictoFileImage"
+                           name="pictoFileImage"
+                           class="form-control form-control-sm"
+                           accept="image/*" />
+                </div>
+                <br>
+
+            </div>
+
+            <div class="col-12 col-lg-4">
                 <label>Tags</label>
-                <ul style="list-style-type:none;">
-                    <li th:each="tag : ${tags}">
-                        <input class="tags"
-                               th:id="${tag.nom}"
-                               type="checkbox"
-                               th:value="${tag.nom}"
-                               name="selectedTags"/>
-                        <label th:text="${tag.nom}"></label>
-                    </li>
-                </ul>
+                <div>
+                    <ul style="list-style-type:none;">
+                        <li th:each="tag : ${tags}">
+                            <input class="tags"
+                                   th:id="${tag.nom}"
+                                   type="checkbox"
+                                   th:value="${tag.nom}"
+                                   name="selectedTags"/>
+                            <label th:text="${tag.nom}"></label>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <br>
+            <div id="formulaireIrregulier" class="col-12 col-lg-5">
 
-            <div id="formulaireIrregulier">
             </div>
             <br>
-            <button type="submit">Ajouter</button>
-        </form>
+        </div>
+        <div class="row ">
+            <div class="d-flex justify-content-center">
+                <button type="submit"
+                        class="btn btn-primary mx-auto">
+                    Ajouter
+                </button>
+            </div>
+
+        </div>
     </div>
-</div>
-
-
-</div>
+</form>
 
 <div th:replace="~{components/footer :: footer}"></div>
 
