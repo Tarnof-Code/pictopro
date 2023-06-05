@@ -6,15 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-	@GetMapping("/")
-	public String goConnnexionInscription(Model model) {
-		model.addAttribute("message", "Page Connexion/Inscription");
-		return "connexionInscription";
-	}
+    @GetMapping("/login")
+    public String goConnnexion() {
+        return "connexion";
+    }
 
-	@GetMapping("/test")
-	public String test() {
-		return "test hello";
-	}
+    @GetMapping("/dashboard")
+    public String godashboard() {
+        return "dashboard";
+    }
 
 }
