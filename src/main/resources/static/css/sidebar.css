@@ -11,7 +11,7 @@
   border:none;
   border-radius:50%;
   width:1.7em;
-  font-size:1.8em;
+  font-size:1.5em;
   color:#F8F9FA;
   margin:0.3em;
   overflow-x: auto;
@@ -61,3 +61,5 @@
   background:#c7960e;
   box-shadow: inset -2px -2px 4px #9f7b17, inset 2px 2px 4px #ffca3a;
 }
+
+

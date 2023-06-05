@@ -124,3 +124,12 @@ $('#formeInterrogative').click(function(){
     updateTableauMots();
     textToSpeech(phrase);
 });
+
+// Afficher la navbar
+$('#sideBarBurger').click(function(){
+    if($("#hidden-navbar").is(":visible")){
+        $("#hidden-navbar").fadeOut(1500);
+    } else {
+         $("#hidden-navbar").fadeIn(1500);
+    }
+});
