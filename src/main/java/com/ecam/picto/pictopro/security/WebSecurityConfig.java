@@ -69,7 +69,6 @@ public class WebSecurityConfig {
                 .logout()
                 .logoutUrl("/logout")
                 .permitAll();
-        ;
 
         http.authenticationProvider(authenticationProvider());
 

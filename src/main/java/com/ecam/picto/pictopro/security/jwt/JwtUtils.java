@@ -1,5 +1,7 @@
 package com.ecam.picto.pictopro.security.jwt;
 
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -83,13 +85,12 @@ public class JwtUtils {
 		} catch (IllegalArgumentException e) {
 			logger.error("JWT claims string is empty: {}", e.getMessage());
 		}
-
 		return false;
 	}
 
 	public String generateTokenFromUsername(String username) {
 		return Jwts.builder().setSubject(username).setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
+				.signWith(SignatureAlgorithm.HS256, jwtSecret).compact();
 	}
 }
