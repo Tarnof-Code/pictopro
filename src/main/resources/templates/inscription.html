@@ -9,7 +9,7 @@
     <form th:action="@{/api/auth/signup}" method="post">
         <div class="container a-container" id="a-container">
             <div class="switch__container">
-                <h2 class="form_title title">Coordonnées personnelles</h2>
+                <h2 class="form_title title2">Coordonnées personnelles</h2>
                 <div>
                     <input class="form__input" type="text" name="nom" placeholder="Nom*" required autofocus>
                 </div>
@@ -17,19 +17,20 @@
                     <input class="form__input" type="text" name="prenom" placeholder="Prénom*" required autofocus>
                 </div>
                 <div>
-                    <input class="form__input" type="text" onfocus="(this.type='date')" name="dateNaissance" placeholder="Date de naissance*" required
+                    <input class="form__input" type="text" onfocus="(this.type='date')" name="dateNaissance"
+                           placeholder="Date de naissance*" required
                            autofocus>
                 </div>
                 <div>
-                    <input class="form__input" type="text" name="service" placeholder="Service/Département médical"
+                    <input class="form__input" type="text" name="service" placeholder="Service/Département médical*"
                            required
                            autofocus>
                 </div>
                 <div>
-                    <input class="form__input" type="password" name="email" placeholder="Email*" required>
+                    <input class="form__input" type="email" name="email" placeholder="Email*" required>
                 </div>
                 <div>
-                    <input class="form__input" type="password" name="telephone" placeholder="Numéro de téléphone"
+                    <input class="form__input" type="text" name="telephone" placeholder="Numéro de téléphone*"
                            required>
                 </div>
                 (*mentions obligatoires)
@@ -39,7 +40,7 @@
             <div class="switch__circle"></div>
             <div class="switch__circle switch__circle--t"></div>
             <div class="switch__container" id="switch-c1">
-                <img th:src="@{/images/Logos/Logo PNG.png}" alt="" width="140px">
+                <img th:src="@{/images/Logos/Logo PNG.png}" alt="" width="100px">
                 <h2 class="form_title title">Identifiants</h2>
                 <div class="pss">
                     <input class="form__input" type="text" name="username" placeholder="Pseudonyme*" required autofocus>
@@ -47,11 +48,15 @@
 
                 <div>
                     <input class="form__input" type="password" name="password" placeholder="Mot de Passe*" required>
+                    <p class="switch__description description">
+                        Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère
+                        spécial et comporter au moins 8 caractères
+                    </p>
                 </div>
-                <div class="pss">
-                    <input class="form__input" type="password" name="passwordConfirm"
-                           placeholder="Confirmer le Mot de Passe*" required>
-                </div>
+                <!--                <div class="pss">
+                                    <input class="form__input" type="password" name="passwordConfirm"
+                                           placeholder="Confirmer le Mot de Passe*" required>
+                                </div>-->
                 <div>
                     <a th:href="@{/login}" class="form__link">Déjà inscrit ?</a>
                 </div>

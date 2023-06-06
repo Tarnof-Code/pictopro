@@ -138,6 +138,7 @@ body {
     width: 600px !important;
     height: 100% !important;
     padding: 25px !important;
+    padding-bottom: 100px !important;
     background-color: #ecf0f3 !important;
     transition: 1.25s !important;
 }
@@ -155,7 +156,7 @@ body {
     width: 350px;
     height: 40px;
     margin: 4px 0;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding-left: 25px;
     font-size: 13px;
     letter-spacing: 0.15px;
@@ -183,6 +184,13 @@ body {
 }
 
 .title {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 2;
+    color: #181818;
+}
+
+.title2 {
     font-size: 34px;
     font-weight: 700;
     line-height: 3;
@@ -262,11 +270,16 @@ body {
     flex-direction: column;
     position: absolute;
     width: 700px;
-    padding: 50px 55px;
+
     transition: 1.25s;
 }
 .switch__button {
     cursor: pointer;
+}
+.switch__description {
+    width: 380px;
+    margin-bottom: 30px;
+    margin-top: 5px;
 }
 .switch__button:hover {
     box-shadow: 6px 6px 10px #d1d9e6, -6px -6px 10px #f9f9f9;
