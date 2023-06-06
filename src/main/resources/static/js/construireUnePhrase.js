@@ -48,13 +48,16 @@ function updateTableauMots() {
       tagsMoinsDeux =  tableauTags[tableauTags.length - 2];
       motPrecedent = tableauMots[tableauMots.length - 1];
 
-      if(tags.includes("'feminin'") || femininMasculinPrecedent == "feminin"){
+       if (tags.includes("'nom'") && tags.includes("'masculin'")){
+             tableauFemininMasculin.push("masculin")
+       } else if (tags.includes("'pronom_ou_determinant'") && tags.includes("'masculin'")){
+             tableauFemininMasculin.push("masculin")
+       } else if(tags.includes("'feminin'") || femininMasculinPrecedent == "feminin"){
          tableauFemininMasculin.push("feminin")
-      } else if (tags.includes("'nom'") && tags.includes("'masculin'")){
-         tableauFemininMasculin.push("masculin")
-      }else {
+       } else {
          tableauFemininMasculin.push("masculin")
       }
+
 
         verifClasseGrammaticale();
         tableauMots.push(mot);

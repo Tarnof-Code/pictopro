@@ -12,11 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.ecam.picto.pictopro.entity.Categorie;
 import com.ecam.picto.pictopro.entity.Mot;
@@ -152,11 +155,19 @@ private Mot motSelection = new Mot();
 
 	@PostMapping("/ajouterUnMot")
 	public String ajouterUnMot(Model model,
-                               @ModelAttribute("mot") Mot mot,
+                               @Valid @ModelAttribute("mot") Mot mot,
+                               BindingResult result,
                                @RequestParam("categorieId") int idCat,
                                @RequestParam("sousCategorieId") int idSousCat,
-                               @RequestParam("selectedTags") List<String> selectedTags,
+                               @RequestParam(value = "selectedTags",required = false) List<String> selectedTags,
                                @RequestParam("pictoFileImage") MultipartFile pictoFileImage ) throws IOException{
+
+        if(result.hasErrors()){
+            model.addAttribute("module", "gestionDesMots");
+            System.out.println("+++++++++++++++++++++JSUI LA+++++++++++++++++++++++++");
+            System.out.println(result);
+            return "redirect:/gestionDesMots/ajouterUnMot";
+        }
 
 		Categorie categorie = categorieService.findCategorieById(idCat);
 		SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);

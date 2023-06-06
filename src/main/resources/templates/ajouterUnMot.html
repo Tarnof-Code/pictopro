@@ -24,7 +24,10 @@
                                id="motAjout"
                                th:field="*{nom}"
                                name="motAjout"/>
+                        <p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" th:errorclass="error" ></p>
+
                     </div>
+
                 </div>
                 <br>
 

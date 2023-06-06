@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -26,6 +29,7 @@ public class Mot {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@NotEmpty(message = "Veuillez entrer un nom !")
 	@Column(unique = false, nullable = false)
 	private String nom;
 
@@ -52,12 +56,10 @@ public class Mot {
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "mot_tag", joinColumns = @JoinColumn(name = "mot_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
-
 	private List<Tag> tags = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "mot_phrase", joinColumns = @JoinColumn(name = "mot_id"), inverseJoinColumns = @JoinColumn(name = "phrase_id"))
-
 	private List<Phrase> phrases = new ArrayList<>();
 
 	public Mot() {

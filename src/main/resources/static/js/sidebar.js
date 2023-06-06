@@ -128,8 +128,10 @@ $('#formeInterrogative').click(function(){
 // Afficher la navbar
 $('#sideBarBurger').click(function(){
     if($("#hidden-navbar").is(":visible")){
-        $("#hidden-navbar").fadeOut(1500);
+        $("#hidden-navbar").fadeOut(1000);
+        $("#sideBarBurger").removeClass("bi-arrows-fullscreen").addClass("bi bi-list-ul");
     } else {
          $("#hidden-navbar").fadeIn(1500);
+         $("#sideBarBurger").removeClass("bi bi-list-ul").addClass("bi-arrows-fullscreen");
     }
 });
