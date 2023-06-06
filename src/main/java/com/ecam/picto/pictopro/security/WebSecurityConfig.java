@@ -59,7 +59,7 @@ public class WebSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-                .requestMatchers("/login", "/css/**", "/js/**","/api/auth/login").permitAll().requestMatchers("/dashboard/**").hasRole("ADMIN").anyRequest()
+                .requestMatchers("/login", "/register", "/images/**", "/css/**", "/js/**", "/api/auth/login", "/api/auth/signup").permitAll().requestMatchers("/dashboard/**").hasRole("ADMIN").anyRequest()
                 .authenticated().and()
                 .formLogin()
                 .loginPage("/login")

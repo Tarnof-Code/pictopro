@@ -14,7 +14,7 @@
                 l'application est réservée aux professionnels de santé qui en font la demande.</p><br>
             <p class="switch__description description">L'inscription vous permettra un suivi des progrès de votre patient
                 ainsi que l'intégration de nouveaux pictogrammes choisis par vos soins.</p><br>
-            <a th:href="@{/inscription}" class="switch__button button switch-btn a-button" type="button">
+            <a th:href="@{/register}" class="switch__button button switch-btn a-button" type="button">
                 <p>S'inscrire</p>
             </a>
         </form>
@@ -44,7 +44,7 @@
         <div class="switch__circle"></div>
         <div class="switch__circle switch__circle--t"></div>
         <div class="switch__container" id="switch-c1">
-            <img th:src="@{/images/Logos/Logo PNG.png}" alt="" width="140px">
+            <img th:src="@{/images/Logos/Logo PNG.png}" alt="Picto Logo" width="140px">
             <h2 class="form_title title">Connexion</h2>
             <form th:action="@{/api/auth/login}" method="post">
 <!--                <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger">
