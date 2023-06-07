@@ -25,9 +25,7 @@
                                th:field="*{nom}"
                                name="motAjout"/>
                         <p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" th:errorclass="error" ></p>
-
                     </div>
-
                 </div>
                 <br>
 
@@ -37,9 +35,11 @@
                         <option th:each="categorie : ${categories}"
                                 th:value="${categorie.id}"
                                 th:text="${categorie.nom}"
+                                th:selected="${categorieSelection != null && categorie.id == categorieSelection.id}"
                                 th:sousCat="${categorie.listeSousCategorie.size()}">
                         </option>
                     </select>
+                    <p th:if="${#fields.hasErrors('categorie')}" th:errors="*{categorie}" th:errorclass="error" ></p>
                 </div>
 
 
@@ -57,6 +57,7 @@
                            name="pictoFileImage"
                            class="form-control form-control-sm"
                            accept="image/*" />
+                    <p th:if="${#fields.hasErrors('pictoFile')}" th:errors="*{pictoFile}" th:errorclass="error" ></p>
                 </div>
                 <br>
 
@@ -71,6 +72,7 @@
                                    th:id="${tag.nom}"
                                    type="checkbox"
                                    th:value="${tag.nom}"
+                                   th:checked="${listeTagsSelection != null && #lists.contains(listeTagsSelection, tag)}"
                                    name="selectedTags"/>
                             <label th:text="${tag.nom}"></label>
                         </li>
@@ -97,7 +99,10 @@
 <div th:replace="~{components/footer :: footer}"></div>
 
 
-
+<script th:inline="javascript">
+    var listeTagsSelection = /*[[${listeTagsSelection}]]*/ null;
+    // Utilisez la variable listeTagsSelection dans votre script JavaScript
+</script>
 <script src="/js/checkboxFilter.js"></script>
 <script src="/js/recupParCategorie.js"></script>
 

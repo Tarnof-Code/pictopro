@@ -29,9 +29,10 @@ public class Mot {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@NotEmpty(message = "Veuillez entrer un nom !")
+	@NotEmpty(message = "Veuillez entrer un nom")
 	@Column(unique = false, nullable = false)
 	private String nom;
+
 
 	@ManyToOne
 	private Categorie categorie;

@@ -6,10 +6,8 @@ function getContent(){
     var url = "/gestionDesMots/sousCategories/"
     var id = $("#categorie").val()
     url = url + id;
-    console.log(id)
 
     var tailleListe = $('#categorie option:selected').attr('sousCat')
-    console.log(tailleListe)
 
 	if (tailleListe > 0) {
 		$('#sousCategorie').load(url);

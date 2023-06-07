@@ -17,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.ecam.picto.pictopro.entity.Categorie;
 import com.ecam.picto.pictopro.entity.Mot;
@@ -28,10 +26,6 @@ import com.ecam.picto.pictopro.entity.Tag;
 import com.ecam.picto.pictopro.service.CategorieService;
 import com.ecam.picto.pictopro.service.MotService;
 import com.ecam.picto.pictopro.service.TagService;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
@@ -61,7 +55,7 @@ private Mot motSelection = new Mot();
     motSelection = motAAjouter;
     model.addAttribute("mot",motAAjouter);
 
-    List<Tag> listeTags = tagService.afficherTags();
+    listeTags = tagService.afficherTags();
     model.addAttribute("tags",listeTags);
 
     Categorie selectedCategorie = new Categorie();
@@ -70,8 +64,8 @@ private Mot motSelection = new Mot();
     SousCategorie selectedSousCategorie = new SousCategorie();
     model.addAttribute("selectedSousCategorie",selectedSousCategorie);
 
-    List<Categorie> listeCategories = categorieService.afficherCategories();
-    model.addAttribute("categories",categorieService.afficherCategories());
+    listeCategories = categorieService.afficherCategories();
+    model.addAttribute("categories",listeCategories);
 
         return "ajouterUnMot";
     }
@@ -162,16 +156,27 @@ private Mot motSelection = new Mot();
                                @RequestParam(value = "selectedTags",required = false) List<String> selectedTags,
                                @RequestParam("pictoFileImage") MultipartFile pictoFileImage ) throws IOException{
 
-        if(result.hasErrors()){
-            model.addAttribute("module", "gestionDesMots");
-            System.out.println("+++++++++++++++++++++JSUI LA+++++++++++++++++++++++++");
-            System.out.println(result);
-            return "redirect:/gestionDesMots/ajouterUnMot";
+        Categorie categorie = categorieService.findCategorieById(idCat);
+        SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
+        List<Tag> listeTagsSelection = null;
+        if(selectedTags != null){
+            listeTagsSelection = tagService.findAllByNomIn(selectedTags);
         }
 
-		Categorie categorie = categorieService.findCategorieById(idCat);
-		SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
-		List<Tag> listeTags = tagService.findAllByNomIn(selectedTags);
+        if(result.hasErrors()){
+            model.addAttribute("module", "gestionDesMots");
+            model.addAttribute("categories",listeCategories);
+            model.addAttribute("tags",listeTags);
+            model.addAttribute("listeTagsSelection",listeTagsSelection);
+            model.addAttribute("categorieSelection",categorie);
+            System.out.println(listeTagsSelection);
+            System.out.println("+++++++++++++++++++++++++++++ Erreur dans le formulaire ++++++++++++++++++++++++++++++");
+            return "ajouterUnMot";
+        }
+
+
+
+		
 
         if (!pictoFileImage.isEmpty()) {
             try {
@@ -188,7 +193,10 @@ private Mot motSelection = new Mot();
 
 		mot.setCategorie(categorie);
 		mot.setSousCategorie(sousCategorie);
-		mot.setTags(listeTags);
+        if(listeTagsSelection != null){
+            mot.setTags(listeTagsSelection);
+        }
+
         motService.ajouterUnMot(mot);
 
         model.addAttribute("module","gestionDesMots");

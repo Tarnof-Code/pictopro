@@ -4,6 +4,7 @@ var checkboxes = document.querySelectorAll('.tags');
 
 checkboxes.forEach(function(checkbox) {
     window.addEventListener('load', function(){
+      if (!listeTagsSelection || listeTagsSelection.length === 0) {
         if(checkbox.value === 'premier_groupe' ||
            checkbox.value === 'deuxieme_groupe' ||
            checkbox.value === 'singulier' ||
@@ -16,6 +17,7 @@ checkboxes.forEach(function(checkbox) {
            ){
         checkbox.parentNode.classList.add('hidden');
         }
+      }
     })
 });
 
