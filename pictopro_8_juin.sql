@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 08 juin 2023 à 12:07
+-- Généré le : jeu. 08 juin 2023 à 15:54
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -2006,17 +2006,18 @@ CREATE TABLE IF NOT EXISTS `professionnel` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_dtt2y6pmrp00hp7s3v01ewoss` (`email`),
   UNIQUE KEY `UK_nrh1tottrldn8ti7oh28a6774` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `professionnel`
 --
 
 INSERT INTO `professionnel` (`id`, `created_at`, `date_naissance`, `email`, `nom`, `password`, `prenom`, `service`, `telephone`, `username`) VALUES
-(1, '2023-06-08 13:44:53.601000', '2023-06-01', 'admin@mail.com', 'admin', '$2a$10$G7vYZ6Hf.eiBAbPUMAbFku8.k39zBIxnQkb1XSmBGNOuxb2gXDRya', 'admin', 'admin', '1111111111', 'adminA1*'),
-(2, '2023-06-08 13:46:28.696000', '2023-06-11', 'professionnel@mail.com', 'professionnel', '$2a$10$QWXtJeK5UzGiOs/hyKSPCurOeqvA/mEgZ67/RVwMp.el8DZjoBPfW', 'professionnel', 'professionnel', '2222222222', 'professionnelB2*'),
-(3, '2023-06-08 13:53:41.929000', '2023-06-02', 'jean.dupont@mail.com', 'Dupont', '$2a$10$vyzTo4avm3xvXER/uzlDoOwgromQVJZX8CNaXCWG4KQaK8tHdJ/ny', 'Jean', 'Pediatrie', '3333333333', 'jeandupontA1*'),
-(4, '2023-06-08 13:59:04.479000', '2023-06-10', 'john.doe@mail.com', 'Doe', '$2a$10$onU3DCQ8Bx9alLUdTBLKrekLjN1CyZVYYkH4WecQSID4S70KV.uIO', 'John', 'Psychiatrie', '4444444444', 'johndoeA1*');
+(1, '2023-06-08 13:44:53.601000', '2023-06-01', 'admin@mail.com', 'admin', '$2a$10$G7vYZ6Hf.eiBAbPUMAbFku8.k39zBIxnQkb1XSmBGNOuxb2gXDRya', 'admin', 'admin', '1111111111', 'adminA1'),
+(2, '2023-06-08 13:46:28.696000', '2023-06-11', 'professionnel@mail.com', 'professionnel', '$2a$10$QWXtJeK5UzGiOs/hyKSPCurOeqvA/mEgZ67/RVwMp.el8DZjoBPfW', 'professionnel', 'professionnel', '2222222222', 'professionnelB2'),
+(3, '2023-06-08 13:53:41.929000', '2023-06-02', 'jean.dupont@mail.com', 'Dupont', '$2a$10$vyzTo4avm3xvXER/uzlDoOwgromQVJZX8CNaXCWG4KQaK8tHdJ/ny', 'Jean', 'Pédiatrie', '3333333333', 'jeandupontA1'),
+(4, '2023-06-08 13:59:04.479000', '2023-06-10', 'john.doe@mail.com', 'Doe', '$2a$10$onU3DCQ8Bx9alLUdTBLKrekLjN1CyZVYYkH4WecQSID4S70KV.uIO', 'John', 'Psychiatrie', '4444444444', 'johndoeA1'),
+(5, '2023-06-08 17:53:19.592000', '2023-06-03', 'jean.deleger@mail.com', 'de Léger', '$2a$10$RXwWOWTwtP3mpmUG02YFmOefhNIBey6DnRrnuYVxZAnI.m.GnkDPC', 'Jean-Luc', 'Département CHU-02', '+33694566795', 'testregex33Z');
 
 -- --------------------------------------------------------
 
@@ -2040,7 +2041,8 @@ INSERT INTO `professionnel_roles` (`professionnels_id`, `roles_id`) VALUES
 (1, 1),
 (2, 2),
 (3, 2),
-(4, 2);
+(4, 2),
+(5, 2);
 
 -- --------------------------------------------------------
 
