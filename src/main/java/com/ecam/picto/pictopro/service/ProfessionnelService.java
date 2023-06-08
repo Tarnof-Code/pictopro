@@ -1,11 +1,9 @@
 package com.ecam.picto.pictopro.service;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.ecam.picto.pictopro.entity.Professionnel;
 import org.springframework.stereotype.Service;
 
-import com.ecam.picto.pictopro.entity.Professionnel;
+import java.util.List;
 
 @Service
 public interface ProfessionnelService {

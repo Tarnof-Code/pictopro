@@ -8,9 +8,9 @@ import com.ecam.picto.pictopro.entity.Question;
 
 @Service
 public interface QuestionService {
-	public void ajouterUneQuestion(Question question);
+	void ajouterUneQuestion(Question question);
 
-	public List<Question> afficherQuestions();
+	List<Question> afficherQuestions();
 
-	public Question findQuestionById(int id);
+	Question findQuestionById(int id);
 }

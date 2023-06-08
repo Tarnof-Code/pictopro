@@ -1,12 +1,10 @@
 package com.ecam.picto.pictopro.repository;
 
-import java.util.Optional;
-
+import com.ecam.picto.pictopro.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ecam.picto.pictopro.entity.ERole;
-import com.ecam.picto.pictopro.entity.Role;
+import java.util.Optional;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {

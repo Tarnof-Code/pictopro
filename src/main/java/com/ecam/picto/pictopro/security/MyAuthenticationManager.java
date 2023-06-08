@@ -1,7 +1,6 @@
 package com.ecam.picto.pictopro.security;
 
 
-import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;

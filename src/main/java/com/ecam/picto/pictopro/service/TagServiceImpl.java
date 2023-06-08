@@ -1,6 +1,5 @@
 package com.ecam.picto.pictopro.service;
 
-import com.ecam.picto.pictopro.entity.Categorie;
 import com.ecam.picto.pictopro.entity.Tag;
 import com.ecam.picto.pictopro.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -9,14 +9,14 @@ import com.ecam.picto.pictopro.entity.SousCategorie;
 
 @Service
 public interface CategorieService {
-	public void ajouterUneCategorie(Categorie categorie);
+	void ajouterUneCategorie(Categorie categorie);
 
-	public void ajouterUneSousCategorie(SousCategorie sousCategorie);
+	void ajouterUneSousCategorie(SousCategorie sousCategorie);
 
-	public List<Categorie> afficherCategories();
+	List<Categorie> afficherCategories();
 
-	public Categorie findCategorieById(int id);
+	Categorie findCategorieById(int id);
 
-	public SousCategorie findSousCategorieById(int id);
+	SousCategorie findSousCategorieById(int id);
 
 }

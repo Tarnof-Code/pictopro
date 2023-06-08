@@ -31,14 +31,16 @@ public class Professionnel {
     @NotBlank
     @Size(min = 6, max = 32)
     @Column(unique = true, nullable = false)
+    @NotEmpty(message = "* Le champ pseudonyme ne peut pas être vide.")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ0-9]+(([',.-][a-zA-ZÀ-ÿ0-9])?[a-zA-ZÀ-ÿ0-9])$", message = "* Format de caractère non autorisé")
     private String username;
 
     @NotEmpty(message = "* Le champ nom ne peut pas être vide.")
-    @Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", message = "* Format de caractère non autorisé")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
     private String nom;
 
     @NotEmpty(message = "* Le champ prénom ne peut pas être vide.")
-    @Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", message = "* Format de caractère non autorisé")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
     private String prenom;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -46,7 +48,7 @@ public class Professionnel {
     @NotNull(message = "* Le champ date de naissance ne peut pas être vide.")
     private Date dateNaissance;
 
-    @Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", message = "* Format de caractère non autorisé")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ0-9]+(([',. -][a-zA-ZÀ-ÿ0-9 ])?[a-zA-ZÀ-ÿ0-9]*)*$", message = "* Format de caractère non autorisé")
     private String service;
 
     @NotEmpty(message = "* Le champ numéro de tél. ne peut pas être vide")

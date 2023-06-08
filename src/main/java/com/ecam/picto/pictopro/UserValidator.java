@@ -14,9 +14,11 @@ import java.util.regex.Pattern;
 public class UserValidator implements Validator {
     @Autowired
     private ProfessionnelService professionnelService;
+    Pattern usernamePattern = Pattern.compile("^[a-zA-ZÀ-ÿ0-9]+(([',.-][a-zA-ZÀ-ÿ0-9])?[a-zA-ZÀ-ÿ0-9])$");
     Pattern passwordPattern = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$");
     Pattern telephonePattern = Pattern.compile("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
-    Pattern generalPattern = Pattern.compile("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
+    Pattern generalPattern = Pattern.compile("^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$");
+    Pattern servicePattern = Pattern.compile("^[a-zA-ZÀ-ÿ0-9]+(([',. -][a-zA-ZÀ-ÿ0-9 ])?[a-zA-ZÀ-ÿ0-9]*)*$");
     Pattern emailPattern = Pattern.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
 
     @Override
@@ -31,6 +33,8 @@ public class UserValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
+        } else if (!usernamePattern.matcher(user.getUsername()).matches()) {
+            errors.rejectValue("username", "Invalid.userForm.username");
         }
         if (professionnelService.findByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
@@ -63,7 +67,7 @@ public class UserValidator implements Validator {
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "service", "NotEmpty");
-        if (!generalPattern.matcher(user.getService()).matches()) {
+        if (!servicePattern.matcher(user.getService()).matches()) {
             errors.rejectValue("service", "Invalid.userForm.service");
         }
 
