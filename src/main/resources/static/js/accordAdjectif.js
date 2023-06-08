@@ -1,5 +1,5 @@
 function accordAdjectif(){
-console.log(tableauFemininMasculin)
+
 // Check du tableauSingulierPluriel pour l'accord en nombre
      var femininPlurielPrecedent = tableauFemininMasculin[tableauFemininMasculin.length - 1]
      var singulierPlurielPrecedent = tableauSingulierPluriel[tableauSingulierPluriel.length - 1]

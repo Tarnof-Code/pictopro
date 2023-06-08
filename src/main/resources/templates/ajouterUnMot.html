@@ -35,11 +35,11 @@
                         <option th:each="categorie : ${categories}"
                                 th:value="${categorie.id}"
                                 th:text="${categorie.nom}"
-                                th:selected="${categorieSelection != null && categorie.id == categorieSelection.id}"
+                                th:selected="${selectedCategorie != null && categorie.id == selectedCategorie.id}"
                                 th:sousCat="${categorie.listeSousCategorie.size()}">
                         </option>
                     </select>
-                    <p th:if="${#fields.hasErrors('categorie')}" th:errors="*{categorie}" th:errorclass="error" ></p>
+                    <p th:if="${selectedCategorie == null}" class="error" >Veuillez choisir une catégorie</p>
                 </div>
 
 
@@ -57,7 +57,7 @@
                            name="pictoFileImage"
                            class="form-control form-control-sm"
                            accept="image/*" />
-                    <p th:if="${#fields.hasErrors('pictoFile')}" th:errors="*{pictoFile}" th:errorclass="error" ></p>
+                    <p th:if="${noImage == true}" class="error" >Veuillez choisir une image</p>
                 </div>
                 <br>
 
@@ -66,6 +66,7 @@
             <div class="col-12 col-lg-4">
                 <label>Tags</label>
                 <div>
+                    <p th:if="${listeTagsSelection == null}" class="error" >Veuillez choisir au moins un tag</p>
                     <ul style="list-style-type:none;">
                         <li th:each="tag : ${tags}">
                             <input class="tags"

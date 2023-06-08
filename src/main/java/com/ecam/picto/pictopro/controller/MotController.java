@@ -61,11 +61,17 @@ private Mot motSelection = new Mot();
     Categorie selectedCategorie = new Categorie();
     model.addAttribute("selectedCategorie",selectedCategorie);
 
+    List<Tag> listeTagsSelection = new ArrayList<>();
+    model.addAttribute("listeTagsSelection",listeTagsSelection);
+
     SousCategorie selectedSousCategorie = new SousCategorie();
     model.addAttribute("selectedSousCategorie",selectedSousCategorie);
 
     listeCategories = categorieService.afficherCategories();
     model.addAttribute("categories",listeCategories);
+
+    boolean noImage = false;
+    model.addAttribute("noImage",noImage);
 
         return "ajouterUnMot";
     }
@@ -156,20 +162,22 @@ private Mot motSelection = new Mot();
                                @RequestParam(value = "selectedTags",required = false) List<String> selectedTags,
                                @RequestParam("pictoFileImage") MultipartFile pictoFileImage ) throws IOException{
 
-        Categorie categorie = categorieService.findCategorieById(idCat);
+        boolean noImage = pictoFileImage.isEmpty();
+        Categorie selectedCategorie = categorieService.findCategorieById(idCat);
         SousCategorie sousCategorie = categorieService.findSousCategorieById(idSousCat);
         List<Tag> listeTagsSelection = null;
         if(selectedTags != null){
             listeTagsSelection = tagService.findAllByNomIn(selectedTags);
         }
 
-        if(result.hasErrors()){
+        if(result.hasErrors() || selectedCategorie == null ||
+           listeTagsSelection == null || noImage){
             model.addAttribute("module", "gestionDesMots");
             model.addAttribute("categories",listeCategories);
             model.addAttribute("tags",listeTags);
             model.addAttribute("listeTagsSelection",listeTagsSelection);
-            model.addAttribute("categorieSelection",categorie);
-            System.out.println(listeTagsSelection);
+            model.addAttribute("selectedCategorie",selectedCategorie);
+            model.addAttribute("noImage",noImage);
             System.out.println("+++++++++++++++++++++++++++++ Erreur dans le formulaire ++++++++++++++++++++++++++++++");
             return "ajouterUnMot";
         }
@@ -191,7 +199,7 @@ private Mot motSelection = new Mot();
             }
         }
 
-		mot.setCategorie(categorie);
+		mot.setCategorie(selectedCategorie);
 		mot.setSousCategorie(sousCategorie);
         if(listeTagsSelection != null){
             mot.setTags(listeTagsSelection);
