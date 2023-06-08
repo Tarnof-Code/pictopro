@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 22 mai 2023 à 13:03
+-- Généré le : jeu. 08 juin 2023 à 12:07
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -31,11 +31,11 @@ DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
   `id` int NOT NULL AUTO_INCREMENT,
   `created_at` datetime(6) NOT NULL,
-  `nom` varchar(255) DEFAULT NULL,
-  `picto_file` varchar(255) DEFAULT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `picto_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -78,17 +78,17 @@ INSERT INTO `categorie` (`id`, `created_at`, `nom`, `picto_file`, `updated_at`) 
 DROP TABLE IF EXISTS `conjugaison`;
 CREATE TABLE IF NOT EXISTS `conjugaison` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `deuxieme_pers_pluriel` varchar(255) DEFAULT NULL,
-  `deuxieme_pers_sing` varchar(255) DEFAULT NULL,
-  `premiere_pers_pluriel` varchar(255) DEFAULT NULL,
-  `premiere_pers_sing` varchar(255) DEFAULT NULL,
-  `temps` varchar(255) DEFAULT NULL,
-  `troisieme_pers_pluriel` varchar(255) DEFAULT NULL,
-  `troisieme_pers_sing` varchar(255) DEFAULT NULL,
+  `deuxieme_pers_pluriel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `deuxieme_pers_sing` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `premiere_pers_pluriel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `premiere_pers_sing` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `temps` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `troisieme_pers_pluriel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `troisieme_pers_sing` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `irregulier_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKhls5j2091cwwb1weyqf2ny34h` (`irregulier_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `conjugaison`
@@ -143,25 +143,25 @@ CREATE TABLE IF NOT EXISTS `dossier_medical` (
   `id` int NOT NULL AUTO_INCREMENT,
   `created_at` datetime(6) DEFAULT NULL,
   `date_naissance` date NOT NULL,
-  `nom` varchar(255) DEFAULT NULL,
-  `prenom` varchar(255) DEFAULT NULL,
-  `progression` varchar(255) DEFAULT NULL,
-  `statistique` varchar(255) DEFAULT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `prenom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `progression` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `statistique` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
-  `professionnel_id` bigint DEFAULT NULL,
+  `professionnel_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKqnfn437i833ltnjcrl9wu4plo` (`professionnel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `dossier_medical`
 --
 
 INSERT INTO `dossier_medical` (`id`, `created_at`, `date_naissance`, `nom`, `prenom`, `progression`, `statistique`, `updated_at`, `professionnel_id`) VALUES
-(1, '2023-05-01 00:00:00.000000', '2023-05-01', 'nompatienttest1', 'prénompatienttest1', 'progressiontest1', 'statstest1', NULL, 1),
-(2, '2023-05-01 00:00:00.000000', '2023-05-01', 'nompatienttest2', 'prénompatienttest2', 'progressiontest2', 'statstest2', NULL, 1),
-(3, '2023-05-01 00:00:00.000000', '2023-05-01', 'nompatienttest3', 'prénompatienttest3', 'progressiontest3', 'statstest3', NULL, 2),
-(4, '2023-05-01 00:00:00.000000', '2023-05-01', 'nompatienttest4', 'prénompatienttest4', 'progressiontest4', 'statstest4', NULL, 2);
+(1, '2023-06-01 13:54:36.000000', '2023-06-01', 'Nompatient1', 'Prénompatient1', '111', '111', NULL, 3),
+(2, '2023-06-01 13:54:36.000000', '2023-06-01', 'Nompatient2', 'Prénompatient2', '222', '222', NULL, 3),
+(3, '2023-06-01 13:59:36.000000', '2023-06-01', 'Nompatient3', 'Prénompatient3', '333', '333', NULL, 4),
+(4, '2023-06-01 13:59:36.000000', '2023-06-01', 'Nompatient4', 'Prénompatient4', '4444', '4444', NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -172,11 +172,11 @@ INSERT INTO `dossier_medical` (`id`, `created_at`, `date_naissance`, `nom`, `pre
 DROP TABLE IF EXISTS `irregulier`;
 CREATE TABLE IF NOT EXISTS `irregulier` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `feminin` varchar(255) DEFAULT NULL,
-  `participe_passe` varchar(255) DEFAULT NULL,
-  `pluriel` varchar(255) DEFAULT NULL,
+  `feminin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `participe_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pluriel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `irregulier`
@@ -280,19 +280,19 @@ DROP TABLE IF EXISTS `mot`;
 CREATE TABLE IF NOT EXISTS `mot` (
   `id` int NOT NULL AUTO_INCREMENT,
   `created_at` datetime(6) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `picto_file` varchar(255) DEFAULT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `picto_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
   `categorie_id` int DEFAULT NULL,
   `irregulier_id` int DEFAULT NULL,
-  `professionnel_id` bigint DEFAULT NULL,
+  `professionnel_id` int DEFAULT NULL,
   `sous_categorie_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKmwb1cm2lcser63v964fas9102` (`categorie_id`),
   KEY `FK94s0buj6qhfhh2n76vymttn5n` (`irregulier_id`),
   KEY `FKk46y2d4gysg291pyyhwwe7irm` (`professionnel_id`),
   KEY `FKhiy1177oa9hpyss4vj3x0yglx` (`sous_categorie_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=534 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=534 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `mot`
@@ -839,7 +839,7 @@ CREATE TABLE IF NOT EXISTS `mot_phrase` (
   `phrase_id` int NOT NULL,
   KEY `FK3oigfwcycptjxqu9qhj0ygqny` (`phrase_id`),
   KEY `FKc7hw2o15td2yja1hab0nam2bh` (`mot_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -853,7 +853,7 @@ CREATE TABLE IF NOT EXISTS `mot_tag` (
   `tag_id` int NOT NULL,
   KEY `FKpsq42sd7ynu20r6pqilwb6jlk` (`tag_id`),
   KEY `FKdnu32yto9hq7a3895390f3jsb` (`mot_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `mot_tag`
@@ -1961,7 +1961,7 @@ INSERT INTO `mot_tag` (`mot_id`, `tag_id`) VALUES
 DROP TABLE IF EXISTS `phrase`;
 CREATE TABLE IF NOT EXISTS `phrase` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `audio` varchar(255) DEFAULT NULL,
+  `audio` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `score` int NOT NULL,
   `dossier_medical_id` int DEFAULT NULL,
@@ -1969,21 +1969,21 @@ CREATE TABLE IF NOT EXISTS `phrase` (
   PRIMARY KEY (`id`),
   KEY `FKigjyb0chtqi52id0csjhod5g5` (`dossier_medical_id`),
   KEY `FK19qom7nwb1k1k7fujpoemguxt` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `phrase`
 --
 
 INSERT INTO `phrase` (`id`, `audio`, `created_at`, `score`, `dossier_medical_id`, `question_id`) VALUES
-(1, 'bson1', '2023-05-01 00:00:00.000000', 999, 1, NULL),
-(2, 'bson2', '2023-05-01 00:00:00.000000', 777, 1, NULL),
-(3, 'bson3', '2023-05-01 00:00:00.000000', 567, 2, NULL),
-(4, 'bson4', '2023-05-01 00:00:00.000000', 789, 2, NULL),
-(5, 'bson5', '2023-05-01 00:00:00.000000', 475, 3, NULL),
-(6, 'bson6', '2023-05-01 00:00:00.000000', 704, 3, NULL),
-(7, 'bson7', '2023-05-01 00:00:00.000000', 845, 4, NULL),
-(8, 'bson8', '2023-05-01 00:00:00.000000', 356, 4, NULL);
+(1, 'bson1', '2023-06-01 14:02:38.000000', 111, 1, NULL),
+(2, 'bson2', '2023-06-01 14:02:38.000000', 222, 1, NULL),
+(3, 'bson3', '2023-06-01 14:02:38.000000', 333, 2, NULL),
+(4, 'bson4', '2023-06-01 14:02:38.000000', 4444, 2, NULL),
+(5, 'bson5', '2023-06-01 14:02:38.000000', 555, 3, NULL),
+(6, 'bson6', '2023-06-01 14:02:38.000000', 666, 3, NULL),
+(7, 'bson7', '2023-06-01 14:02:38.000000', 777, 4, NULL),
+(8, 'bson8', '2023-06-01 14:02:38.000000', 888, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -1993,28 +1993,30 @@ INSERT INTO `phrase` (`id`, `audio`, `created_at`, `score`, `dossier_medical_id`
 
 DROP TABLE IF EXISTS `professionnel`;
 CREATE TABLE IF NOT EXISTS `professionnel` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `created_at` datetime(6) DEFAULT NULL,
   `date_naissance` date NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `nom` varchar(255) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `prenom` varchar(255) DEFAULT NULL,
-  `service` varchar(255) DEFAULT NULL,
-  `telephone` varchar(255) DEFAULT NULL,
-  `username` varchar(20) NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `prenom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `service` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `telephone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_dtt2y6pmrp00hp7s3v01ewoss` (`email`),
   UNIQUE KEY `UK_nrh1tottrldn8ti7oh28a6774` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `professionnel`
 --
 
 INSERT INTO `professionnel` (`id`, `created_at`, `date_naissance`, `email`, `nom`, `password`, `prenom`, `service`, `telephone`, `username`) VALUES
-(1, '2023-05-01 00:00:00.000000', '2023-05-01', 'jean.dupont@test.com', 'Dupont', '', 'Jean', 'Pédiatrie', '0911111111', 'jeandupont'),
-(2, '2023-05-02 00:00:00.000000', '2023-05-02', 'email2@test.com', 'nomprotest2', '', 'prénomprotest2', 'servicetest2', '0922222222', 'usernametest');
+(1, '2023-06-08 13:44:53.601000', '2023-06-01', 'admin@mail.com', 'admin', '$2a$10$G7vYZ6Hf.eiBAbPUMAbFku8.k39zBIxnQkb1XSmBGNOuxb2gXDRya', 'admin', 'admin', '1111111111', 'adminA1*'),
+(2, '2023-06-08 13:46:28.696000', '2023-06-11', 'professionnel@mail.com', 'professionnel', '$2a$10$QWXtJeK5UzGiOs/hyKSPCurOeqvA/mEgZ67/RVwMp.el8DZjoBPfW', 'professionnel', 'professionnel', '2222222222', 'professionnelB2*'),
+(3, '2023-06-08 13:53:41.929000', '2023-06-02', 'jean.dupont@mail.com', 'Dupont', '$2a$10$vyzTo4avm3xvXER/uzlDoOwgromQVJZX8CNaXCWG4KQaK8tHdJ/ny', 'Jean', 'Pediatrie', '3333333333', 'jeandupontA1*'),
+(4, '2023-06-08 13:59:04.479000', '2023-06-10', 'john.doe@mail.com', 'Doe', '$2a$10$onU3DCQ8Bx9alLUdTBLKrekLjN1CyZVYYkH4WecQSID4S70KV.uIO', 'John', 'Psychiatrie', '4444444444', 'johndoeA1*');
 
 -- --------------------------------------------------------
 
@@ -2024,20 +2026,21 @@ INSERT INTO `professionnel` (`id`, `created_at`, `date_naissance`, `email`, `nom
 
 DROP TABLE IF EXISTS `professionnel_roles`;
 CREATE TABLE IF NOT EXISTS `professionnel_roles` (
-  `professionnel_id` bigint NOT NULL,
+  `professionnels_id` int NOT NULL,
   `roles_id` int NOT NULL,
-  PRIMARY KEY (`professionnel_id`,`roles_id`),
+  PRIMARY KEY (`professionnels_id`,`roles_id`),
   KEY `FKrxdxx7qvr8vrt5wbnlybt5s34` (`roles_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `professionnel_roles`
 --
 
-INSERT INTO `professionnel_roles` (`professionnel_id`, `roles_id`) VALUES
+INSERT INTO `professionnel_roles` (`professionnels_id`, `roles_id`) VALUES
 (1, 1),
-(1, 2),
-(2, 2);
+(2, 2),
+(3, 2),
+(4, 2);
 
 -- --------------------------------------------------------
 
@@ -2048,10 +2051,10 @@ INSERT INTO `professionnel_roles` (`professionnel_id`, `roles_id`) VALUES
 DROP TABLE IF EXISTS `question`;
 CREATE TABLE IF NOT EXISTS `question` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `contenu` varchar(255) DEFAULT NULL,
+  `contenu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2065,7 +2068,7 @@ CREATE TABLE IF NOT EXISTS `question_categorie` (
   `categorie_id` int NOT NULL,
   KEY `FK4ecmwhmwed35li10pehskmo5v` (`categorie_id`),
   KEY `FK8p4t83g4qt4vr4k1bu9smcjav` (`question_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2076,17 +2079,17 @@ CREATE TABLE IF NOT EXISTS `question_categorie` (
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
+  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'ROLE_ADMIN'),
-(2, 'ROLE_PROFESSIONNEL');
+(1, 'admin'),
+(2, 'pro');
 
 -- --------------------------------------------------------
 
@@ -2098,13 +2101,13 @@ DROP TABLE IF EXISTS `sous_categorie`;
 CREATE TABLE IF NOT EXISTS `sous_categorie` (
   `id` int NOT NULL AUTO_INCREMENT,
   `created_at` datetime(6) NOT NULL,
-  `nom` varchar(255) DEFAULT NULL,
-  `picto_file` varchar(255) DEFAULT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `picto_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
   `categorie_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKrqdn0l7bb88g42fs81pbhevag` (`categorie_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `sous_categorie`
@@ -2140,9 +2143,9 @@ INSERT INTO `sous_categorie` (`id`, `created_at`, `nom`, `picto_file`, `updated_
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE IF NOT EXISTS `tag` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) DEFAULT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `tag`
@@ -2215,7 +2218,7 @@ ALTER TABLE `phrase`
 -- Contraintes pour la table `professionnel_roles`
 --
 ALTER TABLE `professionnel_roles`
-  ADD CONSTRAINT `FKl591yjh0odhhqlssxyfs6ebus` FOREIGN KEY (`professionnel_id`) REFERENCES `professionnel` (`id`),
+  ADD CONSTRAINT `FK7rqk0i8vkmiblgva3fo1un7ix` FOREIGN KEY (`professionnels_id`) REFERENCES `professionnel` (`id`),
   ADD CONSTRAINT `FKrxdxx7qvr8vrt5wbnlybt5s34` FOREIGN KEY (`roles_id`) REFERENCES `roles` (`id`);
 
 --

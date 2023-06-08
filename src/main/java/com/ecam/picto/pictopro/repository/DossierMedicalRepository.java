@@ -7,5 +7,5 @@ import com.ecam.picto.pictopro.entity.DossierMedical;
 
 @Repository
 public interface DossierMedicalRepository extends JpaRepository<DossierMedical, Integer> {
-	Iterable<DossierMedical> findAllByProfessionnelId(Long id);
+	Iterable<DossierMedical> findAllByProfessionnelId(int id);
 }

@@ -1,9 +1,12 @@
 package com.ecam.picto.pictopro.service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+
+import com.ecam.picto.pictopro.entity.Role;
+import com.ecam.picto.pictopro.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ecam.picto.pictopro.entity.Professionnel;
@@ -14,10 +17,21 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
 
 	@Autowired
 	ProfessionnelRepository professionnelRepository;
+	@Autowired
+	private RoleRepository roleRepository;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
-	public void ajouterUnPro(Professionnel professionnel) {
-		professionnelRepository.save(professionnel);
+	public void save(Professionnel user) {
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		//user.setRoles(new HashSet<>(roleRepository.findAll()));
+		Optional<Role> defaultRoleOptional = roleRepository.findByName("pro");
+		if (defaultRoleOptional.isPresent()) {
+			Role defaultRole = defaultRoleOptional.get();
+			user.setRoles(Collections.singleton(defaultRole));
+		}
+		professionnelRepository.save(user);
 	}
 
 	@Override
@@ -31,13 +45,12 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
 	}
 
 	@Override
-	public Professionnel findById(Long id) {
-		try {
-			Optional<Professionnel> professionnel = professionnelRepository.findById(id);
-			return professionnel.orElse(null);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	public Professionnel findById(int id) {
+		return professionnelRepository.findById(id);
+	}
+
+	@Override
+	public Professionnel findByUsername(String username) {
+		return professionnelRepository.findByUsername(username);
 	}
 }

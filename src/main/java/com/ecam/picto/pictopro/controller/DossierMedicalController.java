@@ -79,8 +79,8 @@ public class DossierMedicalController {
 
 	@PostMapping("/ajouterUnDossier")
 	public String ajouterUnDossierMedical(Model model, @ModelAttribute("dossierMedical") DossierMedical dossierMedical,
-			@RequestParam("professionnelId") Long idPro) {
-		Professionnel professionnel = professionnelService.findById(idPro);
+			@RequestParam("professionnelId") int id) {
+		Professionnel professionnel = professionnelService.findById(id);
 		dossierMedical.setProfessionnel(professionnel);
 		dossierMedicalService.ajouterUnDossierMedical(dossierMedical);
 		model.addAttribute("module", "gestionDesDossiers");

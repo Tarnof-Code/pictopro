@@ -1,6 +1,7 @@
 package com.ecam.picto.pictopro.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -8,9 +9,11 @@ import com.ecam.picto.pictopro.entity.Professionnel;
 
 @Service
 public interface ProfessionnelService {
-	public void ajouterUnPro(Professionnel professionnel);
+	void save(Professionnel professionnel);
 
-	public List<Professionnel> findAll();
+	List<Professionnel> findAll();
 
-	public Professionnel findById(Long id);
+	Professionnel findById(int id);
+
+	Professionnel findByUsername (String username);
 }

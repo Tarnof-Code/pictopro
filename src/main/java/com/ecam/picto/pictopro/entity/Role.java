@@ -1,13 +1,8 @@
 package com.ecam.picto.pictopro.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -16,16 +11,15 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Enumerated(EnumType.STRING)
+	//@Enumerated(EnumType.STRING)
 	@Column(length = 20)
-	private ERole name;
+	private String name;
+
+	@ManyToMany(mappedBy = "roles")
+	private Set<Professionnel> professionnels;
 
 	public Role() {
 
-	}
-
-	public Role(ERole name) {
-		this.name = name;
 	}
 
 	public Integer getId() {
@@ -36,11 +30,19 @@ public class Role {
 		this.id = id;
 	}
 
-	public ERole getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(ERole name) {
+	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<Professionnel> getProfessionnels() {
+		return professionnels;
+	}
+
+	public void setProfessionnels(Set<Professionnel> professionnels) {
+		this.professionnels = professionnels;
 	}
 }

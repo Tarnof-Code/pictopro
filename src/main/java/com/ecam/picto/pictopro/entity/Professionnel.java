@@ -1,9 +1,6 @@
 package com.ecam.picto.pictopro.entity;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,10 +26,10 @@ import jakarta.validation.constraints.Size;
 public class Professionnel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @NotBlank
-    @Size(max = 20)
+    @Size(min = 6, max = 32)
     @Column(unique = true, nullable = false)
     private String username;
 
@@ -53,15 +50,20 @@ public class Professionnel {
     private String service;
 
     @NotEmpty(message = "* Le champ numéro de tél. ne peut pas être vide")
+    @Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$", message = "* Format de caractère non autorisé")
     private String telephone;
 
     @Column(unique = true, nullable = false)
     @NotEmpty(message = "* Le champ email ne peut pas être vide.")
+    @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", message = "* Format de caractère non autorisé")
     private String email;
 
     @Column(nullable = false)
-//	@Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
     private String password;
+
+    @ManyToMany
+    private Set<Role> roles;
 
     @OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
     private List<DossierMedical> listeDossiersParProfessionnel;
@@ -69,8 +71,6 @@ public class Professionnel {
     @OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
     private List<Mot> listeMotsParProfessionnel;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Role> roles = new HashSet<>();
 
     //	@DateTimeFormat(pattern = "yyyy-MM-dd")
 //	@Temporal(TemporalType.DATE)
@@ -85,22 +85,22 @@ public class Professionnel {
     public Professionnel() {
     }
 
-    public Professionnel(String username, String password, String nom, String prenom, Date dateNaissance, String service, String email, String telephone) {
-        this.username = username;
-        this.password = password;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateNaissance = dateNaissance;
-        this.service = service;
-        this.email = email;
-        this.telephone = telephone;
-    }
+//    public Professionnel(String username, String password, String nom, String prenom, Date dateNaissance, String service, String email, String telephone) {
+//        this.username = username;
+//        this.password = password;
+//        this.nom = nom;
+//        this.prenom = prenom;
+//        this.dateNaissance = dateNaissance;
+//        this.service = service;
+//        this.email = email;
+//        this.telephone = telephone;
+//    }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -110,14 +110,6 @@ public class Professionnel {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
     public String getNom() {
@@ -176,6 +168,14 @@ public class Professionnel {
         this.password = password;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     public List<DossierMedical> getListeDossiersParProfessionnel() {
         return listeDossiersParProfessionnel;
     }
@@ -220,9 +220,9 @@ public class Professionnel {
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", roles=" + roles +
                 ", listeDossiersParProfessionnel=" + listeDossiersParProfessionnel +
                 ", listeMotsParProfessionnel=" + listeMotsParProfessionnel +
-                ", roles=" + roles +
                 ", createdAt=" + createdAt +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';

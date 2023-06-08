@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Succès de l'inscription</title>
+    <link rel="stylesheet" href="/css/succesEchec.css"/>
+</head>
+<body>
+<div class="main">
+    <div class="container a-container" id="a-container">
+        <form class="form" id="a-form">
+            <h1 class="switch__title title-1">Inscription validée !</h1>
+            <h2 class="switch__title title">Bienvenue sur
+                <span class="PBlue">P</span>icto<span class="PRouge">P</span>icto!</h2>
+            <p class="switch__description description">Destinée à développer la communication à l'aide de pictogrammes,
+                l'application est réservée aux professionnels de santé qui en font la demande.</p><br>
+            <p class="switch__description description">L'inscription vous permettra un suivi des progrès de votre
+                patient
+                ainsi que l'intégration de nouveaux pictogrammes choisis par vos soins.</p><br>
+            <a th:href="@{/login}" class="switch__button button-i switch-btn a-button" type="button">
+                <p>Se rendre sur la page de connexion</p>
+            </a>
+        </form>
+        <div class="droit padding-b">
+            <p>© Tous droits réservés -
+                <span class="PBlue">P</span>icto<span class="PRouge">P</span>icto® 2023</p>
+        </div>
+        <div class="footer underline padding-b">
+            <a th:href="@{/mentions}">Mentions légales
+            </a>
+            <p class="space">
+                |
+            </p>
+            <a th:href="@{/partners}">
+                Partenaires
+            </a>
+            <p class="space">
+                |
+            </p>
+            <a th:href="@{/a_propos}">
+                A Propos
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

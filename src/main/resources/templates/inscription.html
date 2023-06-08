@@ -1,37 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="eng">
 <head>
+    <meta charset="utf-8">
     <title>Inscription</title>
     <link rel="stylesheet" href="/css/inscription.css"/>
 </head>
 <body>
 <div class="main">
-    <form th:action="@{/api/auth/signup}" method="post">
+    <form th:action="@{/registration}" method="post" th:object="${userForm}">
         <div class="container a-container" id="a-container">
             <div class="switch__container">
                 <h2 class="form_title title2">Coordonnées personnelles</h2>
                 <div>
-                    <input class="form__input" type="text" name="nom" placeholder="Nom*" required autofocus>
+                    <input class="form__input" type="text" name="nom" placeholder="Nom*" required><br>
+                    <span th:class="has-error" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="text" name="prenom" placeholder="Prénom*" required autofocus>
+                    <input class="form__input" type="text" name="prenom" placeholder="Prénom*" required autofocus><br>
+                    <span th:class="has-error" th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
                 </div>
                 <div>
                     <input class="form__input" type="text" onfocus="(this.type='date')" name="dateNaissance"
-                           placeholder="Date de naissance*" required
-                           autofocus>
+                           placeholder="Date de naissance*" required><br>
+                    <span th:class="has-error" th:if="${#fields.hasErrors('dateNaissance')}"
+                          th:errors="*{dateNaissance}"></span>
                 </div>
                 <div>
                     <input class="form__input" type="text" name="service" placeholder="Service/Département médical*"
-                           required
-                           autofocus>
+                           required><br>
+                    <span th:class="has-error" th:if="${#fields.hasErrors('service')}" th:errors="*{service}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="email" name="email" placeholder="Email*" required>
+                    <input class="form__input" type="email" name="email" placeholder="Email*" required><br>
+                    <span th:class="has-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                 </div>
                 <div>
                     <input class="form__input" type="text" name="telephone" placeholder="Numéro de téléphone*"
-                           required>
+                           required><br>
+                    <span th:class="has-error" th:if="${#fields.hasErrors('telephone')}"
+                          th:errors="*{telephone}"></span>
                 </div>
                 (*mentions obligatoires)
             </div>
@@ -40,23 +47,29 @@
             <div class="switch__circle"></div>
             <div class="switch__circle switch__circle--t"></div>
             <div class="switch__container" id="switch-c1">
-                <img th:src="@{/images/Logos/Logo PNG.png}" alt="" width="100px">
+                <img th:src="@{/images/Logos/Logo PNG.png}" alt="" width="50px">
                 <h2 class="form_title title">Identifiants</h2>
                 <div class="pss">
-                    <input class="form__input" type="text" name="username" placeholder="Pseudonyme*" required autofocus>
+                    <input class="form__input" type="text" name="username" placeholder="Pseudonyme*" required autofocus><br>
+                    <span th:class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                 </div>
 
                 <div>
-                    <input class="form__input" type="password" name="password" placeholder="Mot de Passe*" required>
+                    <input class="form__input" type="password" th:field="*{password}"
+                           placeholder="Mot de Passe*" required><br>
+                    <span th:class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                </div>
+                <div>
+                    <input class="form__input" type="password" name="confirmPassword"
+                           placeholder="Confirmer le Mot de Passe*" required><br>
+                    <span th:class="has-error" th:if="${#fields.hasErrors('confirmPassword')}"
+                          th:errors="*{confirmPassword}"></span>
                     <p class="switch__description description">
                         Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère
-                        spécial et comporter au moins 8 caractères
+                        spécial et comporter au moins 8 caractères.
                     </p>
                 </div>
-                <!--                <div class="pss">
-                                    <input class="form__input" type="password" name="passwordConfirm"
-                                           placeholder="Confirmer le Mot de Passe*" required>
-                                </div>-->
+
                 <div>
                     <a th:href="@{/login}" class="form__link">Déjà inscrit ?</a>
                 </div>
