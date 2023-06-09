@@ -16,12 +16,13 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity
-//(
+@EnableGlobalMethodSecurity
+(
 //securedEnabled = true,
 // jsr250Enabled = true,
-//        prePostEnabled = true)
+        prePostEnabled = true)
 public class WebSecurityConfig {
+
     @Qualifier("userDetailsServiceImpl")
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -30,57 +31,6 @@ public class WebSecurityConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    //@Autowired
-    // private AuthEntryPointJwt unauthorizedHandler;
-//    @Autowired
-//    private MyAccessDeniedHandler accessDeniedHandler;
-
-//    @Bean
-//    AuthTokenFilter authenticationJwtTokenFilter() {
-//        return new AuthTokenFilter();
-//    }
-
-//    @Bean
-//    DaoAuthenticationProvider authenticationProvider() {
-//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//
-//        authProvider.setUserDetailsService(userDetailsService);
-//        authProvider.setPasswordEncoder(passwordEncoder());
-//
-//        return authProvider;
-//    }
-
-//    @Bean
-//    PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
-//    @Bean
-//    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-//                .requestMatchers("/register", "/registration", "/inscriptionSucces", "/inscriptionEchec", "/images/**", "/css/**", "/js/**", "/api/auth/login", "/api/auth/signup").permitAll().requestMatchers("/dashboard/admin").hasRole("ADMIN").anyRequest()
-//                .authenticated().and()
-//                .formLogin()
-//                .loginPage("/")
-//                .permitAll()
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
-//                .defaultSuccessUrl("/dashboard/admin", true).failureUrl("/public/authFailed")
-//                .and()
-//                .logout().logoutSuccessUrl("/logout")
-//                .permitAll()
-//                .and()
-//                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
-//
-//        http.authenticationProvider(authenticationProvider());
-//
-//        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-//
-//        return http.build();
-//    }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -92,6 +42,7 @@ public class WebSecurityConfig {
                 .and()
                 .formLogin()
                 .loginPage("/")
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/dashboard")
                 .permitAll()
                 .and()
@@ -102,15 +53,11 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
-
-//    @Bean
-//    public AuthenticationManager customAuthenticationManager() throws Exception {
-//        return authenticationManager();
-//    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

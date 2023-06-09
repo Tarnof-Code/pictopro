@@ -54,10 +54,11 @@
                     <input class="form__input" type="text" name="username" placeholder="Pseudonyme" required autofocus>
                 </div>
                 <div class="pss">
-                    <input class="form__input" type="password" name="password" placeholder="Mot de Passe" required>
+                    <input class="form__input" type="password" name="password" placeholder="Mot de Passe" required><br>
+                    <span class="has-error" th:text="${error}"></span>
                 </div>
-                <span class="has-error" th:text="${error}"></span>
-<!--                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div>
                     <a th:href="@{/forgot_password_request}" class="form__link">Mot de passe oublié ?</a>
                 </div>

@@ -25,7 +25,6 @@ import com.ecam.picto.pictopro.service.PhraseService;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
 
 @Controller
-
 public class DossierMedicalController {
 
 	private final DossierMedicalRepository dossierMedicalRepository;

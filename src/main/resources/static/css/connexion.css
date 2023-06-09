@@ -376,3 +376,6 @@ form {
     margin-bottom: 50px;
 }
 
+.has-error {
+    color: red;
+}
