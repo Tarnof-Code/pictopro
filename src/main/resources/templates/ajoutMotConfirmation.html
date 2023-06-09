@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation d'ajout du mot</title>
+</head>
+<body>
+<div th:replace="~{components/navBar}"></div>
+
+    <p class="fs-4 fw-light mt-5 text-center" >Le mot
+        <span class="fw-bolder fs-2 ms-2 me-2" th:text="${motAjoute}"></span>
+        a bien été ajouté !
+    </p>
+    <div class="d-flex justify-content-center flex-column align-items-center">
+        <a class="m-3 fs-5" th:href="@{/gestionDesMots/ajouterUnMot}">
+            Ajouter un autre mot
+        </a>
+        <a class="m-3 fs-5" th:href="@{/gestionDesMots/consulterLesMots}">
+            Consulter les mots
+        </a>
+    </div>
+
+<div th:replace="~{components/footer :: footer}"></div>
+</body>
+</html>

@@ -178,13 +178,10 @@ private Mot motSelection = new Mot();
             model.addAttribute("listeTagsSelection",listeTagsSelection);
             model.addAttribute("selectedCategorie",selectedCategorie);
             model.addAttribute("noImage",noImage);
-            System.out.println("+++++++++++++++++++++++++++++ Erreur dans le formulaire ++++++++++++++++++++++++++++++");
+            System.out.println("+++++++++++++++++++++++++++++ Erreur dans le formulaire Ajouter mot++++++++++++++++++++++++++++++");
+
             return "ajouterUnMot";
         }
-
-
-
-		
 
         if (!pictoFileImage.isEmpty()) {
             try {
@@ -208,8 +205,9 @@ private Mot motSelection = new Mot();
         motService.ajouterUnMot(mot);
 
         model.addAttribute("module","gestionDesMots");
+        model.addAttribute("motAjoute", mot.getNom());
 
-        return "redirect:/gestionDesMots/ajouterUnMot";
+        return "ajoutMotConfirmation";
     }
 
     @PostMapping("/modifierUnMot")
