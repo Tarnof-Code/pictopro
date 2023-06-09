@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 08 juin 2023 à 15:54
+-- Généré le : ven. 09 juin 2023 à 13:52
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -2006,7 +2006,7 @@ CREATE TABLE IF NOT EXISTS `professionnel` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_dtt2y6pmrp00hp7s3v01ewoss` (`email`),
   UNIQUE KEY `UK_nrh1tottrldn8ti7oh28a6774` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `professionnel`
@@ -2090,8 +2090,8 @@ CREATE TABLE IF NOT EXISTS `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'admin'),
-(2, 'pro');
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_PRO');
 
 -- --------------------------------------------------------
 
