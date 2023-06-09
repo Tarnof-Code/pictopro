@@ -300,7 +300,7 @@ if (tags.includes("auxiliaire_avoir")) {
                     reste = tableauMotsParticipe.slice(1).join(" ");
 
                     //Si mot précédent est féminin, ajouter un "e" sauf si mot masculin avant "et"
-                    if(femininMasculinPrecedent == "feminin"){
+                    if(femininMasculinPrecedent == "feminin" && tagsMoinsTrois != undefined){
                         if(motMoinsDeux == "et" && tagsMoinsTrois.includes("'masculin'")){
                             participePasse = participePasse
                         } else {

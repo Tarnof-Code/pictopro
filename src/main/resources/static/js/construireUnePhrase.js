@@ -39,23 +39,30 @@ function updateTableauMots() {
       femininMasculinPrecedent = tableauFemininMasculin[tableauFemininMasculin.length - 1];
       motPrecedent = tableauMots[tableauMots.length - 1];
       femininMasculinMoinsDeux = tableauFemininMasculin[tableauFemininMasculin.length - 2];
-console.log(tags)
-      if(singulierPlurielPrecedent == "pluriel"){
-            tableauSingulierPluriel.push("pluriel");console.log("A")
+
+      if(singulierPlurielPrecedent == "pluriel" && !tags.includes("'pronom_ou_determinant'")){
+            tableauSingulierPluriel.push("pluriel");
+
        } else if(tagsMoinsDeux != null){
-            if(tagsMoinsDeux.includes("'nom'") || tagsMoinsDeux.includes("'pronom_ou_determinant'")){
+            if (tags.includes("'pluriel'")){
+                    tableauSingulierPluriel.push("pluriel");
+            } else if(tagsMoinsDeux.includes("'nom'") || tagsMoinsDeux.includes("'pronom_ou_determinant'")){
                 if(motPrecedent == "et"){
                     if(mot == "elle" || mot == "moi" || mot == "toi" || tags.includes("'pluriel'")){
-                    tableauSingulierPluriel.push("pluriel");console.log("B")
+                    tableauSingulierPluriel.push("pluriel");
                     }
+                } else {
+                    tableauSingulierPluriel.push("singulier");
                 }
+            } else {
+                tableauSingulierPluriel.push("singulier");
             }
       } else if(tags.includes("pronom_ou_determinant") && tags.includes("'singulier'")){
-            tableauSingulierPluriel.push("singulier");console.log("C")
+            tableauSingulierPluriel.push("singulier");
       } else if(tags.includes("'pluriel'") || (singulierPlurielPrecedent == "pluriel" && !tagsPrecedents.includes("'verbe'"))){
-         tableauSingulierPluriel.push("pluriel");console.log("D")
+         tableauSingulierPluriel.push("pluriel");
       } else {
-         tableauSingulierPluriel.push("singulier");console.log("F")
+         tableauSingulierPluriel.push("singulier");
       }
 
 
@@ -83,7 +90,7 @@ console.log(tags)
 
         if(tableauMots.length > 2){
               if(tags.includes("'nom'") && tagsMoinsDeux.includes("'nom'") && motPrecedent == "et") {
-                 tableauSingulierPluriel.push("pluriel")
+                 tableauSingulierPluriel.push("pluriel");
               }
               if(!tags.includes("'pluriel'") &&
                     tagsMoinsDeux != undefined &&
@@ -110,7 +117,6 @@ console.log(tags)
 
 // Vérification de la nature du mot
 function verifClasseGrammaticale(){
-    console.log(tableauSingulierPluriel)
     if(tags.includes("'verbe'")){
         conjugaison(temps);
     } else if (tags.includes("'nom'")) {
