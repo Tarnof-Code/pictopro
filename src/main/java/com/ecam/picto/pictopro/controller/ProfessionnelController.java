@@ -44,7 +44,7 @@ public class ProfessionnelController {
 
 	@GetMapping(path = "/{id}")
 	public String afficherDetailsPro(@PathVariable("id") int id, Model model) {
-		Optional<Professionnel> professionnel = this.professionnelRepository.findById(id);
+		Optional<Professionnel> professionnel = Optional.ofNullable(this.professionnelRepository.findById(id));
 		if (professionnel.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "entity not found");
 		}

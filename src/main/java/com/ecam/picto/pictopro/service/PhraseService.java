@@ -8,9 +8,9 @@ import com.ecam.picto.pictopro.entity.Phrase;
 
 @Service
 public interface PhraseService {
-	public void ajouterUnePhrase(Phrase phrase);
+	void ajouterUnePhrase(Phrase phrase);
 
-	public List<Phrase> afficherPhrases();
+	List<Phrase> afficherPhrases();
 
-	public Phrase findPhraseById(int id);
+	Phrase findPhraseById(int id);
 }

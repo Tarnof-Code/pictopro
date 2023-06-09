@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>Connexion</title>
+    <link rel="stylesheet" href="/css/connexion.css"/>
+</head>
+<body>
+<div class="main">
+    <div class="container a-container" id="a-container">
+        <form class="form" id="a-form">
+            <h2 class="switch__title title">Bienvenue sur
+                <span class="PBlue">P</span>icto<span class="PRouge">P</span>icto!</h2>
+            <p class="switch__description description">Destinée à développer la communication à l'aide de pictogrammes,
+                l'application est réservée aux professionnels de santé qui en font la demande.</p><br>
+            <p class="switch__description description">L'inscription vous permettra un suivi des progrès de votre
+                patient
+                ainsi que l'intégration de nouveaux pictogrammes choisis par vos soins.</p><br>
+            <a th:href="@{/register}" class="switch__button button-i switch-btn a-button" type="button">
+                <p>Créer un nouveau compte</p>
+            </a>
+        </form>
+        <div class="droit padding-b">
+            <p>© Tous droits réservés -
+                <span class="PBlue">P</span>icto<span class="PRouge">P</span>icto® 2023</p>
+        </div>
+        <div class="footer underline padding-b">
+            <a th:href="@{/mentions}">Mentions légales
+            </a>
+            <p class="space">
+                |
+            </p>
+            <a th:href="@{/partners}">
+                Partenaires
+            </a>
+            <p class="space">
+                |
+            </p>
+            <a th:href="@{/a_propos}">
+                A Propos
+            </a>
+        </div>
+    </div>
+
+    <div class="switch" id="connexion switch-cnt">
+        <div class="switch__circle"></div>
+        <div class="switch__circle switch__circle--t"></div>
+        <div class="switch__container" id="switch-c1">
+            <img th:src="@{/images/Logos/Logo PNG.png}" alt="Picto Logo" width="140px">
+            <h2 class="form_title title">Connexion</h2>
+            <form th:action="@{/login}" method="post">
+<!--                  th:object="${loginForm}"-->
+
+                <div>
+                    <input class="form__input" type="text" name="username" placeholder="Pseudonyme" required autofocus>
+                </div>
+                <div class="pss">
+                    <input class="form__input" type="password" name="password" placeholder="Mot de Passe" required><br>
+                    <span class="has-error" th:text="${error}"></span>
+                </div>
+
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <div>
+                    <a th:href="@{/forgot_password_request}" class="form__link">Mot de passe oublié ?</a>
+                </div>
+                <div>
+                    <button type="submit" id="logIn" class="switch__button button switch-btn a-button">Se connecter
+                    </button>
+                </div>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+

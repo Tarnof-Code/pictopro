@@ -1,20 +1,31 @@
 package com.ecam.picto.pictopro.controller;
 
+import com.ecam.picto.pictopro.security.services.SecurityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-	@GetMapping("/")
-	public String goConnnexionInscription(Model model) {
-		model.addAttribute("message", "Page Connexion/Inscription");
-		return "connexionInscription";
-	}
+    @Autowired
+    private SecurityService securityService;
 
-	@GetMapping("/test")
-	public String test() {
-		return "test hello";
-	}
+    @GetMapping("/")
+    public String goConnexion(Model model, String error) {
+        if (securityService.isAuthenticated()) {
+            return "redirect:/dashboard";
+        }
+        if (error != null)
+            model.addAttribute("error", "Vos identifiants ne sont pas valides.");
+        return "connexion";
+    }
 
+//    @PostMapping("/login")
+//    public String registration(@ModelAttribute("loginForm") Professionnel loginForm, BindingResult bindingResult) throws RuntimeException {
+//        {
+//
+//            return "dashboard";
+//        }
+//    }
 }

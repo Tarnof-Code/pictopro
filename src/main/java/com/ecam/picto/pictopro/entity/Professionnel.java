@@ -1,7 +1,6 @@
 package com.ecam.picto.pictopro.entity;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,167 +11,222 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Professionnel {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@NotEmpty(message = "* Le champ nom ne peut pas être vide.")
-	@Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", message = "* Format de caractère non autorisé")
-	private String nom;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@NotEmpty(message = "* Le champ prénom ne peut pas être vide.")
-	@Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", message = "* Format de caractère non autorisé")
-	private String prenom;
+    @NotBlank
+    @Size(min = 6, max = 32)
+    @Column(unique = true, nullable = false)
+    @NotEmpty(message = "* Le champ pseudonyme ne peut pas être vide.")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ0-9]+(([',.-][a-zA-ZÀ-ÿ0-9])?[a-zA-ZÀ-ÿ0-9])$", message = "* Format de caractère non autorisé")
+    private String username;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
-	@NotNull(message = "* Le champ date de naissance ne peut pas être vide.")
-	private Date dateNaissance;
+    @NotEmpty(message = "* Le champ nom ne peut pas être vide.")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
+    private String nom;
 
-	@Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", message = "* Format de caractère non autorisé")
-	private String service;
+    @NotEmpty(message = "* Le champ prénom ne peut pas être vide.")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
+    private String prenom;
 
-	@NotEmpty(message = "* Le champ numéro de tél. ne peut pas être vide")
-	private String telephone;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @NotNull(message = "* Le champ date de naissance ne peut pas être vide.")
+    private Date dateNaissance;
 
-	@Column(unique = true)
-	@NotEmpty(message = "* Le champ email ne peut pas être vide.")
-	private String email;
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ0-9]+(([',. -][a-zA-ZÀ-ÿ0-9 ])?[a-zA-ZÀ-ÿ0-9]*)*$", message = "* Format de caractère non autorisé")
+    private String service;
 
-	@Column(nullable = false)
-	@Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
-	private String password;
+    @NotEmpty(message = "* Le champ numéro de tél. ne peut pas être vide")
+    @Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$", message = "* Format de caractère non autorisé")
+    private String telephone;
 
-	@OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
-	private List<DossierMedical> listeDossiersParProfessionnel;
+    @Column(unique = true, nullable = false)
+    @NotEmpty(message = "* Le champ email ne peut pas être vide.")
+    @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", message = "* Format de caractère non autorisé")
+    private String email;
 
-	@OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
-	private List<Mot> listeMotsParProfessionnel;
+    @Column(nullable = false)
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
+    private String password;
 
-//	@DateTimeFormat(pattern = "yyyy-MM-dd")
+    @ManyToMany
+    private Set<Role> roles;
+
+    @OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
+    private List<DossierMedical> listeDossiersParProfessionnel;
+
+    @OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
+    private List<Mot> listeMotsParProfessionnel;
+
+
+    //	@DateTimeFormat(pattern = "yyyy-MM-dd")
 //	@Temporal(TemporalType.DATE)
 //	@Column(nullable = false)
-	@CreationTimestamp
-	private Date createdAt;
+    @CreationTimestamp
+    private Date createdAt;
 
-	@Transient
-	@Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe de confirmation doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
-	private String confirmPassword;
+    @Transient
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe de confirmation doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
+    private String confirmPassword;
 
-	public Professionnel() {
-	}
+    public Professionnel() {
+    }
 
-	public int getId() {
-		return id;
-	}
+//    public Professionnel(String username, String password, String nom, String prenom, Date dateNaissance, String service, String email, String telephone) {
+//        this.username = username;
+//        this.password = password;
+//        this.nom = nom;
+//        this.prenom = prenom;
+//        this.dateNaissance = dateNaissance;
+//        this.service = service;
+//        this.email = email;
+//        this.telephone = telephone;
+//    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getNom() {
-		return nom;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getPrenom() {
-		return prenom;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
+    public String getNom() {
+        return nom;
+    }
 
-	public Date getDateNaissance() {
-		return dateNaissance;
-	}
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-	public void setDateNaissance(Date dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
+    public String getPrenom() {
+        return prenom;
+    }
 
-	public String getService() {
-		return service;
-	}
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
 
-	public void setService(String service) {
-		this.service = service;
-	}
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
 
-	public String getTelephone() {
-		return telephone;
-	}
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
+    public String getService() {
+        return service;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setService(String service) {
+        this.service = service;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getTelephone() {
+        return telephone;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public List<DossierMedical> getListeDossiersParProfessionnel() {
-		return listeDossiersParProfessionnel;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setListeDossiersParProfessionnel(List<DossierMedical> listeDossiersParProfessionnel) {
-		this.listeDossiersParProfessionnel = listeDossiersParProfessionnel;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public List<Mot> getListeMotsParProfessionnel() {
-		return listeMotsParProfessionnel;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setListeMotsParProfessionnel(List<Mot> listeMotsParProfessionnel) {
-		this.listeMotsParProfessionnel = listeMotsParProfessionnel;
-	}
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+    public List<DossierMedical> getListeDossiersParProfessionnel() {
+        return listeDossiersParProfessionnel;
+    }
 
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
+    public void setListeDossiersParProfessionnel(List<DossierMedical> listeDossiersParProfessionnel) {
+        this.listeDossiersParProfessionnel = listeDossiersParProfessionnel;
+    }
 
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
+    public List<Mot> getListeMotsParProfessionnel() {
+        return listeMotsParProfessionnel;
+    }
 
-	@Override
-	public String toString() {
-		return "Professionnel [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance
-				+ ", service=" + service + ", telephone=" + telephone + ", email=" + email + ", password=" + password
-				+ ", listeDossiersParProfessionnel=" + listeDossiersParProfessionnel + ", listeMotsParProfessionnel="
-				+ listeMotsParProfessionnel + ", createdAt=" + createdAt + ", confirmPassword=" + confirmPassword + "]";
-	}
+    public void setListeMotsParProfessionnel(List<Mot> listeMotsParProfessionnel) {
+        this.listeMotsParProfessionnel = listeMotsParProfessionnel;
+    }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    @Override
+    public String toString() {
+        return "Professionnel{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", dateNaissance=" + dateNaissance +
+                ", service='" + service + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", listeDossiersParProfessionnel=" + listeDossiersParProfessionnel +
+                ", listeMotsParProfessionnel=" + listeMotsParProfessionnel +
+                ", createdAt=" + createdAt +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                '}';
+    }
 }

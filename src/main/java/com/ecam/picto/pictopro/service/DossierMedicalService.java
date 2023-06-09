@@ -8,9 +8,9 @@ import com.ecam.picto.pictopro.entity.DossierMedical;
 
 @Service
 public interface DossierMedicalService {
-	public void ajouterUnDossierMedical(DossierMedical dossierMedical);
+	void ajouterUnDossierMedical(DossierMedical dossierMedical);
 
-	public List<DossierMedical> findAll();
+	List<DossierMedical> findAll();
 
-	public DossierMedical findById(int id);
+	DossierMedical findById(int id);
 }
