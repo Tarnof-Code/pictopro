@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<div th:replace="~{components/navBar}"></div>
+<h2>Bienvenue, <span th:text="${username}"></span>!</h2>
+<span th:text="${message}"></span>
+<div class="container">
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <div class="mb-3">
+            Vous êtes connecté
+            <span th:text="${#authentication.principal.username}"></span>,
+            <a th:href="@{/logout}">Déconnexion</a>
+        </div>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <form id="logoutForm" method="POST" th:action="@{/logout}">
+<!--            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+        </form>
+
+        <h2>Welcome <span sec:authentication="name"></span> | <a
+                onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+    </div>
+</div>
+</body>
+<div th:replace="~{components/footer :: footer}"></div>
+</html></html>

@@ -25,7 +25,7 @@ public class InscriptionController {
     @GetMapping("/register")
     public String registration(Model model) {
         if (securityService.isAuthenticated()) {
-            return "redirect:/login";
+            return "redirect:/";
         }
         model.addAttribute("userForm", new Professionnel());
 

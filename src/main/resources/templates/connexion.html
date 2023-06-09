@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <title>Connexion</title>
-    <link rel="stylesheet" href="/css/connexion.css" />
+    <link rel="stylesheet" href="/css/connexion.css"/>
 </head>
 <body>
 <div class="main">
@@ -12,7 +12,8 @@
                 <span class="PBlue">P</span>icto<span class="PRouge">P</span>icto!</h2>
             <p class="switch__description description">Destinée à développer la communication à l'aide de pictogrammes,
                 l'application est réservée aux professionnels de santé qui en font la demande.</p><br>
-            <p class="switch__description description">L'inscription vous permettra un suivi des progrès de votre patient
+            <p class="switch__description description">L'inscription vous permettra un suivi des progrès de votre
+                patient
                 ainsi que l'intégration de nouveaux pictogrammes choisis par vos soins.</p><br>
             <a th:href="@{/register}" class="switch__button button-i switch-btn a-button" type="button">
                 <p>Créer un nouveau compte</p>
@@ -46,36 +47,26 @@
         <div class="switch__container" id="switch-c1">
             <img th:src="@{/images/Logos/Logo PNG.png}" alt="Picto Logo" width="140px">
             <h2 class="form_title title">Connexion</h2>
-            <form th:action="@{/api/auth/login}" method="post">
-<!--                <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger">
-                <span th:each="error : ${#fields.errors('email')}" th:text="${error}"></span>
-            </div>
-                <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger">
-                    <span th:each="error : ${#fields.errors('password')}" th:text="${error}"></span>
-                </div>
-                <div th:if="${#authorization.expression('isAuthenticated()')}">
-                    <div class="mb-3">
-                        Vous êtes connecté
-                        <span th:text="${#authentication.principal.username}"></span>,
-                        <a th:href="@{/logout}">Déconnexion</a>
-                    </div>
-                </div>-->
+            <form th:action="@{/login}" method="post">
+<!--                  th:object="${loginForm}"-->
 
                 <div>
-                    <input  class="form__input" type="text" name="username" placeholder="Pseudonyme" required autofocus>
+                    <input class="form__input" type="text" name="username" placeholder="Pseudonyme" required autofocus>
                 </div>
-
                 <div class="pss">
-                    <input  class="form__input" type="password"  name="password" placeholder="Mot de Passe" required>
+                    <input class="form__input" type="password" name="password" placeholder="Mot de Passe" required>
                 </div>
+                <span class="has-error" th:text="${error}"></span>
+<!--                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
                 <div>
                     <a th:href="@{/forgot_password_request}" class="form__link">Mot de passe oublié ?</a>
                 </div>
-<!--                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
                 <div>
-                    <button type="submit" id="logIn" class="switch__button button switch-btn a-button">Se connecter</button>
+                    <button type="submit" id="logIn" class="switch__button button switch-btn a-button">Se connecter
+                    </button>
                 </div>
-            </form><br>
+            </form>
+            <br>
         </div>
     </div>
 </div>

@@ -1,33 +1,22 @@
 package com.ecam.picto.pictopro.controller;
 
-import org.springframework.ui.Model;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
-
-@RestController
-//@Controller
-@RequestMapping("/dashboard")
+@Controller
 public class DashboardController {
 
-//    @GetMapping("/dashboard")
-//    public ResponseEntity<String> dashboard() {
-//        // Implement your dashboard logic here
-//        return ResponseEntity.ok("Welcome to the user dashboard!");
-//    }
-
-    @GetMapping("/admin")
-    public String showAdminDashboard(Model model, Principal principal) {
-        model.addAttribute("username", principal.getName());
-        return "dashboard";
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        // Determine the appropriate dashboard page based on the user role
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"))) {
+            return "admin_dashboard";
+        } else {
+            return "pro_dashboard";
+        }
     }
-
-    @GetMapping("/pro")
-    public String showProDashboard(Model model, Principal principal) {
-        model.addAttribute("username", principal.getName());
-        return "dashboard";
-    }
-
 }
