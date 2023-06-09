@@ -5,6 +5,7 @@
 </head>
 <body>
 <div th:replace="~{components/navBar}"></div>
+<h1>Page Dashboard Admin</span>!</h1>
 <h2>Bienvenue, <span th:text="${username}"></span>!</h2>
 <span th:text="${message}"></span>
 <div class="container">
@@ -13,8 +14,9 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome <span sec:authentication="name"></span> | <a
-                onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <h2>Welcome <span sec:authentication="name"></span> |
+            <button onclick="document.forms['logoutForm'].submit()">Se déconnecter</button>
+        </h2>
     </div>
 </div>
 </body>
