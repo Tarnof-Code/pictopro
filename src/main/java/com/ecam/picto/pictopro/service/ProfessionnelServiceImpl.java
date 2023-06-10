@@ -25,7 +25,6 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
 	@Override
 	public void save(Professionnel user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		//user.setRoles(new HashSet<>(roleRepository.findAll()));
 		Optional<Role> defaultRoleOptional = roleRepository.findByName("ROLE_PRO");
 		if (defaultRoleOptional.isPresent()) {
 			Role defaultRole = defaultRoleOptional.get();

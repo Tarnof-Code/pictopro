@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>Dashboard</title>
 </head>
@@ -8,16 +8,12 @@
 <h1>Page Dashboard Pro</span>!</h1>
 <h2>Bienvenue, <span th:text="${username}"></span>!</h2>
 <div class="container">
-    <div sec:authorize="isAuthenticated()">
-        <form id="logoutForm" method="POST" th:action="@{/logout}">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-
-        <h2>Welcome <span sec:authentication="name"></span> |
-            <button onclick="document.forms['logoutForm'].submit()">Se déconnecter</button>
-        </h2>
+    <div sec:authorize="hasAuthority('ROLE_ADMIN')">Text visible to admin.</div>
+    <div sec:authorize="hasAuthority('ADMIN')">Text visible to admin.</div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">Text visible to admin.</div>
+    <div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
+    <div sec:authorize="hasRole('PRO')">Text visible to pro.</div>
     </div>
-</div>
 </body>
 <div th:replace="~{components/footer :: footer}"></div>
 </html></html>
