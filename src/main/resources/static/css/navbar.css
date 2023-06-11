@@ -5,6 +5,7 @@
 
 .navbar-nav {
     margin-right: 5rem;
+    background-color: #2F9DAE;
 }
 
 .nav-link {
@@ -33,4 +34,8 @@ li {
     margin-left: 1rem;
     color: white;
     font-size: smaller;
+}
+
+.username {
+    color: #e58463;
 }
