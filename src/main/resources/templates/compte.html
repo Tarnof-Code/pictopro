@@ -23,12 +23,18 @@
                                                 <input th:field="*{username}" class="form-control form-control-lg" type="text" name="username"
                                                        placeholder="Entrer votre pseudonyme"/>
                                             </div>
+                                            <div th:if="${#fields.hasErrors('username')}">
+                                                <p th:errors="*{username}" class="error-message"></p>
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Nom</label>
                                                 <input th:field="*{nom}" class="form-control form-control-lg" type="text" name="nom"
                                                        placeholder="Entrer votre nom"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('nom')}">
+                                                <p th:errors="*{nom}" class="error-message"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -39,12 +45,18 @@
                                                 <input th:field="*{password}" class="form-control form-control-lg" type="password"
                                                        name="password" placeholder="Entrer votre mot de passe"/>
                                             </div>
+                                            <div th:if="${#fields.hasErrors('password')}">
+                                                <p th:errors="*{password}" class="error-message"></p>
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Prénom</label>
                                                 <input th:field="*{prenom}" class="form-control form-control-lg" type="text" name="prenom"
                                                        placeholder="Entrer votre prénom"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('prenom')}">
+                                                <p th:errors="*{prenom}" class="error-message"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -56,6 +68,9 @@
                                                        name="confirmPassword"
                                                        placeholder="Confirmer votre mot de passe"/>
                                             </div>
+                                            <div th:if="${#fields.hasErrors('confirmPassword')}">
+                                                <p th:errors="*{confirmPassword}" class="error-message"></p>
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
@@ -63,6 +78,9 @@
                                                 <input th:field="*{dateNaissance}" class="form-control form-control-lg" type="date"
                                                        name="dateNaissance"
                                                        placeholder="Entrer votre date de naissance"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('dateNaissance')}">
+                                                <p th:errors="*{dateNaissance}" class="error-message"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -73,12 +91,18 @@
                                                 <input th:field="*{email}" class="form-control form-control-lg" type="email" name="email"
                                                        placeholder="Entrer votre adresse email"/>
                                             </div>
+                                            <div th:if="${#fields.hasErrors('email')}">
+                                                <p th:errors="*{email}" class="error-message"></p>
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Service/Département</label>
                                                 <input th:field="*{service}" class="form-control form-control-lg" type="text" name="service"
                                                        placeholder="Entrer votre Service/Département"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('service')}">
+                                                <p th:errors="*{service}" class="error-message"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -88,6 +112,9 @@
                                                 <label class="form-label">Téléphone</label>
                                                 <input th:field="*{telephone}" class="form-control form-control-lg" type="text" name="telephone"
                                                        placeholder="Entrer votre numéro de téléphone"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('telephone')}">
+                                                <p th:errors="*{telephone}" class="error-message"></p>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-lg-6 col-xl-6">
