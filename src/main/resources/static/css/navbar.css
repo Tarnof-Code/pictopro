@@ -39,3 +39,7 @@ li {
 .username {
     color: #e58463;
 }
+
+.error-message {
+    color: red;
+}

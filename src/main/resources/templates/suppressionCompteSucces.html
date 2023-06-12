@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Echec de l'inscription</title>
+    <title>Succès de la suppression du compte</title>
     <link rel="stylesheet" href="/css/succesEchec.css"/>
 </head>
 <body>
 <div class="main">
     <div class="container a-container" id="a-container">
         <form class="form" id="a-form">
-            <h1 class="switch__title title-2">Echec de l'inscription !</h1>
-            <p class="switch__description description">Une erreur est survenue lors de l'enregistrement des données.</p><br>>
-            <p class="switch__description description">Veuillez ressaisir vos données sur la page d'inscription.</p><br>
-            <a th:href="@{/register}" class="switch__button button-i switch-btn a-button" type="button">
-                <p>Retourner sur la page d'inscription</p>
+            <h1 class="switch__title title-1">Suppression du compte validée !</h1>
+            <h2 class="switch__title title">Bienvenue sur
+                <span class="PBlue">P</span>icto<span class="PRouge">P</span>icto!</h2>
+            <p class="switch__description description">Destinée à développer la communication à l'aide de pictogrammes,
+                l'application est réservée aux professionnels de santé qui en font la demande.</p><br>
+            <p class="switch__description description">L'inscription vous permettra un suivi des progrès de votre
+                patient
+                ainsi que l'intégration de nouveaux pictogrammes choisis par vos soins.</p><br>
+            <a th:href="@{/logout}" class="switch__button button-i switch-btn a-button" type="button">
+                <p>Se rendre sur la page d'accueil</p>
             </a>
         </form>
         <div class="droit padding-b">
@@ -38,4 +43,4 @@
     </div>
 </div>
 </body>
-</html>
+</html

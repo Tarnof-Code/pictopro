@@ -10,4 +10,5 @@ public interface ProfessionnelRepository extends JpaRepository<Professionnel, In
 
 	Professionnel findById(int id);
 
+	void deleteByUsername(String username);
 }

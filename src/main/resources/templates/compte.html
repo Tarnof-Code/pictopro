@@ -15,19 +15,19 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="m-sm-3">
-                                <form>
+                                <form th:action="@{/updateCompte}" method="post" th:object="${user}" >
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Pseudonyme</label>
-                                                <input class="form-control form-control-lg" type="text" name="username"
+                                                <input th:field="*{username}" class="form-control form-control-lg" type="text" name="username"
                                                        placeholder="Entrer votre pseudonyme"/>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Nom</label>
-                                                <input class="form-control form-control-lg" type="text" name="nom"
+                                                <input th:field="*{nom}" class="form-control form-control-lg" type="text" name="nom"
                                                        placeholder="Entrer votre nom"/>
                                             </div>
                                         </div>
@@ -36,14 +36,14 @@
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Mot de passe</label>
-                                                <input class="form-control form-control-lg" type="password"
+                                                <input th:field="*{password}" class="form-control form-control-lg" type="password"
                                                        name="password" placeholder="Entrer votre mot de passe"/>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Prénom</label>
-                                                <input class="form-control form-control-lg" type="text" name="prenom"
+                                                <input th:field="*{prenom}" class="form-control form-control-lg" type="text" name="prenom"
                                                        placeholder="Entrer votre prénom"/>
                                             </div>
                                         </div>
@@ -52,7 +52,7 @@
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Conrfirmer le mot de passe</label>
-                                                <input class="form-control form-control-lg" type="password"
+                                                <input th:field="*{confirmPassword}" class="form-control form-control-lg" type="password"
                                                        name="confirmPassword"
                                                        placeholder="Confirmer votre mot de passe"/>
                                             </div>
@@ -60,7 +60,7 @@
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Date de naissance</label>
-                                                <input class="form-control form-control-lg" type="date"
+                                                <input th:field="*{dateNaissance}" class="form-control form-control-lg" type="date"
                                                        name="dateNaissance"
                                                        placeholder="Entrer votre date de naissance"/>
                                             </div>
@@ -70,14 +70,14 @@
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Email</label>
-                                                <input class="form-control form-control-lg" type="email" name="email"
+                                                <input th:field="*{email}" class="form-control form-control-lg" type="email" name="email"
                                                        placeholder="Entrer votre adresse email"/>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Service/Département</label>
-                                                <input class="form-control form-control-lg" type="text" name="service"
+                                                <input th:field="*{service}" class="form-control form-control-lg" type="text" name="service"
                                                        placeholder="Entrer votre Service/Département"/>
                                             </div>
                                         </div>
@@ -86,20 +86,25 @@
                                         <div class="col-sm-6 col-lg-6 col-xl-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Téléphone</label>
-                                                <input class="form-control form-control-lg" type="text" name="telephone"
+                                                <input th:field="*{telephone}" class="form-control form-control-lg" type="text" name="telephone"
                                                        placeholder="Entrer votre numéro de téléphone"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-6 col-xl-6">
+                                            <div class="mb-3">
+                                                <input th:field="*{id}" type="hidden"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row justify-content-center">
                                         <div class="col-sm-6 col-md-6 col-lg-6 col-xl-5">
                                             <div class="d-grid gap-2 mt-3">
-                                                <a href="index.html" class="btn btn-lg btn-success">Mettre à jour les informations</a>
+                                                <button type="submit" class="btn btn-lg btn-success">Mettre à jour les informations</button>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4">
                                             <div class="d-grid gap-2 mt-3">
-                                                <a href="index.html" class="btn btn-lg btn-danger">Supprimer le compte</a>
+                                                <a th:href="@{/compte/delete}" class="btn btn-lg btn-danger">Supprimer le compte</a>
                                             </div>
                                         </div>
                                     </div>

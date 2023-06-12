@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
+
     @Autowired
     private SecurityService securityService;
 
@@ -21,11 +22,13 @@ public class HomeController {
         return "connexion";
     }
 
-//    @PostMapping("/login")
-//    public String registration(@ModelAttribute("loginForm") Professionnel loginForm, BindingResult bindingResult) throws RuntimeException {
-//        {
-//
-//            return "dashboard";
-//        }
-//    }
+    @GetMapping("/suppressionCompteSucces")
+    public String goSuppressionCompteSucces() {
+        return "suppressionCompteSucces";
+    }
+
+    @GetMapping("/suppressionCompteEchec")
+    public String goSuppressionCompteEchec() {
+        return "suppressionCompteEchec";
+    }
 }
