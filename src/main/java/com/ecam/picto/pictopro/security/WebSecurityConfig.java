@@ -17,11 +17,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity
-(
-//securedEnabled = true,
-// jsr250Enabled = true,
-        prePostEnabled = true)
+        (
+                securedEnabled = true,
+                jsr250Enabled = true,
+                prePostEnabled = true)
 public class WebSecurityConfig {
+    public WebSecurityConfig() {
+        super();
+    }
 
     @Qualifier("userDetailsServiceImpl")
     @Autowired
@@ -49,6 +52,8 @@ public class WebSecurityConfig {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll();
 
         return http.build();

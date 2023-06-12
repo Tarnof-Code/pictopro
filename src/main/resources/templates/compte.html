@@ -4,8 +4,149 @@
     <title>Mon compte</title>
 </head>
 <body>
-    <div th:replace="~{components/navBar}"></div>
-    <h1 th:text="${message}"></h1>
+<div th:replace="~{components/navBar}"></div>
+<link href="/css/admin.css" rel="stylesheet">
+<h2 class="text-center pt-5 pb-5">Informations personnelles</h2>
+<main class="d-flex w-100">
+    <div class="container d-flex flex-column">
+        <div class="row">
+            <div class="col-sm-10 col-md-10 col-lg-12 col-xl-12 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="m-sm-3">
+                                <form th:action="@{/updateCompte}" method="post" th:object="${user}" >
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Pseudonyme</label>
+                                                <input th:field="*{username}" class="form-control form-control-lg" type="text" name="username"
+                                                       placeholder="Entrer votre pseudonyme"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('username')}">
+                                                <p th:errors="*{username}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Nom</label>
+                                                <input th:field="*{nom}" class="form-control form-control-lg" type="text" name="nom"
+                                                       placeholder="Entrer votre nom"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('nom')}">
+                                                <p th:errors="*{nom}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Mot de passe</label>
+                                                <input th:field="*{password}" class="form-control form-control-lg" type="password"
+                                                       name="password" placeholder="Entrer votre mot de passe"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('password')}">
+                                                <p th:errors="*{password}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Prénom</label>
+                                                <input th:field="*{prenom}" class="form-control form-control-lg" type="text" name="prenom"
+                                                       placeholder="Entrer votre prénom"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('prenom')}">
+                                                <p th:errors="*{prenom}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Conrfirmer le mot de passe</label>
+                                                <input th:field="*{confirmPassword}" class="form-control form-control-lg" type="password"
+                                                       name="confirmPassword"
+                                                       placeholder="Confirmer votre mot de passe"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('confirmPassword')}">
+                                                <p th:errors="*{confirmPassword}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date de naissance</label>
+                                                <input th:field="*{dateNaissance}" class="form-control form-control-lg" type="date"
+                                                       name="dateNaissance"
+                                                       placeholder="Entrer votre date de naissance"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('dateNaissance')}">
+                                                <p th:errors="*{dateNaissance}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Email</label>
+                                                <input th:field="*{email}" class="form-control form-control-lg" type="email" name="email"
+                                                       placeholder="Entrer votre adresse email"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('email')}">
+                                                <p th:errors="*{email}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Service/Département</label>
+                                                <input th:field="*{service}" class="form-control form-control-lg" type="text" name="service"
+                                                       placeholder="Entrer votre Service/Département"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('service')}">
+                                                <p th:errors="*{service}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-lg-6 col-xl-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Téléphone</label>
+                                                <input th:field="*{telephone}" class="form-control form-control-lg" type="text" name="telephone"
+                                                       placeholder="Entrer votre numéro de téléphone"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('telephone')}">
+                                                <p th:errors="*{telephone}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-6 col-xl-6">
+                                            <div class="mb-3">
+                                                <input th:field="*{id}" type="hidden"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-5">
+                                            <div class="d-grid gap-2 mt-3">
+                                                <button type="submit" class="btn btn-lg btn-success">Mettre à jour les informations</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4">
+                                            <div class="d-grid gap-2 mt-3">
+                                                <a th:href="@{'/deleteCompte/'+ ${user.id} }" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?')" class="btn btn-lg btn-danger">Supprimer le compte</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script src="/js/admin.js"></script>
 </body>
 <div th:replace="~{components/footer :: footer}"></div>
 </html>

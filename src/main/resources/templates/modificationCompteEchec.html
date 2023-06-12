@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Echec de l'inscription</title>
+    <title>Echec de la modification du compte</title>
     <link rel="stylesheet" href="/css/succesEchec.css"/>
 </head>
 <body>
 <div class="main">
     <div class="container a-container" id="a-container">
         <form class="form" id="a-form">
-            <h1 class="switch__title title-2">Echec de l'inscription !</h1>
-            <p class="switch__description description">Une erreur est survenue lors de l'enregistrement des données.</p><br>>
-            <p class="switch__description description">Veuillez ressaisir vos données sur la page d'inscription.</p><br>
-            <a th:href="@{/register}" class="switch__button button-i switch-btn a-button" type="button">
-                <p>Retourner sur la page d'inscription</p>
+            <h1 class="switch__title title-2">Echec de la modification du compte !</h1>
+            <p class="switch__description description">Une erreur est survenue lors de la modification du compte.</p>
+            <br>
+            <p class="switch__description description">Veuillez recommencer l'opération.</p><br>
+            <a th:href="@{/compte}" class="switch__button button-i switch-btn a-button" type="button">
+                <p>Retourner sur mon compte</p>
             </a>
         </form>
         <div class="droit padding-b">

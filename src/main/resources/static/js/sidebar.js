@@ -21,7 +21,7 @@ if ('speechSynthesis' in window) {
 function textToSpeech(messageToSpeech){
     if ('speechSynthesis' in window) {
         var message = new SpeechSynthesisUtterance();
-        message.voice = voices[9];
+        // message.voice = voices[9];
         message.text = messageToSpeech;
         message.lang = "fr-FR"; // voix en français
         message.rate = 1;

@@ -1,56 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 
 <head>
-  <title>Page Echanges</title>
-  <link rel="stylesheet" href="/css/phrasePageEchange.css"/>
+    <title>Page Echanges</title>
+    <link rel="stylesheet" href="/css/phrasePageEchange.css"/>
 </head>
 
 <body>
-    <div id="hidden-navbar">
-        <div  th:replace="~{components/navBar}"></div>
-    </div>
+<div id="hidden-navbar">
+    <div th:replace="~{components/navBar}"></div>
+</div>
 
-    <div class="container-fluid">
-      <div class="row">
+<div class="container-fluid">
+    <div class="row">
         <div class="col-12 col-lg-11">
-              <div class="dropdown mt-3 d-flex justify-content-center rounded-4">
+            <div class="dropdown mt-3 d-flex justify-content-center rounded-4">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Choisir une question
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" >Question 1</a></li>
-                    <li><a class="dropdown-item" >Question 2</a></li>
-                    <li><a class="dropdown-item" >Question 3</a></li>
+                    <li><a class="dropdown-item">Question 1</a></li>
+                    <li><a class="dropdown-item">Question 2</a></li>
+                    <li><a class="dropdown-item">Question 3</a></li>
                 </ul>
-              </div>
-              <div class="phraseConteneur pe-lg-2 d-flex justify-content-center align-items-center rounded-4">
+            </div>
+            <div class="phraseConteneur pe-lg-2 d-flex justify-content-center align-items-center rounded-4">
                 <span id="contenuPhrase"></span>
-              </div>
-              <div th:replace="~{components/dragAndDrop}"></div>
-              <div th:replace="~{components/pictosPageEchange}"></div>
+            </div>
+            <div th:replace="~{components/dragAndDrop}"></div>
+            <div th:replace="~{components/pictosPageEchange}"></div>
         </div>
         <div class="sidebarConteneur pt-lg-4 pe-lg-4 col-12 col-lg-1">
             <div th:replace="~{components/sideBar}"></div>
         </div>
-      </div>
     </div>
+</div>
 
-  <div th:replace="~{components/footer :: footer}"></div>
+<div th:replace="~{components/footer :: footer}"></div>
 
 
-  <script src="/js/accordAdjectif.js"></script>
-  <script src="/js/accordNom.js"></script>
-  <script src="/js/formeNegative.js"></script>
-  <script src="/js/formeInterrogative.js"></script>
-  <script src="/js/conjuguerAuPresent.js"></script>
-  <script src="/js/conjuguerAuFutur.js"></script>
-  <script src="/js/conjuguerAuPasse.js"></script>
-  <script src="/js/conjugaison.js"></script>
-  <script src="/js/construireUnePhrase.js"></script>
-  <script src="/js/dragAndDrop.js"></script>
-  <script src="/js/sidebar.js"></script>
-  <script src="/js/recupParCategorie.js"></script>
+<script src="/js/accordAdjectif.js"></script>
+<script src="/js/accordNom.js"></script>
+<script src="/js/formeNegative.js"></script>
+<script src="/js/formeInterrogative.js"></script>
+<script src="/js/conjuguerAuPresent.js"></script>
+<script src="/js/conjuguerAuFutur.js"></script>
+<script src="/js/conjuguerAuPasse.js"></script>
+<script src="/js/conjugaison.js"></script>
+<script src="/js/construireUnePhrase.js"></script>
+<script src="/js/dragAndDrop.js"></script>
+<script src="/js/sidebar.js"></script>
+<script src="/js/recupParCategorie.js"></script>
 </body>
 
 </html>

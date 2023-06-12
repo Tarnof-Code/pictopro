@@ -1,26 +1,45 @@
 .navbar {
-  background-color: #2F9DAE;
-  height: 90px;
+    background-color: #2F9DAE;
+    height: 90px;
 }
 
-.navbar-nav{
-margin-right:5rem;
+.navbar-nav {
+    margin-right: 5rem;
+    background-color: #2F9DAE;
 }
 
 .nav-link {
- color: white !important;
+    color: white !important;
 }
 
-.nav-link:hover{
-color: #E5FF48 !important;
+.nav-link:hover {
+    color: #E5FF48 !important;
 }
 
-.active{
-color: #E5FF48 !important;
+.active {
+    color: #E5FF48 !important;
 }
 
-.logo{
-margin-left:7rem;
-height:70px;
+.logo {
+    margin-left: 7rem;
+    height: 70px;
 }
 
+li {
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+.dash-title {
+    margin-left: 1rem;
+    color: white;
+    font-size: smaller;
+}
+
+.username {
+    color: #e58463;
+}
+
+.error-message {
+    color: red;
+}
