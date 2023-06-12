@@ -16,7 +16,7 @@ public interface ProfessionnelService {
 
 	Professionnel findByUsername (String username);
 
-	void deleteUser(String username);
+	void deleteUserByUsername(String username);
 
-	void deleteById (Integer id);
+	void deleteCompteById (int id);
 }

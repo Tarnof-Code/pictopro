@@ -53,11 +53,11 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
 		return professionnelRepository.findByUsername(username);
 	}
 
-	public void deleteById(Integer id) {
+	public void deleteCompteById(int id) {
 		professionnelRepository.deleteById(id);
 	}
 
-	public void deleteUser(String username) {
+	public void deleteUserByUsername(String username) {
 		professionnelRepository.deleteByUsername(username);
 	}
 }

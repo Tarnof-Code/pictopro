@@ -2,6 +2,7 @@ package com.ecam.picto.pictopro.controller;
 
 import com.ecam.picto.pictopro.entity.Professionnel;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -41,12 +44,10 @@ public class CompteController {
         }
     }
 
-    @GetMapping("/deleteCompte")
-    public String deleteCompte(Authentication authentication) throws RuntimeException {
+    @GetMapping("/deleteCompte/{id}")
+    public String deleteCompteById(@PathVariable(name = "id") int id) throws RuntimeException {
         try {
-            String username = authentication.getName();
-            System.out.println(authentication.getName());
-            professionnelService.deleteUser(username);
+            professionnelService.deleteCompteById(id);
             return "redirect:/suppressionCompteSucces";
         } catch (RuntimeException e) {
             return "redirect:/suppressionCompteEchec";
