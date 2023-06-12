@@ -34,6 +34,21 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/mentions")
+    public String goMentions() {
+        return "mentions";
+    }
+
+    @GetMapping("/partners")
+    public String goPartners() {
+        return "partners";
+    }
+
+    @GetMapping("/a_propos")
+    public String goAPropos() {
+        return "a_propos";
+    }
+
     @GetMapping("/suppressionCompteSucces")
     public String goSuppressionCompteSucces() {
         return "suppressionCompteSucces";

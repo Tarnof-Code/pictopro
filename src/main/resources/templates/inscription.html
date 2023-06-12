@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Inscription</title>
     <link rel="stylesheet" href="/css/inscription.css"/>
+    <link rel="icon" type="favicon" th:href="@{/images/Logos/Logo.png}"/>
 </head>
 <body>
 <div class="main">
@@ -16,26 +17,31 @@
                     <span th:class="has-error" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="text" th:field="*{prenom}" name="prenom" placeholder="Prénom*" required autofocus><br>
+                    <input class="form__input" type="text" th:field="*{prenom}" name="prenom" placeholder="Prénom*"
+                           required autofocus><br>
                     <span th:class="has-error" th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="text" th:field="*{dateNaissance}" onfocus="(this.type='date')" name="dateNaissance"
+                    <input class="form__input" type="text" th:field="*{dateNaissance}" onfocus="(this.type='date')"
+                           name="dateNaissance"
                            placeholder="Date de naissance*" required><br>
                     <span th:class="has-error" th:if="${#fields.hasErrors('dateNaissance')}"
                           th:errors="*{dateNaissance}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="text" th:field="*{service}" name="service" placeholder="Service/Département médical*"
+                    <input class="form__input" type="text" th:field="*{service}" name="service"
+                           placeholder="Service/Département médical*"
                            required><br>
                     <span th:class="has-error" th:if="${#fields.hasErrors('service')}" th:errors="*{service}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="email" th:field="*{email}" name="email" placeholder="Email*" required><br>
+                    <input class="form__input" type="email" th:field="*{email}" name="email" placeholder="Email*"
+                           required><br>
                     <span th:class="has-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="text" th:field="*{telephone}" name="telephone" placeholder="Numéro de téléphone*"
+                    <input class="form__input" type="text" th:field="*{telephone}" name="telephone"
+                           placeholder="Numéro de téléphone*"
                            required><br>
                     <span th:class="has-error" th:if="${#fields.hasErrors('telephone')}"
                           th:errors="*{telephone}"></span>
@@ -50,7 +56,8 @@
                 <img th:src="@{/images/Logos/Logo PNG.png}" alt="" width="50px">
                 <h2 class="form_title title">Identifiants</h2>
                 <div class="pss">
-                    <input class="form__input" type="text" th:field="*{username}" name="username" placeholder="Pseudonyme*" required autofocus><br>
+                    <input class="form__input" type="text" th:field="*{username}" name="username"
+                           placeholder="Pseudonyme*" required autofocus><br>
                     <span th:class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                 </div>
 
