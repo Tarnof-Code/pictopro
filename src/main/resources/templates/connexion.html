@@ -3,6 +3,7 @@
 <head>
     <title>Connexion</title>
     <link rel="stylesheet" href="/css/connexion.css"/>
+    <link rel="icon" type="favicon" th:href="@{/images/Logos/Logo.png}"/>
 </head>
 <body>
 <div class="main">
@@ -49,7 +50,6 @@
             <h2 class="form_title title">Connexion</h2>
             <form th:action="@{/login}" method="post">
 <!--                  th:object="${loginForm}"-->
-
                 <div>
                     <input class="form__input" type="text" name="username" placeholder="Pseudonyme" required autofocus>
                 </div>
@@ -57,7 +57,6 @@
                     <input class="form__input" type="password" name="password" placeholder="Mot de Passe" required><br>
                     <span class="has-error" th:text="${error}"></span>
                 </div>
-
 <!--                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
                 <div>
                     <a th:href="@{/forgot_password_request}" class="form__link">Mot de passe oublié ?</a>

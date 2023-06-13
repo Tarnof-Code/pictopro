@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface ProfessionnelService {
 
-	void save(Professionnel professionnel);
+	void savePro(Professionnel professionnel);
 
 	List<Professionnel> findAll();
 
@@ -16,7 +16,7 @@ public interface ProfessionnelService {
 
 	Professionnel findByUsername (String username);
 
-	void deleteUserByUsername(String username);
-
 	void deleteCompteById (int id);
+
+	void updateAdmin(Professionnel user);
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 12 juin 2023 à 09:40
+-- Généré le : mar. 13 juin 2023 à 15:20
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `dossier_medical` (
   `updated_at` datetime(6) DEFAULT NULL,
   `professionnel_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKqnfn437i833ltnjcrl9wu4plo` (`professionnel_id`)
+  KEY `FK212qku1ujk4g3pmb2oe9rhe85` (`professionnel_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -290,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `mot` (
   PRIMARY KEY (`id`),
   KEY `FKmwb1cm2lcser63v964fas9102` (`categorie_id`),
   KEY `FK94s0buj6qhfhh2n76vymttn5n` (`irregulier_id`),
-  KEY `FKk46y2d4gysg291pyyhwwe7irm` (`professionnel_id`),
+  KEY `FK6dmxvg9wj82wraxvmvxqefptg` (`professionnel_id`),
   KEY `FKhiy1177oa9hpyss4vj3x0yglx` (`sous_categorie_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=534 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1988,65 +1988,6 @@ INSERT INTO `phrase` (`id`, `audio`, `created_at`, `score`, `dossier_medical_id`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `professionnel`
---
-
-DROP TABLE IF EXISTS `professionnel`;
-CREATE TABLE IF NOT EXISTS `professionnel` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `created_at` datetime(6) DEFAULT NULL,
-  `date_naissance` date NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `prenom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `service` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `telephone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_dtt2y6pmrp00hp7s3v01ewoss` (`email`),
-  UNIQUE KEY `UK_nrh1tottrldn8ti7oh28a6774` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `professionnel`
---
-
-INSERT INTO `professionnel` (`id`, `created_at`, `date_naissance`, `email`, `nom`, `password`, `prenom`, `service`, `telephone`, `username`) VALUES
-(1, '2023-06-08 13:44:53.601000', '2023-06-01', 'admin@mail.com', 'admin', '$2a$10$G7vYZ6Hf.eiBAbPUMAbFku8.k39zBIxnQkb1XSmBGNOuxb2gXDRya', 'admin', 'admin', '1111111111', 'adminA1'),
-(2, '2023-06-08 13:46:28.696000', '2023-06-11', 'professionnel@mail.com', 'professionnel', '$2a$10$QWXtJeK5UzGiOs/hyKSPCurOeqvA/mEgZ67/RVwMp.el8DZjoBPfW', 'professionnel', 'professionnel', '2222222222', 'professionnelB2'),
-(3, '2023-06-08 13:53:41.929000', '2023-06-02', 'jean.dupont@mail.com', 'Dupont', '$2a$10$vyzTo4avm3xvXER/uzlDoOwgromQVJZX8CNaXCWG4KQaK8tHdJ/ny', 'Jean', 'Pédiatrie', '3333333333', 'jeandupontA1'),
-(4, '2023-06-08 13:59:04.479000', '2023-06-10', 'john.doe@mail.com', 'Doe', '$2a$10$onU3DCQ8Bx9alLUdTBLKrekLjN1CyZVYYkH4WecQSID4S70KV.uIO', 'John', 'Psychiatrie', '4444444444', 'johndoeA1'),
-(5, '2023-06-08 17:53:19.592000', '2023-06-03', 'jean.deleger@mail.com', 'de Léger', '$2a$10$RXwWOWTwtP3mpmUG02YFmOefhNIBey6DnRrnuYVxZAnI.m.GnkDPC', 'Jean-Luc', 'Département CHU-02', '+33694566795', 'testregex33Z');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `professionnel_roles`
---
-
-DROP TABLE IF EXISTS `professionnel_roles`;
-CREATE TABLE IF NOT EXISTS `professionnel_roles` (
-  `professionnels_id` int NOT NULL,
-  `roles_id` int NOT NULL,
-  PRIMARY KEY (`professionnels_id`,`roles_id`),
-  KEY `FKjn5obi6ymua75nvgf5qu3won9` (`roles_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `professionnel_roles`
---
-
-INSERT INTO `professionnel_roles` (`professionnels_id`, `roles_id`) VALUES
-(1, 1),
-(2, 2),
-(3, 2),
-(4, 2),
-(5, 2);
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `question`
 --
 
@@ -2081,7 +2022,7 @@ CREATE TABLE IF NOT EXISTS `question_categorie` (
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -2170,6 +2111,43 @@ INSERT INTO `tag` (`id`, `nom`) VALUES
 (14, 'auxiliaire_avoir'),
 (15, 'auxiliaire_etre');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) DEFAULT NULL,
+  `date_naissance` date NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `prenom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `service` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `telephone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `role_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`),
+  UNIQUE KEY `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username`),
+  KEY `FKn82ha3ccdebhokx3a8fgdqeyy` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `created_at`, `date_naissance`, `email`, `nom`, `password`, `prenom`, `service`, `telephone`, `username`, `role_id`) VALUES
+(1, '2023-06-08 13:44:53.601000', '2023-06-01', 'admin@mail.com', 'admin', '$2a$10$G7vYZ6Hf.eiBAbPUMAbFku8.k39zBIxnQkb1XSmBGNOuxb2gXDRya', 'admin', 'admin', '1111111111', 'adminA1', 1),
+(2, NULL, '2023-06-11', 'professionnel@mail.com', 'professionnelok', '$2a$10$YsLYQY/WEFU97HNmLUI8wetrMbgxW.1lFH8INz.U61SlHrBMseOau', 'professionnel', 'professionnel', '2222222222', 'professionnelB2', 2),
+(3, '2023-06-08 13:53:41.929000', '2023-06-02', 'jean.dupont@mail.com', 'Dupont', '$2a$10$vyzTo4avm3xvXER/uzlDoOwgromQVJZX8CNaXCWG4KQaK8tHdJ/ny', 'Jean', 'Pédiatrie', '3333333333', 'jeandupontA1', 2),
+(4, '2023-06-08 13:59:04.479000', '2023-06-10', 'john.doe@mail.com', 'Doe', '$2a$10$onU3DCQ8Bx9alLUdTBLKrekLjN1CyZVYYkH4WecQSID4S70KV.uIO', 'John', 'Psychiatrie', '4444444444', 'johndoeA1', 2),
+(5, '2023-06-08 17:53:19.592000', '2023-06-03', 'jean.deleger@mail.com', 'de Léger', '$2a$10$RXwWOWTwtP3mpmUG02YFmOefhNIBey6DnRrnuYVxZAnI.m.GnkDPC', 'Jean-Luc', 'Département CHU-02', '+33694566795', 'testregex33Z', 2),
+(6, NULL, '2023-06-08', 'testadminA1@mail.com', 'testadmino', '$2a$10$nIRj4/UIfR4VzonD9cnmyOKHe9e6VwMkOsru7zwgYZ8Ymi.5c7y6O', 'testadmin', 'testadminA1', '5555555555', 'testadminA1', 1);
+
 --
 -- Contraintes pour les tables déchargées
 --
@@ -2184,15 +2162,15 @@ ALTER TABLE `conjugaison`
 -- Contraintes pour la table `dossier_medical`
 --
 ALTER TABLE `dossier_medical`
-  ADD CONSTRAINT `FKqnfn437i833ltnjcrl9wu4plo` FOREIGN KEY (`professionnel_id`) REFERENCES `professionnel` (`id`);
+  ADD CONSTRAINT `FK212qku1ujk4g3pmb2oe9rhe85` FOREIGN KEY (`professionnel_id`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `mot`
 --
 ALTER TABLE `mot`
+  ADD CONSTRAINT `FK6dmxvg9wj82wraxvmvxqefptg` FOREIGN KEY (`professionnel_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `FK94s0buj6qhfhh2n76vymttn5n` FOREIGN KEY (`irregulier_id`) REFERENCES `irregulier` (`id`),
   ADD CONSTRAINT `FKhiy1177oa9hpyss4vj3x0yglx` FOREIGN KEY (`sous_categorie_id`) REFERENCES `sous_categorie` (`id`),
-  ADD CONSTRAINT `FKk46y2d4gysg291pyyhwwe7irm` FOREIGN KEY (`professionnel_id`) REFERENCES `professionnel` (`id`),
   ADD CONSTRAINT `FKmwb1cm2lcser63v964fas9102` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`);
 
 --
@@ -2217,13 +2195,6 @@ ALTER TABLE `phrase`
   ADD CONSTRAINT `FKigjyb0chtqi52id0csjhod5g5` FOREIGN KEY (`dossier_medical_id`) REFERENCES `dossier_medical` (`id`);
 
 --
--- Contraintes pour la table `professionnel_roles`
---
-ALTER TABLE `professionnel_roles`
-  ADD CONSTRAINT `FK7rqk0i8vkmiblgva3fo1un7ix` FOREIGN KEY (`professionnels_id`) REFERENCES `professionnel` (`id`),
-  ADD CONSTRAINT `FKjn5obi6ymua75nvgf5qu3won9` FOREIGN KEY (`roles_id`) REFERENCES `role` (`id`);
-
---
 -- Contraintes pour la table `question_categorie`
 --
 ALTER TABLE `question_categorie`
@@ -2235,6 +2206,12 @@ ALTER TABLE `question_categorie`
 --
 ALTER TABLE `sous_categorie`
   ADD CONSTRAINT `FKrqdn0l7bb88g42fs81pbhevag` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`);
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `FKn82ha3ccdebhokx3a8fgdqeyy` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -40,7 +40,7 @@ public class InscriptionController {
             if (bindingResult.hasErrors()) {
                 return "inscription";
             }
-            professionnelService.save(userForm);
+            professionnelService.savePro(userForm);
 
             securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
 

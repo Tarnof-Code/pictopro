@@ -23,12 +23,22 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
-	public void save(Professionnel user) {
+	public void savePro(Professionnel user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		Optional<Role> defaultRoleOptional = roleRepository.findByName("ROLE_PRO");
 		if (defaultRoleOptional.isPresent()) {
 			Role defaultRole = defaultRoleOptional.get();
-			user.setRoles(Collections.singleton(defaultRole));
+			user.setRole((defaultRole));
+		}
+		professionnelRepository.save(user);
+	}
+
+	public void updateAdmin(Professionnel user) {
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		Optional<Role> defaultRoleOptional = roleRepository.findByName("ROLE_ADMIN");
+		if (defaultRoleOptional.isPresent()) {
+			Role defaultRole = defaultRoleOptional.get();
+			user.setRole((defaultRole));
 		}
 		professionnelRepository.save(user);
 	}

@@ -2,10 +2,11 @@ package com.ecam.picto.pictopro.controller;
 
 import com.ecam.picto.pictopro.entity.Professionnel;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -32,14 +32,25 @@ public class CompteController {
     }
 
     @PostMapping("/updateCompte")
-    public String save(@Valid @ModelAttribute("user") Professionnel user, BindingResult bindingResult) throws RuntimeException {
+    public String save(@Valid @ModelAttribute("user") Professionnel useradminpro, BindingResult bindingResult) {
         try {
             if (bindingResult.hasErrors()) {
                 return "compte";
             }
-            professionnelService.save(user);
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            if (userDetails.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ROLE_ADMIN"))) {
+                // Logic for admin user
+                professionnelService.updateAdmin(useradminpro);
+            } else {
+                // Logic for pro user
+                professionnelService.savePro(useradminpro);
+            }
+
             return "redirect:/modificationCompteSucces";
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             return "redirect:/modificationCompteEchec";
         }
     }
