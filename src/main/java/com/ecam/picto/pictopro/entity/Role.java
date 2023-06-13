@@ -2,6 +2,7 @@ package com.ecam.picto.pictopro.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,8 +15,8 @@ public class Role {
     @Column(length = 20)
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<Professionnel> professionnels;
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
+    private List<Professionnel> listeProfessionnelsParRole;
 
     public Role() {
 
@@ -37,11 +38,11 @@ public class Role {
         this.name = name;
     }
 
-    public Set<Professionnel> getProfessionnels() {
-        return professionnels;
+    public List<Professionnel> getListeProfessionnelsParRole() {
+        return listeProfessionnelsParRole;
     }
 
-    public void setProfessionnels(Set<Professionnel> professionnels) {
-        this.professionnels = professionnels;
+    public void setListeProfessionnelsParRole(List<Professionnel> listeProfessionnelsParRole) {
+        this.listeProfessionnelsParRole = listeProfessionnelsParRole;
     }
 }

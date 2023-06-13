@@ -1,17 +1,15 @@
 package com.ecam.picto.pictopro.security.services;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
+import com.ecam.picto.pictopro.entity.Professionnel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.ecam.picto.pictopro.entity.Professionnel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Objects;
 
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
@@ -26,10 +24,10 @@ public class UserDetailsImpl implements UserDetails {
     @JsonIgnore
     private String password;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    private Collection<? extends GrantedAuthority> authority;
 
     public UserDetailsImpl(int id, String username, String nom, String prenom, Date dateNaissance, String service, String email, String telephone, String password,
-                           Collection<? extends GrantedAuthority> authorities) {
+                           Collection<? extends GrantedAuthority> authority) {
         this.id = id;
         this.username = username;
         this.nom = nom;
@@ -39,19 +37,18 @@ public class UserDetailsImpl implements UserDetails {
         this.email = email;
         this.telephone = telephone;
         this.password = password;
-        this.authorities = authorities;
+        this.authority = authority;
     }
 
     public static UserDetailsImpl build(Professionnel user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getName());
 
-        return new UserDetailsImpl(user.getId(), user.getUsername(), user.getNom(), user.getPrenom(), user.getDateNaissance(), user.getService(), user.getEmail(), user.getTelephone(), user.getPassword(), authorities);
+        return new UserDetailsImpl(user.getId(), user.getUsername(), user.getNom(), user.getPrenom(), user.getDateNaissance(), user.getService(), user.getEmail(), user.getTelephone(), user.getPassword(), Collections.singletonList(authority));
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return authority;
     }
 
     public int getId() {

@@ -2,20 +2,10 @@ package com.ecam.picto.pictopro.entity;
 
 import java.util.*;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -23,6 +13,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "user")
 public class Professionnel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,8 +55,8 @@ public class Professionnel {
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
     private String password;
 
-    @ManyToMany
-    private Set<Role> roles;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Role role;
 
     @OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
     private List<DossierMedical> listeDossiersParProfessionnel;
@@ -85,6 +76,7 @@ public class Professionnel {
     private String confirmPassword;
 
     public Professionnel() {
+
     }
 
 //    public Professionnel(String username, String password, String nom, String prenom, Date dateNaissance, String service, String email, String telephone) {
@@ -97,6 +89,7 @@ public class Professionnel {
 //        this.email = email;
 //        this.telephone = telephone;
 //    }
+
 
     public int getId() {
         return id;
@@ -170,12 +163,12 @@ public class Professionnel {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public List<DossierMedical> getListeDossiersParProfessionnel() {
@@ -222,7 +215,7 @@ public class Professionnel {
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", roles=" + roles +
+                ", roles=" + role +
                 ", listeDossiersParProfessionnel=" + listeDossiersParProfessionnel +
                 ", listeMotsParProfessionnel=" + listeMotsParProfessionnel +
                 ", createdAt=" + createdAt +
