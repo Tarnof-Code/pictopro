@@ -26,7 +26,7 @@ public class EchangeController {
 	@GetMapping("/echange")
 	public String goEchange(Model model) {
 		model.addAttribute("categories", categorieService.afficherCategories());
-		model.addAttribute("mots", motService.findAll());
+	//	model.addAttribute("mots", motService.findAll());
 		model.addAttribute("module", "echange");
 		return "echange";
 	}
