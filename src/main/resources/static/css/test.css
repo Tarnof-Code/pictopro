@@ -1,25 +1,30 @@
-body{
+body {
     max-width: 100% !important;
     max-height: 100vh !important;
-    background-color:#1c6874  !important;
+    background-color: #1c6874 !important;
 }
+
 #logo img {
     height: 6rem;
 }
-#wrapper{
+
+#wrapper {
     height: 90%;
 }
+
 .form-control, .form-control-sm, .accordion-item, .form-select {
-    box-shadow: inset -2px -2px 2px #FFFFFF, inset 2px 2px 2px rgba(222,223,224,0.25);
+    box-shadow: inset -2px -2px 2px #FFFFFF, inset 2px 2px 2px rgba(222, 223, 224, 0.25);
     border-radius: 10px !important;
-    border: 1px solid rgba(222,223,224,1) !important;
+    border: 1px solid rgba(222, 223, 224, 1) !important;
 
 }
-#contentRow{
+
+#contentRow {
     height: 75%;
 }
+
 /*bouton se connecter*/
-#logIn, .register, .resetPassword{
+#logIn, .register, .resetPassword {
     background: #278d9d !important;
     border-radius: 10px !important;
     border: none !important;
@@ -27,80 +32,94 @@ body{
     transition: all 300ms !important;
 }
 
-#logIn:hover, .register:hover, .resetPassword:hover{
-    background-color: #ACE4E7 !important;
-    box-shadow: inset -2px -2px 2px #BDFCFF, inset 2px 2px 2px #99CCCF;
-    color: #17201F !important;
+#logIn:hover, .register:hover, .resetPassword:hover {
+    background-color: #e58463 !important;
+    box-shadow: inset -2px -2px 2px #e58463, inset 2px 2px 2px #e58463;
+    /*color: #ace4e7 !important;*/
 }
 
 /*div connexion*/
-#homeWrapper{
+#homeWrapper {
     width: 50%;
-    padding:4rem;
+    padding: 4rem;
     background-color: #F8F9FA !important;
     box-shadow: 2px 3px 20px 20px rgba(60, 16, 16, 0.14);
     border-radius: 20px;
 }
 
-#guest{
+#guest {
     padding-left: 2rem;
     margin-block: auto;
 }
-#guestText{
-    color:#FFFFFF;
-    margin-top:5rem;
-    text-align:center;
+
+#guestText {
+    color: #FFFFFF;
+    margin-top: 5rem;
+    text-align: center;
 }
-.btnGuest{
+
+.btnGuest {
     border-radius: 10px !important;
     border: none !important;
     color: #000 !important;
     transition: all 300ms !important;
     background-color: #F8F9FA !important;
 }
-.btnGuest:hover{
+
+.btnGuest:hover {
     background-color: #ACE4E7 !important;
     box-shadow: inset -2px -2px 2px #BDFCFF, inset 2px 2px 2px #99CCCF;
     color: #17201F !important;
 }
-.btnGuest a{
+
+.btnGuest a {
     text-decoration: none;
-    color:#000000;
+    color: #000000;
     vertical-align: middle;
 }
-.btnGuest a:hover{
-    color:#000;
+
+.btnGuest a:hover {
+    color: #000;
 }
 
-.bounce{
+.bounce {
     position: relative;
 }
-.bi-arrow-down-circle{
-    position:absolute;
+
+.bi-arrow-down-circle {
+    position: absolute;
 
     animation: bounce 0.9s ease infinite;
 }
-@keyframes bounce{
-    from {top: 20px;}
-    50%  {top: 30px;}
-    to   {top: 20px;}
-}
-.guestMobile{
-    background-color:rgba(12, 84, 95, 0.60);
-    border-radius: 0 0 20px 20px;
-    padding:.8rem 2rem 2rem 2rem;
+
+@keyframes bounce {
+    from {
+        top: 20px;
+    }
+    50% {
+        top: 30px;
+    }
+    to {
+        top: 20px;
+    }
 }
 
-@media(max-width: 767px){
-    #connexion{
+.guestMobile {
+    background-color: rgba(12, 84, 95, 0.60);
+    border-radius: 0 0 20px 20px;
+    padding: .8rem 2rem 2rem 2rem;
+}
+
+@media (max-width: 767px) {
+    #connexion {
         border-radius: 20px 20px 0 0;
-        padding:4rem 1rem 1rem 1rem;
+        padding: 4rem 1rem 1rem 1rem;
     }
 
 }
 
 
-.a-button>p,.a-button:hover>p {
+.a-button > p, .a-button:hover > p {
     color: #ffffff;
     text-decoration: none;
     text-align: center;
@@ -108,16 +127,29 @@ body{
 }
 
 a {
-    text-decoration: underline ;
-    color: #000000 ;
+    text-decoration: underline;
+    color: #000000;
     font-size: large;
 }
 
-a:hover{
-    color:#e58463 !important;
+a:hover {
+    color: #e58463 !important;
     font-weight: bold !important;
 }
 
-.Retour{
+.Retour {
     color: #ace4e7;
+}
+
+.switch__button:hover {
+    box-shadow: 6px 6px 10px #d1d9e6, -6px -6px 10px #f9f9f9;
+    transform: scale(0.985);
+    transition: 0.25s;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    color: #181818;
 }

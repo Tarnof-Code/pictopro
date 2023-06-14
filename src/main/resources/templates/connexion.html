@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Application web destinée aux enfants, adolescents et adultes souffrant d'autisme, de trouble du langage, de la communication et de l'attention"/>
     <title>Connexion</title>
-    <link rel="stylesheet" href="/css/connexion.css"/>
+    <link rel="stylesheet" th:href="@{/css/connexion.css}" type="text/css">
     <link rel="icon" type="favicon" th:href="@{/images/Logos/Logo.png}"/>
 </head>
 <body>
@@ -49,7 +53,7 @@
             <img th:src="@{/images/Logos/Logo PNG.png}" alt="Picto Logo" width="140px">
             <h2 class="form_title title">Connexion</h2>
             <form th:action="@{/login}" method="post">
-<!--                  th:object="${loginForm}"-->
+                <!--                  th:object="${loginForm}"-->
                 <div>
                     <input class="form__input" type="text" name="username" placeholder="Pseudonyme" required autofocus>
                 </div>
@@ -57,7 +61,7 @@
                     <input class="form__input" type="password" name="password" placeholder="Mot de Passe" required><br>
                     <span class="has-error" th:text="${error}"></span>
                 </div>
-<!--                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+                <!--                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
                 <div>
                     <a th:href="@{/forgot_password_request}" class="form__link">Mot de passe oublié ?</a>
                 </div>
