@@ -122,11 +122,13 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
         </dependency>
+        <!-- Mode développeur à supprimer pour la mise en prod -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
+            <artifactId>spring-boot-devtools</artifactId>  <!-- Mode développeur à supprimer pour la mise en prod -->
             <optional>true</optional>
         </dependency>
+        <!-- Mode développeur à supprimer pour la mise en prod -->
     </dependencies>
     <build>
         <plugins>

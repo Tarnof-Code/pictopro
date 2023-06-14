@@ -19,4 +19,6 @@ public interface ProfessionnelService {
 	void deleteCompteById (int id);
 
 	void updateAdmin(Professionnel user);
+
+    Professionnel findByEmail(String email);
 }

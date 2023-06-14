@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface ProfessionnelRepository extends JpaRepository<Professionnel, Integer> {
 	Professionnel findByUsername(String username);
 
+	Professionnel findByEmail(String email);
 	Professionnel findById(int id);
 
 	void deleteByUsername(String username);

@@ -37,7 +37,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "Invalid.userForm.username");
         }
         if (professionnelService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+            errors.rejectValue("username", "Duplicate.userForm.username"); // Vérifie si le pseudo n'existe pas déjà
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
@@ -75,7 +75,9 @@ public class UserValidator implements Validator {
         if (!emailPattern.matcher(user.getEmail()).matches()) {
             errors.rejectValue("email", "Invalid.userForm.email");
         }
-
+        if (professionnelService.findByEmail(user.getEmail()) != null) {
+            errors.rejectValue("email", "Duplicate.userForm.email"); // Vérifie si l'email n'existe pas déjà
+        }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "telephone", "NotEmpty");
         if (!telephonePattern.matcher(user.getTelephone()).matches()) {
             errors.rejectValue("telephone", "Invalid.userForm.telephone");

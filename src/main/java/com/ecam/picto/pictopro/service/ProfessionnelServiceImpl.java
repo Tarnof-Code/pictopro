@@ -62,6 +62,8 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
 	public Professionnel findByUsername(String username) {
 		return professionnelRepository.findByUsername(username);
 	}
+	@Override
+	public Professionnel findByEmail(String email){return professionnelRepository.findByEmail(email);}
 
 	public void deleteCompteById(int id) {
 		professionnelRepository.deleteById(id);
