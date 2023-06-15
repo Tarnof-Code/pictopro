@@ -64,12 +64,13 @@ public class Professionnel {
     @OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
     private List<Mot> listeMotsParProfessionnel;
 
-
-    //	@DateTimeFormat(pattern = "yyyy-MM-dd")
-//	@Temporal(TemporalType.DATE)
-//	@Column(nullable = false)
     @CreationTimestamp
     private Date createdAt;
+
+    @CreationTimestamp
+    private Date modifiedAt;
+
+    private String resetPasswordToken;
 
     @Transient
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe de confirmation doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
@@ -78,18 +79,6 @@ public class Professionnel {
     public Professionnel() {
 
     }
-
-//    public Professionnel(String username, String password, String nom, String prenom, Date dateNaissance, String service, String email, String telephone) {
-//        this.username = username;
-//        this.password = password;
-//        this.nom = nom;
-//        this.prenom = prenom;
-//        this.dateNaissance = dateNaissance;
-//        this.service = service;
-//        this.email = email;
-//        this.telephone = telephone;
-//    }
-
 
     public int getId() {
         return id;
@@ -203,6 +192,22 @@ public class Professionnel {
         this.confirmPassword = confirmPassword;
     }
 
+    public Date getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(Date modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
     @Override
     public String toString() {
         return "Professionnel{" +
@@ -215,10 +220,12 @@ public class Professionnel {
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", roles=" + role +
+                ", role=" + role +
                 ", listeDossiersParProfessionnel=" + listeDossiersParProfessionnel +
                 ", listeMotsParProfessionnel=" + listeMotsParProfessionnel +
                 ", createdAt=" + createdAt +
+                ", modifiedAt=" + modifiedAt +
+                ", resetPasswordToken='" + resetPasswordToken + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
     }

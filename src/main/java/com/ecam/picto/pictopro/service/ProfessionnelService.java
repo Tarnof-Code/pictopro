@@ -8,17 +8,23 @@ import java.util.List;
 @Service
 public interface ProfessionnelService {
 
-	void savePro(Professionnel professionnel);
+    void savePro(Professionnel professionnel);
 
-	List<Professionnel> findAll();
+    List<Professionnel> findAll();
 
-	Professionnel findById(int id);
+    Professionnel findById(int id);
 
-	Professionnel findByUsername (String username);
+    Professionnel findByUsername(String username);
 
-	void deleteCompteById (int id);
+    void deleteCompteById(int id);
 
-	void updateAdmin(Professionnel user);
+    void updateAdmin(Professionnel user);
 
     Professionnel findByEmail(String email);
+
+    void updateResetPasswordToken(String token, String email) throws ProfessionnelNotFoundException;
+
+    Professionnel getByResetPasswordToken(String token);
+
+    void updatePassword(Professionnel user, String newPassword);
 }

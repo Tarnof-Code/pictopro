@@ -34,11 +34,6 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @GetMapping("/forgot_password_request")
-    public String goResetPassword() {
-        return "reset";
-    }
-
     @GetMapping("/mentions")
     public String goMentions() {
         return "mentions";

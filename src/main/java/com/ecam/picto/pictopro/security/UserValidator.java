@@ -1,4 +1,4 @@
-package com.ecam.picto.pictopro;
+package com.ecam.picto.pictopro.security;
 
 import com.ecam.picto.pictopro.entity.Professionnel;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
