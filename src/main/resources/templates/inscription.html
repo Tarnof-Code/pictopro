@@ -18,7 +18,7 @@
                 </div>
                 <div>
                     <input class="form__input" type="text" th:field="*{prenom}" name="prenom" placeholder="Prénom*"
-                           required autofocus><br>
+                           required><br>
                     <span th:class="has-error" th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
                 </div>
                 <div>
