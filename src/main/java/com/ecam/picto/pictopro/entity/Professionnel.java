@@ -72,6 +72,8 @@ public class Professionnel {
 
     private String resetPasswordToken;
 
+    private Date resetPasswordTokenExpiration;
+
     @Transient
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe de confirmation doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
     private String confirmPassword;
@@ -208,6 +210,14 @@ public class Professionnel {
         this.resetPasswordToken = resetPasswordToken;
     }
 
+    public Date getResetPasswordTokenExpiration() {
+        return resetPasswordTokenExpiration;
+    }
+
+    public void setResetPasswordTokenExpiration(Date resetPasswordTokenExpiration) {
+        this.resetPasswordTokenExpiration = resetPasswordTokenExpiration;
+    }
+
     @Override
     public String toString() {
         return "Professionnel{" +
@@ -226,6 +236,7 @@ public class Professionnel {
                 ", createdAt=" + createdAt +
                 ", modifiedAt=" + modifiedAt +
                 ", resetPasswordToken='" + resetPasswordToken + '\'' +
+                ", resetPasswordTokenExpiration=" + resetPasswordTokenExpiration +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
     }

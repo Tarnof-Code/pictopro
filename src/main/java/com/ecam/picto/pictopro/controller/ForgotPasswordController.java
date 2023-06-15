@@ -1,8 +1,7 @@
 package com.ecam.picto.pictopro.controller;
 
-import com.ecam.picto.pictopro.security.PasswordValidator;
-import com.ecam.picto.pictopro.security.UserValidator;
 import com.ecam.picto.pictopro.entity.Professionnel;
+import com.ecam.picto.pictopro.security.PasswordValidator;
 import com.ecam.picto.pictopro.service.ProfessionnelNotFoundException;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
 import com.ecam.picto.pictopro.utility.Utility;
@@ -22,6 +21,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
+import java.util.Date;
 
 @Controller
 public class ForgotPasswordController {
@@ -41,9 +42,10 @@ public class ForgotPasswordController {
     public String processForgotPassword(HttpServletRequest request, Model model) {
         String email = request.getParameter("email");
         String token = RandomString.make(30);
+        Date expirationTime = calculateExpirationTime(); // Calculate the expiration time 24 hours from the current time
 
         try {
-            professionnelService.updateResetPasswordToken(token, email);
+            professionnelService.updateResetPasswordTokenWithExpiration(token, email, expirationTime);
             String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
             sendEmail(email, resetPasswordLink);
             model.addAttribute("message", "Le lien de réinitialisation du mot de passe vous a été envoyé à votre adresse email");
@@ -53,8 +55,13 @@ public class ForgotPasswordController {
         } catch (UnsupportedEncodingException | MessagingException e) {
             model.addAttribute("error", "Erreur durant l'envoi de l'email");
         }
-
         return "forgot_password_form";
+    }
+
+    private Date calculateExpirationTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.HOUR_OF_DAY, 24); // Add 24 hours to the current time
+        return calendar.getTime();
     }
 
     public void sendEmail(String recipientEmail, String link)
@@ -65,11 +72,11 @@ public class ForgotPasswordController {
         helper.setFrom("contact@pictopicto.fr", "Picto Support");
         helper.setTo(recipientEmail);
 
-        String subject = "Voici le lien pour la  réinitialisation du mot de passe";
+        String subject = "Voici le lien pour la réinitialisation du mot de passe";
 
         String content = "<p>Bonjour,</p>"
                 + "<p>Vous avez demandé la réinitialisation de votre mot de passe.</p>"
-                + "<p>Cliquez sur le lien pour changer de mot de passe:</p>"
+                + "<p>Cliquez sur le lien qui est valide durant 24 heures pour changer de mot de passe :</p>"
                 + "<p><a href=\"" + link + "\">Changer mon mot de passe</a></p>"
                 + "<br>"
                 + "<p>Ignorez cet email si vous vous souvenez de votre mot de passe, "
@@ -82,16 +89,18 @@ public class ForgotPasswordController {
         mailSender.send(message);
     }
 
-
     @GetMapping("/reset_password")
     public String showResetPasswordForm(@Param(value = "token") String token, Model model) {
         Professionnel user = professionnelService.getByResetPasswordToken(token);
-        model.addAttribute("token", token);
-        model.addAttribute("userForm", new Professionnel());
+
         if (user == null) {
             model.addAttribute("message", "Token invalide");
             return "message";
         }
+
+        model.addAttribute("token", token);
+        model.addAttribute("userForm", user);
+        model.addAttribute("title", "Réinitialiser votre mot de passe");
 
         return "reset_password_form";
     }
@@ -99,10 +108,10 @@ public class ForgotPasswordController {
     @PostMapping("/reset_password")
     public String processResetPassword(@ModelAttribute("userForm") Professionnel userForm, HttpServletRequest request, Model model, BindingResult bindingResult) {
         String token = request.getParameter("token");
-        String password = request.getParameter("password");
+        String password = userForm.getPassword();
 
         Professionnel user = professionnelService.getByResetPasswordToken(token);
-        model.addAttribute("title", "Réinitiliser votre mot de passe");
+        model.addAttribute("title", "Réinitialiser votre mot de passe");
 
         if (user == null) {
             model.addAttribute("message", "Token invalide");
@@ -112,16 +121,16 @@ public class ForgotPasswordController {
 
             if (bindingResult.hasErrors()) {
                 model.addAttribute("fields", bindingResult);
+                model.addAttribute("token", token);
                 return "reset_password_form";
             }
-            professionnelService.updatePassword(user, password);
 
+            professionnelService.updatePassword(user, password);
             model.addAttribute("message", "Votre mot de passe a été changé avec succès.");
         }
 
         return "message";
     }
-
 
     @GetMapping("/message")
     public String showMessage() {

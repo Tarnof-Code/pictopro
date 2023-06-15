@@ -75,15 +75,17 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
     }
 
     @Override
-    public void updateResetPasswordToken(String token, String email) throws ProfessionnelNotFoundException {
+    public void updateResetPasswordTokenWithExpiration(String token, String email, Date expirationTime) throws ProfessionnelNotFoundException {
         Professionnel user = professionnelRepository.findByEmail(email);
         if (user != null) {
             user.setResetPasswordToken(token);
+            user.setResetPasswordTokenExpiration(expirationTime); // Set the token's expiration time
             professionnelRepository.save(user);
         } else {
             throw new ProfessionnelNotFoundException("Aucun utilisateur ne correspond à cet email : " + email);
         }
     }
+
 
     public Professionnel getByResetPasswordToken(String token) {
         return professionnelRepository.findByResetPasswordToken(token);

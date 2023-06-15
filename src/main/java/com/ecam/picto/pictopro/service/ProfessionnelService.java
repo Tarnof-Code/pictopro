@@ -3,6 +3,7 @@ package com.ecam.picto.pictopro.service;
 import com.ecam.picto.pictopro.entity.Professionnel;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,9 +23,10 @@ public interface ProfessionnelService {
 
     Professionnel findByEmail(String email);
 
-    void updateResetPasswordToken(String token, String email) throws ProfessionnelNotFoundException;
+    void updateResetPasswordTokenWithExpiration(String token, String email, Date expirationTime) throws ProfessionnelNotFoundException;
 
     Professionnel getByResetPasswordToken(String token);
 
     void updatePassword(Professionnel user, String newPassword);
+
 }
