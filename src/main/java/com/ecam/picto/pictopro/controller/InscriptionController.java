@@ -1,6 +1,6 @@
 package com.ecam.picto.pictopro.controller;
 
-import com.ecam.picto.pictopro.UserValidator;
+import com.ecam.picto.pictopro.security.UserValidator;
 import com.ecam.picto.pictopro.entity.Professionnel;
 import com.ecam.picto.pictopro.security.services.SecurityService;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
