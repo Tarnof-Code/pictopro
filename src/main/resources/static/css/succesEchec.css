@@ -389,3 +389,7 @@ form {
 .a-button {
     margin-bottom: 50px;
 }
+
+.title-succes {
+    color: green;
+}

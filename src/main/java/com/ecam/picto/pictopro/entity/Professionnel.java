@@ -74,12 +74,16 @@ public class Professionnel {
 
     private Date resetPasswordTokenExpiration;
 
+    private boolean isActive;
+
+    private String verificationToken;
+
     @Transient
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", message = "* Le mot de passe de confirmation doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère spécial et comporter au moins 8 caractères")
     private String confirmPassword;
 
     public Professionnel() {
-
+        this.isActive = false; // By default, the account is not activated
     }
 
     public int getId() {
@@ -218,6 +222,22 @@ public class Professionnel {
         this.resetPasswordTokenExpiration = resetPasswordTokenExpiration;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
+    }
+
     @Override
     public String toString() {
         return "Professionnel{" +
@@ -237,6 +257,8 @@ public class Professionnel {
                 ", modifiedAt=" + modifiedAt +
                 ", resetPasswordToken='" + resetPasswordToken + '\'' +
                 ", resetPasswordTokenExpiration=" + resetPasswordTokenExpiration +
+                ", isActive=" + isActive +
+                ", verificationToken='" + verificationToken + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
     }

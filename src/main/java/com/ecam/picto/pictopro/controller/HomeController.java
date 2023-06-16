@@ -22,7 +22,7 @@ public class HomeController {
             return "redirect:/dashboard";
         }
         if (error != null)
-            model.addAttribute("error", "Vos identifiants ne sont pas valides.");
+            model.addAttribute("error", "Vos identifiants ne sont pas valides");
         return "connexion";
     }
 

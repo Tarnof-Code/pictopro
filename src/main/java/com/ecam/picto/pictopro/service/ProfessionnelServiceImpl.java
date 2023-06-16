@@ -4,6 +4,7 @@ import java.util.*;
 
 
 import com.ecam.picto.pictopro.entity.Role;
+import com.ecam.picto.pictopro.exception.ProfessionnelNotFoundException;
 import com.ecam.picto.pictopro.repository.RoleRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,18 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
         professionnelRepository.save(user);
     }
 
+    @Override
+    public void updatePro(Professionnel user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        Optional<Role> defaultRoleOptional = roleRepository.findByName("ROLE_PRO");
+        if (defaultRoleOptional.isPresent()) {
+            Role defaultRole = defaultRoleOptional.get();
+            user.setRole((defaultRole));
+        }
+        user.setActive(true);
+        professionnelRepository.save(user);
+    }
+
     public void updateAdmin(Professionnel user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Optional<Role> defaultRoleOptional = roleRepository.findByName("ROLE_ADMIN");
@@ -42,6 +55,7 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
             Role defaultRole = defaultRoleOptional.get();
             user.setRole((defaultRole));
         }
+        user.setActive(true);
         professionnelRepository.save(user);
     }
 
@@ -86,7 +100,6 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
         }
     }
 
-
     public Professionnel getByResetPasswordToken(String token) {
         return professionnelRepository.findByResetPasswordToken(token);
     }
@@ -97,6 +110,11 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
         user.setPassword(encodedPassword);
         user.setResetPasswordToken(null);
         professionnelRepository.save(user);
+    }
+
+    @Override
+    public Professionnel findByVerificationToken(String token) {
+        return professionnelRepository.findByVerificationToken(token);
     }
 
 }

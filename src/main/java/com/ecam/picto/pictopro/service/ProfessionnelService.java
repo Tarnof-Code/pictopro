@@ -1,6 +1,7 @@
 package com.ecam.picto.pictopro.service;
 
 import com.ecam.picto.pictopro.entity.Professionnel;
+import com.ecam.picto.pictopro.exception.ProfessionnelNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -10,6 +11,8 @@ import java.util.List;
 public interface ProfessionnelService {
 
     void savePro(Professionnel professionnel);
+
+    void updatePro(Professionnel professionnel);
 
     List<Professionnel> findAll();
 
@@ -29,4 +32,5 @@ public interface ProfessionnelService {
 
     void updatePassword(Professionnel user, String newPassword);
 
+     Professionnel findByVerificationToken(String token);
 }
