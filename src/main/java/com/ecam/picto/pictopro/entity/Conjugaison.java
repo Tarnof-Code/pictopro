@@ -2,6 +2,7 @@ package com.ecam.picto.pictopro.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Conjugaison {
@@ -13,12 +14,19 @@ public class Conjugaison {
     @JoinColumn(name="irregulier_id",insertable = false,updatable = false)
     @JsonIgnore
     private Irregulier irregulier;
+
     private String temps;
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
     private String premierePersSing;
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
     private String deuxiemePersSing;
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
     private String troisiemePersSing;
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
     private String premierePersPluriel;
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
     private String deuxiemePersPluriel;
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
     private String troisiemePersPluriel;
 
     public int getId() {

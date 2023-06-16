@@ -19,6 +19,7 @@
                    name="je_present"
                    th:field="*{__${conjugaisons}__[0].premierePersSing}"
                    placeholder="Je / J'">
+            <p th:if="${#fields.hasErrors('__${conjugaisons}__[0].premierePersSing')}" th:errors="*{__${conjugaisons}__[0].premierePersSing}" th:errorclass="error" ></p>
             <input type="text"
                    name="tu_present"
                    th:field="*{__${conjugaisons}__[0].deuxiemePersSing}"

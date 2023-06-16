@@ -7,6 +7,7 @@ import java.util.List;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -30,6 +31,7 @@ public class Mot {
 	private int id;
 
 	@NotEmpty(message = "Veuillez entrer un nom")
+	@Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
 	@Column(unique = false, nullable = false)
 	private String nom;
 
