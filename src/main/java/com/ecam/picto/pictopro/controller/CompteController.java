@@ -46,7 +46,7 @@ public class CompteController {
                 professionnelService.updateAdmin(useradminpro);
             } else {
                 // Logic for pro user
-                professionnelService.savePro(useradminpro);
+                professionnelService.updatePro(useradminpro);
             }
 
             return "redirect:/modificationCompteSucces";

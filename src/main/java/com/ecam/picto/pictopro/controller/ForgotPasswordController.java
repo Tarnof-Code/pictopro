@@ -2,7 +2,7 @@ package com.ecam.picto.pictopro.controller;
 
 import com.ecam.picto.pictopro.entity.Professionnel;
 import com.ecam.picto.pictopro.security.PasswordValidator;
-import com.ecam.picto.pictopro.service.ProfessionnelNotFoundException;
+import com.ecam.picto.pictopro.exception.ProfessionnelNotFoundException;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
 import com.ecam.picto.pictopro.utility.Utility;
 import jakarta.mail.MessagingException;

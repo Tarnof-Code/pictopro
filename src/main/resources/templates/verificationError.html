@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Echec de l'activation</title>
+    <link rel="stylesheet" href="/css/succesEchec.css"/>
+</head>
+<body>
+<div class="main">
+    <div class="container a-container" id="a-container">
+        <form class="form" id="a-form">
+            <h1 class="switch__title title-2">Echec de l'activation du compte !</h1>
+            <p class="switch__description description">Le délai d'activation du compte est expiré.</p><br>
+            <p class="switch__description description">Veuillez ressaisir vos données sur la page d'inscription.</p><br>
+            <a th:href="@{/register}" class="switch__button button-i switch-btn a-button" type="button">
+                <p>Retourner sur la page d'inscription</p>
+            </a>
+        </form>
+        <div class="droit padding-b">
+            <p>© Tous droits réservés -
+                <span class="PBlue">P</span>icto<span class="PRouge">P</span>icto® 2023</p>
+        </div>
+        <div class="footer underline padding-b">
+            <a th:href="@{/mentions}">Mentions légales
+            </a>
+            <p class="space">
+                |
+            </p>
+            <a th:href="@{/partners}">
+                Partenaires
+            </a>
+            <p class="space">
+                |
+            </p>
+            <a th:href="@{/a_propos}">
+                A Propos
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
