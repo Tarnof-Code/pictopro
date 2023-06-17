@@ -17,6 +17,9 @@
             <a th:text="'Prénom: ' + ${dossierMedical.prenom}">Prénom</a><br>
             <a th:text="'Date de naissance: ' + ${dossierMedical.dateNaissance}">Date de naissance</a><br>
             <p th:text="'Statistique: ' + ${dossierMedical.statistique}">Statistiques</p>
+            <div class="mt-3 mb-3 text-center ">
+                <a class="Retour" th:href="@{/consulterLesDossiers}">[Retour]</a>
+            </div>
         </div>
     </div>
     <div class="container" >
