@@ -1,7 +1,6 @@
 package com.ecam.picto.pictopro.repository;
 
 import com.ecam.picto.pictopro.entity.Professionnel;
-import jakarta.annotation.Nullable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +11,6 @@ public interface ProfessionnelRepository extends JpaRepository<Professionnel, In
 	Professionnel findById(int id);
 	Professionnel findByResetPasswordToken(String token);
 	Professionnel findByVerificationToken(String token);
-
+    Professionnel findByUsernameAndIdNot(String username, int userId);
+	Professionnel findByEmailAndIdNot(String email, int userId);
 }

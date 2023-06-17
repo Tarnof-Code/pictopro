@@ -26,6 +26,9 @@
                                             <div th:if="${#fields.hasErrors('username')}">
                                                 <p th:errors="*{username}" class="error-message"></p>
                                             </div>
+                                            <div th:if="${not #strings.isEmpty(usernameExistsMessage)}">
+                                                <p th:text="${usernameExistsMessage}" class="error-message"></p>
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="mb-3">
@@ -93,6 +96,9 @@
                                             </div>
                                             <div th:if="${#fields.hasErrors('email')}">
                                                 <p th:errors="*{email}" class="error-message"></p>
+                                            </div>
+                                            <div th:if="${not #strings.isEmpty(emailExistsMessage)}">
+                                                <p th:text="${emailExistsMessage}" class="error-message"></p>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">

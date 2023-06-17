@@ -47,7 +47,7 @@ public class InscriptionController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") Professionnel userForm, BindingResult bindingResult, HttpServletRequest request, String gRecaptchaResponse) throws RuntimeException {
+    public String registration(@ModelAttribute("userForm") Professionnel userForm, BindingResult bindingResult, HttpServletRequest request) throws RuntimeException {
         try {
             userValidator.validate(userForm, bindingResult);
 
