@@ -393,3 +393,13 @@ form {
 .title-succes {
     color: green;
 }
+
+.title-erreur {
+    color: #e58463;
+}
+
+#logo404 {
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 15px;
+}

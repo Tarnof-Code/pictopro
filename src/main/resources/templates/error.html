@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Erreur 404</title>
+    <link rel="stylesheet" href="/css/succesEchec.css"/>
+</head>
+<body>
+<div class="main">
+    <div class="container a-container" id="a-container">
+        <form class="form" id="a-form">
+            <h1 class="title-erreur">Désolé, la page que vous cherchez est introuvable !</h1>
+            <div class="text-center py-4 pt-5">
+                <a><img th:src="@{/images/Logos/zemmour.png}" alt="humour" id="logo404">
+                </a>
+            </div>
+            <a th:href="@{/}" class="switch__button button-i switch-btn a-button" type="button">
+                <p>Retour</p>
+            </a>
+        </form>
+        <div class="droit padding-b">
+            <p>© Tous droits réservés -
+                <span class="PBlue">P</span>icto<span class="PRouge">P</span>icto® 2023</p>
+        </div>
+        <div class="footer underline padding-b">
+            <a th:href="@{/mentions}">Mentions légales
+            </a>
+            <p class="space">
+                |
+            </p>
+            <a th:href="@{/partners}">
+                Partenaires
+            </a>
+            <p class="space">
+                |
+            </p>
+            <a th:href="@{/a_propos}">
+                A Propos
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

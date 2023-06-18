@@ -64,7 +64,6 @@ public class CompteController {
         }
     }
 
-
     @GetMapping("/deleteCompte/{id}")
     public String deleteCompteById(@PathVariable(name = "id") int id) throws RuntimeException {
         try {
