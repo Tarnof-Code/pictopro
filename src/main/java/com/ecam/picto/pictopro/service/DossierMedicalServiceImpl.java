@@ -30,6 +30,15 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 		}
 	}
 
+	public List<DossierMedical> findByForeignKey(int id) {
+		try {
+			return (List<DossierMedical>) dossierMedicalRepository.findAllByProfessionnelId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	@Override
 	public DossierMedical findById(int id) {
 		try {

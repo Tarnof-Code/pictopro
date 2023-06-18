@@ -58,7 +58,7 @@ public class Professionnel {
     @ManyToOne(fetch = FetchType.EAGER)
     private Role role;
 
-    @OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<DossierMedical> listeDossiersParProfessionnel;
 
     @OneToMany(mappedBy = "professionnel", fetch = FetchType.EAGER)

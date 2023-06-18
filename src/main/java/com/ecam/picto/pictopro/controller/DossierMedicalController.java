@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,12 +45,26 @@ public class DossierMedicalController {
 	@Autowired
 	private DossierMedicalService dossierMedicalService;
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/consulterLesDossiers")
 	public String consulterLesDossiers(Model model) {
 		model.addAttribute("dossierMedicals", dossierMedicalService.findAll());
 		model.addAttribute("module", "gestionDesDossiers");
 		return "consulterLesDossiers";
 	}
+
+	@PreAuthorize("hasRole('ROLE_PRO')")
+	@GetMapping("/consulterMesDossiers")
+	public String consulterMesDossiers(Model model, Authentication authentication) {
+		String username = authentication.getName();
+		Professionnel currentUser = professionnelService.findByUsername(username);
+
+		List<DossierMedical> dossiers = dossierMedicalService.findByForeignKey(currentUser.getId());
+		model.addAttribute("dossierMedicals", dossiers);
+		model.addAttribute("module", "gestionDesDossiers");
+		return "consulterLesDossiers";
+	}
+
 
 	@GetMapping("/consulterLesDossiers/{id}")
 	public String afficherDetailsDossier(@PathVariable("id") int id, Model model) {
