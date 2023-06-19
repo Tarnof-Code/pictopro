@@ -53,8 +53,7 @@
                                    data-bs-toggle="dropdown"
                                    href="#">Mots</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/gestionDesMots/consulterLesMots">Consulter les
-                                        mots</a></li>
+                                    <li><a class="dropdown-item" href="/gestionDesMots/consulterLesMots">Consulter les mots</a></li>
                                     <li><a class="dropdown-item" href="/gestionDesMots/ajouterUnMot">Ajouter un mot</a>
                                     </li>
                                 </ul>
@@ -67,10 +66,8 @@
                                    data-bs-toggle="dropdown"
                                    href="#">Catégories</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/gestionDesCategories/consulterLesCategories">Consulter
-                                        les catégories</a></li>
-                                    <li><a class="dropdown-item" href="/gestionDesCategories/ajouterUneCategorie">Ajouter
-                                        une catégorie</a></li>
+                                    <li><a class="dropdown-item" href="/gestionDesCategories/consulterLesCategories">Consulter les catégories</a></li>
+                                    <li><a class="dropdown-item" href="/gestionDesCategories/ajouterUneCategorie">Ajouter une catégorie</a></li>
                                 </ul>
                             </li>
                             <!-- Gérer les catégories -->
@@ -81,10 +78,8 @@
                                    data-bs-toggle="dropdown"
                                    href="#">Questions</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/gestionDesQuestions/consulterLesQuestions">Consulter
-                                        les questions</a></li>
-                                    <li><a class="dropdown-item" href="/gestionDesQuestions/ajouterUneQuestion">Ajouter
-                                        une question</a></li>
+                                    <li><a class="dropdown-item" href="/gestionDesQuestions/consulterLesQuestions">Consulter les questions</a></li>
+                                    <li><a class="dropdown-item" href="/gestionDesQuestions/ajouterUneQuestion">Ajouter une question</a></li>
                                 </ul>
                             </li>
                             <!-- Gérer les questions -->
@@ -99,20 +94,18 @@
                             data-bs-toggle="dropdown" href="#" role="button"
                             aria-expanded="false">Dossiers médicaux</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/consulterLesDossiers">Consulter les dossiers</a></li>
+                            <li><a class="dropdown-item" href="/consulterMesDossiers">Consulter les dossiers</a></li>
                             <li><a class="dropdown-item" href="/ajouterUnDossier">Ajouter un dossier</a></li>
                         </ul>
                     </li>
 
                     <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link"
                                                                              th:classappend="${module == 'gestionDesDossiers' ? 'active' : ''}"
-                                                                             th:href="@{/consulterLesDossiers}">Liste
-                        des dossiers médicaux</a></li>
+                                                                             th:href="@{/consulterLesDossiers}">Liste des dossiers médicaux</a></li>
 
                     <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link"
                                                                              th:classappend="${module == 'consulterLesPros' ? 'active' : ''}"
-                                                                             th:href="@{/consulterLesPros}">Liste des
-                        professionnels de santé</a></li>
+                                                                             th:href="@{/consulterLesPros/listeDesPros}">Liste des professionnels de santé</a></li>
 
                     <li class="nav-item"><a class="nav-link"
                                             th:classappend="${module == 'echange' ? 'active' : ''}"

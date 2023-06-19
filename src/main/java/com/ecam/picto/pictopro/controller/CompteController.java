@@ -32,9 +32,20 @@ public class CompteController {
     }
 
     @PostMapping("/updateCompte")
-    public String save(@Valid @ModelAttribute("user") Professionnel useradminpro, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute("user") Professionnel useradminpro, BindingResult bindingResult, Model model) {
         try {
             if (bindingResult.hasErrors()) {
+                return "compte";
+            }
+            boolean usernameExists = professionnelService.checkUsernameExists(useradminpro.getUsername(), useradminpro.getId());
+            boolean emailExists = professionnelService.checkEmailExists(useradminpro.getEmail(), useradminpro.getId());
+            if (usernameExists) {
+                model.addAttribute("usernameExistsMessage", "Ce pseudonyme est indisponible");
+            }
+            if (emailExists) {
+                model.addAttribute("emailExistsMessage", "Cet email est indisponible");
+            }
+            if (usernameExists || emailExists) {
                 return "compte";
             }
 
@@ -42,10 +53,8 @@ public class CompteController {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
             if (userDetails.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ROLE_ADMIN"))) {
-                // Logic for admin user
                 professionnelService.updateAdmin(useradminpro);
             } else {
-                // Logic for pro user
                 professionnelService.updatePro(useradminpro);
             }
 

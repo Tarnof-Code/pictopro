@@ -68,4 +68,14 @@ public class HomeController {
     public String goModificationCompteEchec() {
         return "modificationCompteEchec";
     }
+
+    @GetMapping("/accesRefuse")
+    public String goAccesRefuse() {
+        return "accesRefuse";
+    }
+
+    @GetMapping("/error")
+    public String handleError() {
+        return "error";
+    }
 }

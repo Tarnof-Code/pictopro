@@ -13,4 +13,6 @@ public interface DossierMedicalService {
 	List<DossierMedical> findAll();
 
 	DossierMedical findById(int id);
+
+	List<DossierMedical> findByForeignKey(int id);
 }

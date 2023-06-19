@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
   <title>Informations du dossier médical</title>
 </head>
@@ -12,11 +12,21 @@
         <div class="card-body">
             <h3 class="card-title">Informations du dossier médical du patient</h3>
             <br>
-            <h5 class="card-subtitle" th:text="'Progression: ' + ${dossierMedical.progression}">Service</h5>
+<!--            <h5 class="card-subtitle" th:text="'Progression: ' + ${dossierMedical.progression}">Progression</h5>-->
             <a th:text="'Nom: ' + ${dossierMedical.nom}">Nom</a><br>
             <a th:text="'Prénom: ' + ${dossierMedical.prenom}">Prénom</a><br>
             <a th:text="'Date de naissance: ' + ${dossierMedical.dateNaissance}">Date de naissance</a><br>
+            <a th:text="'Progression: ' + ${dossierMedical.progression}">Progression</a><br>
             <p th:text="'Statistique: ' + ${dossierMedical.statistique}">Statistiques</p>
+
+            <div sec:authorize="hasRole('ADMIN')"class="mt-3 mb-3 text-center ">
+                <a class="Retour text-info" th:href="@{/consulterLesDossiers}">[Retour]</a>
+            </div>
+
+            <div sec:authorize="hasRole('PRO')" class="mt-3 mb-3 text-center ">
+                <a class="Retour text-info" th:href="@{/consulterMesDossiers}">[Retour]</a>
+            </div>
+
         </div>
     </div>
     <div class="container" >
@@ -36,6 +46,9 @@
             </tr>
             </tbody>
         </table>
+        <div th:if="${phrases.isEmpty()}" class="text-center alert alert-info">
+            Aucune phrase enregistrée par le patient
+        </div>
     </div>
 </div>
 

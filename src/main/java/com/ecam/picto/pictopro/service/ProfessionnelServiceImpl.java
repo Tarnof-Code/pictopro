@@ -117,4 +117,16 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
         return professionnelRepository.findByVerificationToken(token);
     }
 
+    @Override
+    public boolean checkUsernameExists(String username, int userId) {
+        Professionnel existingProfessionnel = professionnelRepository.findByUsernameAndIdNot(username, userId);
+        return existingProfessionnel != null;
+    }
+
+    @Override
+    public boolean checkEmailExists(String email, int userId) {
+        Professionnel existingProfessionnel = professionnelRepository.findByEmailAndIdNot(email, userId);
+        return existingProfessionnel != null;
+    }
+
 }

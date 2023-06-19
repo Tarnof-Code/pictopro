@@ -41,6 +41,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/register", "/registration", "/forgot_password", "/reset_password", "/mentions", "/partners", "/a_propos", "/inscriptionSucces", "/inscriptionEchec", "/verificationSuccess", "/verificationError", "/verify/**", "/images/**", "/css/**", "/js/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/pro/**").hasRole("PRO")
+                .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -54,7 +55,13 @@ public class WebSecurityConfig {
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/accesRefuse")
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> response.sendRedirect("/error"));
 
         return http.build();
     }

@@ -3,6 +3,7 @@ package com.ecam.picto.pictopro.service;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 	DossierMedicalRepository dossierMedicalRepository;
 
 	@Override
-	public void ajouterUnDossierMedical(DossierMedical dossierMedical) {
+	public void ajouterUnDossierMedical(@Valid DossierMedical dossierMedical) {
 		dossierMedicalRepository.save(dossierMedical);
 	}
 
@@ -24,6 +25,15 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 	public List<DossierMedical> findAll() {
 		try {
 			return dossierMedicalRepository.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<DossierMedical> findByForeignKey(int id) {
+		try {
+			return (List<DossierMedical>) dossierMedicalRepository.findAllByProfessionnelId(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

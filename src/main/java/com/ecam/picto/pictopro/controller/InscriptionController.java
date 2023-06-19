@@ -1,11 +1,14 @@
 package com.ecam.picto.pictopro.controller;
 
-import com.ecam.picto.pictopro.security.UserValidator;
 import com.ecam.picto.pictopro.entity.Professionnel;
+import com.ecam.picto.pictopro.security.UserValidator;
 import com.ecam.picto.pictopro.security.services.SecurityService;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
 import com.ecam.picto.pictopro.service.VerificationTokenService;
 import com.ecam.picto.pictopro.utility.Utility;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -17,10 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 
 @Controller
 public class InscriptionController {
@@ -55,6 +54,7 @@ public class InscriptionController {
             if (bindingResult.hasErrors()) {
                 return "inscription";
             }
+
             // Generate a verification token
             String token = verificationTokenService.generateToken();
 

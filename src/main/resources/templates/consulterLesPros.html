@@ -30,11 +30,14 @@
                 <td th:text="${professionnel.email}">Email</td>
                 <td th:text="${professionnel.telephone}">Téléphone</td>
                 <td>
-                    <a class="btn btn-primary" href="#" th:href="@{/consulterLesPros/{id}(id=${professionnel.id})}">Détails</a>
+                    <a class="btn btn-primary" href="#" th:href="@{/consulterLesPros/detailsPro/{id}(id=${professionnel.id})}">Détails</a>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div th:if="${professionnels.isEmpty()}" class="text-center alert alert-info">
+        Aucun professionnel de santé enregistré
+    </div>
 </div>
 
 
