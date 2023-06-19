@@ -19,12 +19,12 @@
             <div class="col-12 col-lg-3">
                 <div>
                     <div>
-                        <input placeholder="Mot à ajouter"
-                               type="text"
-                               id="motAjout"
-                               th:field="*{nom}"
-                               name="motAjout"/>
-                        <p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" th:errorclass="error" ></p>
+                      <input placeholder="Mot à ajouter"
+                             type="text"
+                             id="motAjout"
+                             th:field="*{nom}"
+                             name="motAjout"/>
+                      <p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" th:errorclass="error" ></p>
                     </div>
                 </div>
                 <br>
@@ -41,7 +41,6 @@
                     </select>
                     <p th:if="${selectedCategorie == null}" class="error" >Veuillez choisir une catégorie</p>
                 </div>
-
 
                 <div class="hidden mt-3" id="divSousCat">
                     <select name="sousCategorieId" id="sousCategorie">
@@ -92,7 +91,6 @@
                     Ajouter
                 </button>
             </div>
-
         </div>
     </div>
 </form>

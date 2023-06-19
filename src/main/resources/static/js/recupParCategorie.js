@@ -19,7 +19,7 @@ function getContent(){
 
 
 
-// Afficher les sous-catégories et les mots dans "echange"
+// Au click sur une catégorie, afficher les sous-catégories et les mots dans "echange"
 
 $(".categorieItem").click(function() {
 
@@ -66,7 +66,6 @@ $(".categorieItem").click(function() {
 
 
 // Au click sur une sous-catégorie, afficher les mots dans "echange"
-// Fonction appelée après le load des sous-catégories
 
 function motsSousCat(){
   $(".sousCategorieItem").click(function(){

@@ -55,6 +55,9 @@ private Mot motSelection = new Mot();
     motSelection = motAAjouter;
     model.addAttribute("mot",motAAjouter);
 
+    listeCategories = categorieService.afficherCategories();
+    model.addAttribute("categories",listeCategories);
+
     listeTags = tagService.afficherTags();
     model.addAttribute("tags",listeTags);
 
@@ -64,11 +67,9 @@ private Mot motSelection = new Mot();
     List<Tag> listeTagsSelection = new ArrayList<>();
     model.addAttribute("listeTagsSelection",listeTagsSelection);
 
-    SousCategorie selectedSousCategorie = new SousCategorie();
-    model.addAttribute("selectedSousCategorie",selectedSousCategorie);
+/*    SousCategorie selectedSousCategorie = new SousCategorie();
+    model.addAttribute("selectedSousCategorie",selectedSousCategorie); */
 
-    listeCategories = categorieService.afficherCategories();
-    model.addAttribute("categories",listeCategories);
 
     boolean noImage = false;
     model.addAttribute("noImage",noImage);
@@ -106,7 +107,6 @@ private Mot motSelection = new Mot();
         } else {
             return null;
         }
-
 
     }
 

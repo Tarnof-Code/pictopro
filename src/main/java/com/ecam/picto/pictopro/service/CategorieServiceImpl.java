@@ -37,7 +37,6 @@ public class CategorieServiceImpl implements CategorieService {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 	@Override

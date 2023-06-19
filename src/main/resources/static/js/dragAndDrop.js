@@ -6,7 +6,7 @@
       drop: function(ev, ui) {
         var item = ui.draggable;
         if (!ui.draggable.closest('.empty').length) {
-          item = item.clone().draggable(); // if item was dragged from the source list - clone it
+          item = item.clone().draggable();
         }
         var temp = item.clone(false).removeClass("ui-draggable");
 
@@ -14,11 +14,9 @@
         temp.addClass('item2');
 
         var tags = item.data('mot-tags');
-   //     console.log(tags);
 
         this.replaceWith(temp[0]);
 
-       // updateDroppables();
         updateTableauMots();
       }
     });
@@ -31,7 +29,7 @@ function dragAndDrop() {
     helper: 'clone',
     start: function(ev, ui) {
       ui.helper.width($(this).width());
-    } // ensure helper width
+    }
   });
 
   $("#sortable").sortable({
