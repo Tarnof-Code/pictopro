@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import com.ecam.picto.pictopro.repository.PhraseRepository;
 import com.ecam.picto.pictopro.service.DossierMedicalService;
 import com.ecam.picto.pictopro.service.PhraseService;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class DossierMedicalController {
@@ -84,22 +87,31 @@ public class DossierMedicalController {
 
 	@GetMapping("/ajouterUnDossier")
 	public String goDossierMedical(Model model) {
-		model.addAttribute("dossiers", dossierMedicalService.findAll());
-		DossierMedical dossierMedicalAAjouter = new DossierMedical();
-		model.addAttribute("dossierMedical", dossierMedicalAAjouter);
-		model.addAttribute("message", "Page Création dossier médical");
+		model.addAttribute("dossierMedical", new DossierMedical());
 		model.addAttribute("module", "gestionDesDossiers");
 		return "ajouterUnDossier";
 	}
 
 	@PostMapping("/ajouterUnDossier")
-	public String ajouterUnDossierMedical(Model model, @ModelAttribute("dossierMedical") DossierMedical dossierMedical,
-			@RequestParam("professionnelId") int id) {
-		Professionnel professionnel = professionnelService.findById(id);
-		dossierMedical.setProfessionnel(professionnel);
-		dossierMedicalService.ajouterUnDossierMedical(dossierMedical);
-		model.addAttribute("module", "gestionDesDossiers");
-		return "redirect:/gestionDesDossiers/ajouterUnDossier";
+	public String ajouterUnDossierMedical(RedirectAttributes redirectAttributes, @ModelAttribute("dossierMedical") @Valid DossierMedical dossierMedical, BindingResult bindingResult, Authentication authentication) {
+		String username = authentication.getName();
+		Professionnel currentUser = professionnelService.findByUsername(username);
+
+		dossierMedical.setProfessionnel(currentUser);
+
+		try {
+			if (bindingResult.hasErrors()) {
+				return "ajouterUnDossier";
+			}
+			dossierMedicalService.ajouterUnDossierMedical(dossierMedical);
+			redirectAttributes.addFlashAttribute("successMessage", "Dossier médical ajouté avec succès.");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Une erreur s'est produite lors de l'ajout du dossier médical.");
+		}
+
+		return "redirect:/ajouterUnDossier";
 	}
+
+
 
 }
