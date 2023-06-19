@@ -1,13 +1,117 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-    <title>Page Création dossier médical</title>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Enregistrer un dossier médical</title>
 </head>
+
 <body>
 <div th:replace="~{components/navBar}"></div>
 <link href="/css/admin.css" rel="stylesheet">
-<h1 th:text="${message}"></h1>
+<h2 class="text-center pt-5 pb-5">Ajouter un dossier médical</h2>
+<main class="d-flex w-100">
+    <div class="container d-flex flex-column">
+        <div class="row">
+            <div class="col-sm-10 col-md-10 col-lg-12 col-xl-12 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+                    <div class="card">
+                        <div class="card-body">
+                            <div th:if="${successMessage}" class="text-center alert alert-success pt-4">
+                                <p th:text="${successMessage}"></p>
+                            </div>
+                            <div th:if="${errorMessage}" class="text-center alert alert-danger pt-4">
+                                <p th:text="${errorMessage}"></p>
+                            </div>
+
+                            <div class="m-sm-3">
+                                <form th:action="@{/ajouterUnDossier}" method="post" th:object="${dossierMedical}">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Nom</label>
+                                                <input th:field="*{nom}" class="form-control form-control-lg"
+                                                       type="text" name="nom"
+                                                       placeholder="Entrer votre nom"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('nom')}">
+                                                <p th:errors="*{nom}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Prénom</label>
+                                                <input th:field="*{prenom}" class="form-control form-control-lg"
+                                                       type="text" name="prenom"
+                                                       placeholder="Entrer votre prénom"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('prenom')}">
+                                                <p th:errors="*{prenom}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date de naissance</label>
+                                                <input th:field="*{dateNaissance}" class="form-control form-control-lg"
+                                                       type="date"
+                                                       name="dateNaissance"
+                                                       placeholder="Entrer votre date de naissance"/>
+                                            </div>
+                                            <div th:if="${#fields.hasErrors('dateNaissance')}">
+                                                <p th:errors="*{dateNaissance}" class="error-message"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Progression</label>
+                                                <input th:field="*{progression}" class="form-control form-control-lg"
+                                                       type="text" name="progression"
+                                                       placeholder="Entrer la progression"/>
+                                            </div>
+<!--                                            <div th:if="${#fields.hasErrors('progression')}">-->
+<!--                                                <p th:errors="*{progression}" class="error-message"></p>-->
+<!--                                            </div>-->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-lg-6 col-xl-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Statistiques</label>
+                                                <input th:field="*{statistique}" class="form-control form-control-lg"
+                                                       type="text" name="statistique"
+                                                       placeholder="Entrer les statistiques"/>
+                                            </div>
+<!--                                            <div th:if="${#fields.hasErrors('statistique')}">-->
+<!--                                                <p th:errors="*{statistique}" class="error-message"></p>-->
+<!--                                            </div>-->
+                                        </div>
+                                        <div class="col-sm-6 col-lg-6 col-xl-6">
+                                            <div class="mb-3">
+                                                <input th:field="*{id}" type="hidden"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-5">
+                                            <div class="d-grid gap-2 mt-3">
+                                                <button type="submit" class="btn btn-lg btn-success">Enregistrer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="/js/admin.js"></script>
+<div th:replace="~{components/footer :: footer}"></div>
 
 </body>
-<div th:replace="~{components/footer :: footer}"></div>
+
 </html>

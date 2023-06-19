@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
   <title>Informations du dossier médical</title>
 </head>
@@ -18,9 +18,15 @@
             <a th:text="'Date de naissance: ' + ${dossierMedical.dateNaissance}">Date de naissance</a><br>
             <a th:text="'Progression: ' + ${dossierMedical.progression}">Progression</a><br>
             <p th:text="'Statistique: ' + ${dossierMedical.statistique}">Statistiques</p>
-            <div class="mt-3 mb-3 text-center ">
+
+            <div sec:authorize="hasRole('ADMIN')"class="mt-3 mb-3 text-center ">
                 <a class="Retour text-info" th:href="@{/consulterLesDossiers}">[Retour]</a>
             </div>
+
+            <div sec:authorize="hasRole('PRO')" class="mt-3 mb-3 text-center ">
+                <a class="Retour text-info" th:href="@{/consulterMesDossiers}">[Retour]</a>
+            </div>
+
         </div>
     </div>
     <div class="container" >
