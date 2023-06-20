@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ecam.picto.pictopro.entity.Question;
 
-@Service
+
 public interface QuestionService {
 	void ajouterUneQuestion(Question question);
 

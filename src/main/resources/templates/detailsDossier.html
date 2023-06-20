@@ -19,7 +19,7 @@
             <a th:text="'Progression: ' + ${dossierMedical.progression}">Progression</a><br>
             <p th:text="'Statistique: ' + ${dossierMedical.statistique}">Statistiques</p>
 
-            <div sec:authorize="hasRole('ADMIN')"class="mt-3 mb-3 text-center ">
+            <div sec:authorize="hasRole('ADMIN')" class="mt-3 mb-3 text-center ">
                 <a class="Retour text-info" th:href="@{/consulterLesDossiers}">[Retour]</a>
             </div>
 

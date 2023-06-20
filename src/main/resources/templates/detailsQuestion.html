@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <title>Catégories associées à la question</title>
+</head>
+
+<body>
+<div th:replace="~{components/navBar}"></div>
+<link href="/css/admin.css" rel="stylesheet">
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Catégories associées à la question</h3>
+      <br>
+      <!--            <h5 class="card-subtitle" th:text="'Progression: ' + ${dossierMedical.progression}">Progression</h5>-->
+      <a th:text="'Question: ' + ${question.contenu}">Question</a><br>
+      <a th:text="'Date de création: ' + ${question.createdAt}">Date de création</a><br>
+
+      <div class="mt-3 mb-3 text-center ">
+        <a class="Retour text-info" th:href="@{/gestionDesQuestions/consulterLesQuestions}">[Retour]</a>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="container" >
+    <table class="table">
+      <thead>
+      <th scope="col">Catégorie</th>
+      <th scope="col">Pictogramme</th>
+      </thead>
+      <tbody>
+      <tr th:each="categorie : ${categories}">
+        <td th:text="${categorie.nom}">Catégorie</td>
+        <td th:text="${categorie.pictoFile}">Pictogramme</td>
+      </tr>
+      </tbody>
+    </table>
+    <div th:if="${categories.isEmpty()}" class="text-center alert alert-info">
+      Aucune catégorie associée à la question
+    </div>
+  </div>
+</div>
+
+
+<div th:replace="~{components/footer :: footer}"></div>
+
+</body>
+
+</html>
