@@ -58,11 +58,11 @@ if (tags.includes("auxiliaire_avoir")) {
                 if(singulierPlurielPrecedent == "pluriel") {
                     participePasse = participePasse + "s"
                 }
-                if(tableauMots.length > 2){
+           /*     if(tableauMots.length > 2000){
                     if(motMoinsDeux == "et" && motPrecedent == "moi"){
                         participePasse = participePasse + "s"
                     }
-                }
+                } */
             } else {
                 participePasse = radical + "é"
             }
@@ -164,11 +164,11 @@ if (tags.includes("auxiliaire_avoir")) {
              if(singulierPlurielPrecedent == "pluriel") {
                  participePasse = participePasse + "s"
              }
-             if(tableauMots.length > 2){
+       /*      if(tableauMots.length > 2){
                  if(motMoinsDeux == "et" && motPrecedent == "moi"){
                      participePasse = participePasse + "s"
                  }
-             }
+             } */
          } else {
              participePasse = radical + "i"
          }
@@ -310,17 +310,17 @@ if (tags.includes("auxiliaire_avoir")) {
 
                     //Si mot précédent est pluriel, ajouter un "s"
                     if(singulierPlurielPrecedent == "pluriel") {
-                        participePasse = participePasse + "s"
+                        participePasse = participePasse + "s";
                     }
 
-                    // "....et moi", ajouter un "s"
+         /*           // "....et moi", ajouter un "s"
                     if(tableauMots.length > 2){
                         if(motMoinsDeux == "et" && motPrecedent == "moi"){
                             participePasse = participePasse + "s"
                         }
-                    }
+                    } */
 
-                }
+                 }
 
                 if(tagsPrecedents != undefined &&
                     (tagsPrecedents.includes("'nom'")||tagsPrecedents.includes("'adjectif'")) ) {

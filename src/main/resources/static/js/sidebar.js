@@ -100,7 +100,6 @@ $('#supprimerPictos').click(function(){
    interrogation = false;
    updateDroppables();
    updateTableauMots();
-
 });
 
 // Mettre à la forme négative

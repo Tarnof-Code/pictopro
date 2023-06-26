@@ -18,8 +18,8 @@ const voyelles = ["a","e","i","o","u","y"];
 function updateTableauMots() {
 
     tableauMots = [];
-    tableauId = [];
     tableauTags = [];
+    tableauId = [];
     tableauSingulierPluriel = [];
     tableauFemininMasculin = [];
 
@@ -106,7 +106,7 @@ function updateTableauMots() {
         transformerEnQuestion();
      }
 
-    phrase = tableauMots.join(' ').replace(/'\s+/g, "'"); // Le "replace" supprime l'espace du join si le mot finit par une apostrophe
+    phrase = tableauMots.join(' ');
     $("#contenuPhrase").text(phrase);
 
     indexMotActuel = 0;

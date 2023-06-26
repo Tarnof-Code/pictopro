@@ -13,6 +13,9 @@ public class VerificationTokenService {
     private final ProfessionnelRepository professionnelRepository;
 
     @Autowired
+    private ProfessionnelService professionnelService;
+
+    @Autowired
     public VerificationTokenService(ProfessionnelRepository professionnelRepository) {
         this.professionnelRepository = professionnelRepository;
     }
@@ -26,8 +29,7 @@ public class VerificationTokenService {
     public void saveVerificationToken(Professionnel userForm, String token) {
         // Associate the token with the user's account for future verification
         userForm.setVerificationToken(token);
-        // Save the user with the verification token in the database using the appropriate repository
-        professionnelRepository.save(userForm);
+
     }
 
     public Professionnel getUserByVerificationToken(String token) {

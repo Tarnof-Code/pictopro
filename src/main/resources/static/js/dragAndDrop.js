@@ -5,18 +5,14 @@
       hoverClass: 'highlight',
       drop: function(ev, ui) {
         var item = ui.draggable;
-        if (!ui.draggable.closest('.empty').length) {
+        if (!item.closest('.empty').length) {
           item = item.clone().draggable();
         }
         var temp = item.clone(false).removeClass("ui-draggable");
-
         temp.removeClass('item');
         temp.addClass('item2');
-
         var tags = item.data('mot-tags');
-
         this.replaceWith(temp[0]);
-
         updateTableauMots();
       }
     });

@@ -67,6 +67,7 @@ public class InscriptionController {
 //            securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
 
             professionnelService.savePro(userForm);
+
             return "redirect:/inscriptionSucces";
         } catch (RuntimeException e) {
             return "redirect:/inscriptionEchec";

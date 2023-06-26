@@ -15,16 +15,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-lg-11">
-            <div class="dropdown mt-3 d-flex justify-content-center rounded-4">
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Choisir une question
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item">Question 1</a></li>
-                    <li><a class="dropdown-item">Question 2</a></li>
-                    <li><a class="dropdown-item">Question 3</a></li>
-                </ul>
-            </div>
+            <div th:replace="~{components/questionsPageEchange}"></div>
             <div class="phraseConteneur pe-lg-2 d-flex justify-content-center align-items-center rounded-4">
                 <span id="contenuPhrase"></span>
             </div>
