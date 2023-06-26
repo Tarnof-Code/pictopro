@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-    <title>Liste des Questions</title>
+<head>
+    <title>Liste des questions</title>
 </head>
+
 <body>
 <div th:replace="~{components/navBar}"></div>
 <link href="/css/admin.css" rel="stylesheet">
-<h1 th:text="${message}"></h1>
+
+<div class="container">
+    <br>
+    <h1 class="text-center pt-5 pb-5">Liste des questions</h1>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+        <th scope="col">Contenu</th>
+        <th scope="col">Date de création
+        <th scope="col">Actions</th>
+        </thead>
+        <tbody>
+        <tr th:each="question : ${questions}">
+            <td th:text="${ question.contenu}">Contenu</td>
+            <td th:text="${question.createdAt}">Date de création</td>
+
+            <td>
+                <a class="btn btn-primary" href="#" th:href="@{/gestionDesQuestions/consulterLesQuestions/{id}(id=${question.id})}">Détails</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:if="${questions.isEmpty()}" class="text-center alert alert-info">
+        Aucune question enregistrée
+    </div>
+</div>
+
+
+<div th:replace="~{components/footer :: footer}"></div>
 
 </body>
-<div th:replace="~{components/footer :: footer}"></div>
+
 </html>
