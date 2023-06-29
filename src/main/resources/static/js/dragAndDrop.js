@@ -18,7 +18,6 @@
     });
   }
 
-
 function dragAndDrop() {
   $(".source .item").draggable({
     revert: "invalid",

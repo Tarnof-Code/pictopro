@@ -34,8 +34,6 @@ public class Mot {
 	@Pattern(regexp = "^[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", message = "* Format de caractère non autorisé")
 	@Column(unique = false, nullable = false)
 	private String nom;
-
-
 	@ManyToOne
 	private Categorie categorie;
 

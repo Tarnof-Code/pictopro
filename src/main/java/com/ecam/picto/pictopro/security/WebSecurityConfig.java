@@ -38,9 +38,11 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/register", "/registration", "/forgot_password", "/reset_password", "/mentions", "/partners", "/a_propos", "/inscriptionSucces", "/inscriptionEchec", "/verificationSuccess", "/verificationError", "/verify/**", "/images/**", "/css/**", "/js/**").permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/pro/**").hasRole("PRO")
+                .requestMatchers("/register", "/registration", "/forgot_password", "/reset_password", "/mentions",
+                        "/partners", "/a_propos", "/inscriptionSucces", "/inscriptionEchec", "/verificationSuccess",
+                        "/verificationError", "/verify/**", "/images/**", "/css/**", "/js/**").permitAll()
+            /*  .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/pro/**").hasRole("PRO") */
                 .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -62,7 +64,6 @@ public class WebSecurityConfig {
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, authException) -> response.sendRedirect("/error"));
-
         return http.build();
     }
 
