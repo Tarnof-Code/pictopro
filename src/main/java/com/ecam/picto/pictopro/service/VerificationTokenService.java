@@ -18,18 +18,18 @@ public class VerificationTokenService {
     }
 
     public String generateToken() {
-        // Generate a unique verification token using UUID
+        // On génère un unique token de vérification avec UUID (universally Unique Identifier)
         String token = UUID.randomUUID().toString();
         return token;
     }
 
     public void saveVerificationToken(Professionnel userForm, String token) {
-        // Associate the token with the user's account for future verification
+        // On associe le token de vérification avec le compte créé
         userForm.setVerificationToken(token);
     }
 
     public Professionnel getUserByVerificationToken(String token) {
-        // Retrieve the user associated with the verification token from the database
+        // On récupère l'utilisateur associé au token de vérification dans la base de donnée
         return professionnelRepository.findByVerificationToken(token);
     }
 }

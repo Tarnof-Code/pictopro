@@ -55,13 +55,13 @@ public class InscriptionController {
                 return "inscription";
             }
 
-            // Generate a verification token
+            // On génère un token de vérification
             String token = verificationTokenService.generateToken();
 
-            // Save the verification token for the user
+            // On sauvegarde le token de vérification
             verificationTokenService.saveVerificationToken(userForm, token);
 
-            // Send the verification email with the token
+            // On envoie l'email de vérification avec le token
             sendVerificationEmail(userForm.getEmail(), token, request);
 
 //            securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
@@ -77,11 +77,11 @@ public class InscriptionController {
         String subject = "Activation du compte PictoPicto";
         String verificationLink = Utility.getSiteURL(request) + "/verify/" + token;
 
-        // Create a Thymeleaf context and add the variables needed in the template
+        // On crée un contexte Thymeleaf et on ajoute les variables nécessaires
         Context context = new Context();
         context.setVariable("verificationLink", verificationLink);
 
-        // Process the Thymeleaf template with the context
+        // On traite le template Thymeleaf avec le contexte
         String emailContent = templateEngine.process("verification.html", context);
 
         try {

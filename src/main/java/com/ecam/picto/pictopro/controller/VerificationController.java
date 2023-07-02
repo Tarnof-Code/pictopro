@@ -28,12 +28,12 @@ public class VerificationController {
 
     @GetMapping("/{token}")
     public String verifyAccount(@PathVariable("token") String token) {
-        // Retrieve the user associated with the verification token
+        // On récupère l'utilisateur associé au token
         Professionnel professionnel = verificationTokenService.getUserByVerificationToken(token);
         if (professionnel == null) {
             return "verificationError";
         }
-        // Update the user's account status to indicate it is verified
+        // On met à jour le statut du compte
         professionnel.setActive(true);
         professionnel.setVerificationToken(null);
 

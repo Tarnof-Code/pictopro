@@ -15,38 +15,30 @@
             <div class="switch__container">
                 <h2 class="form_title title2">Coordonnées personnelles</h2>
                 <div>
-                    <input class="form__input" type="text" th:field="*{nom}" name="nom" placeholder="Nom*" required><br>
-                    <span th:class="has-error" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                    <input class="form__input" type="text" th:field="*{nom}" placeholder="Nom*" required><br>
+                    <span th:class="has-error" th:errors="*{nom}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="text" th:field="*{prenom}" name="prenom" placeholder="Prénom*"
-                           required><br>
-                    <span th:class="has-error" th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
+                    <input class="form__input" type="text" th:field="*{prenom}" placeholder="Prénom*" required><br>
+                    <span th:class="has-error" th:errors="*{prenom}"></span>
                 </div>
                 <div>
                     <input class="form__input" type="text" th:field="*{dateNaissance}" onfocus="(this.type='date')"
-                           name="dateNaissance"
                            placeholder="Date de naissance*" required><br>
-                    <span th:class="has-error" th:if="${#fields.hasErrors('dateNaissance')}"
-                          th:errors="*{dateNaissance}"></span>
+                    <span th:class="has-error" th:errors="*{dateNaissance}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="text" th:field="*{service}" name="service"
-                           placeholder="Service/Département médical*"
-                           required><br>
-                    <span th:class="has-error" th:if="${#fields.hasErrors('service')}" th:errors="*{service}"></span>
+                    <input class="form__input" type="text" th:field="*{service}" placeholder="Service/Département médical*" required><br>
+                    <span th:class="has-error" th:errors="*{service}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="email" th:field="*{email}" name="email" placeholder="Email*"
-                           required><br>
-                    <span th:class="has-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                    <input class="form__input" type="email" th:field="*{email}" placeholder="Email*" required><br>
+                    <span th:class="has-error" th:errors="*{email}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="text" th:field="*{telephone}" name="telephone"
-                           placeholder="Numéro de téléphone*"
+                    <input class="form__input" type="text" th:field="*{telephone}" placeholder="Numéro de téléphone*"
                            required><br>
-                    <span th:class="has-error" th:if="${#fields.hasErrors('telephone')}"
-                          th:errors="*{telephone}"></span>
+                    <span th:class="has-error" th:errors="*{telephone}"></span>
                 </div>
                 <p>(*champ requis)</p><br>
             </div>
@@ -58,21 +50,17 @@
                 <img th:src="@{/images/Logos/Logo PNG.png}" alt="" width="50px">
                 <h2 class="form_title title">Identifiants</h2>
                 <div class="pss">
-                    <input class="form__input" type="text" th:field="*{username}" name="username"
-                           placeholder="Pseudonyme*" required autofocus><br>
-                    <span th:class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                    <input class="form__input" type="text" th:field="*{username}" placeholder="Pseudonyme*" required autofocus><br>
+                    <span th:class="has-error" th:errors="*{username}"></span>
                 </div>
 
                 <div>
-                    <input class="form__input" type="password" th:field="*{password}" name="password"
-                           placeholder="Mot de Passe*" required><br>
-                    <span th:class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                    <input class="form__input" type="password" th:field="*{password}" placeholder="Mot de Passe*" required><br>
+                    <span th:class="has-error" th:errors="*{password}"></span>
                 </div>
                 <div>
-                    <input class="form__input" type="password" th:field="*{confirmPassword}" name="confirmPassword"
-                           placeholder="Confirmer le Mot de Passe*" required><br>
-                    <span th:class="has-error" th:if="${#fields.hasErrors('confirmPassword')}"
-                          th:errors="*{confirmPassword}"></span>
+                    <input class="form__input" type="password" th:field="*{confirmPassword}" placeholder="Confirmer le Mot de Passe*" required><br>
+                    <span th:class="has-error" th:errors="*{confirmPassword}"></span>
                     <p class="switch__description description">
                         Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère
                         spécial et comporter au moins 8 caractères.
@@ -85,7 +73,6 @@
                     <button type="submit" id="logIn" class="switch__button button switch-btn a-button">S'inscrire
                     </button>
                 </div>
-
             </div>
         </div>
     </form>

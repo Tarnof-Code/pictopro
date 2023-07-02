@@ -32,8 +32,6 @@ public interface ProfessionnelService {
 
     void updatePassword(Professionnel user, String newPassword);
 
-    Professionnel findByVerificationToken(String token);
-
     boolean checkUsernameExists(String username, int userId);
 
     boolean checkEmailExists(String email, int userId);
