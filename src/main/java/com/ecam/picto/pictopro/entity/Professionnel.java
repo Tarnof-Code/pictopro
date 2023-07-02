@@ -83,7 +83,7 @@ public class Professionnel {
     private String confirmPassword;
 
     public Professionnel() {
-        this.isActive = false; // By default, the account is not activated
+        this.isActive = false; // Par défaut, le compte n'est pas activé
     }
 
     public int getId() {

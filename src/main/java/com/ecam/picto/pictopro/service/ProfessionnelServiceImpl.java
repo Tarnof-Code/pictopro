@@ -113,11 +113,6 @@ public class ProfessionnelServiceImpl implements ProfessionnelService {
     }
 
     @Override
-    public Professionnel findByVerificationToken(String token) {
-        return professionnelRepository.findByVerificationToken(token);
-    }
-
-    @Override
     public boolean checkUsernameExists(String username, int userId) {
         Professionnel existingProfessionnel = professionnelRepository.findByUsernameAndIdNot(username, userId);
         return existingProfessionnel != null;
