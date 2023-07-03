@@ -1,6 +1,7 @@
 package com.ecam.picto.pictopro.controller;
 
 import com.ecam.picto.pictopro.entity.Professionnel;
+import com.ecam.picto.pictopro.security.ReCaptchaResponse;
 import com.ecam.picto.pictopro.security.UserValidator;
 import com.ecam.picto.pictopro.security.services.SecurityService;
 import com.ecam.picto.pictopro.service.ProfessionnelService;
@@ -10,6 +11,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -35,40 +39,53 @@ public class InscriptionController {
     private JavaMailSender javaMailSender;
     @Autowired
     private TemplateEngine templateEngine;
+    @Autowired
+    private RestTemplate restTemplate;
+
+    private String message;
 
     @GetMapping("/register")
     public String registration(Model model) {
         if (securityService.isAuthenticated()) {
             return "redirect:/";
         }
+        if (message != null && !message.isEmpty()) {
+            model.addAttribute("message", message);
+        }
         model.addAttribute("userForm", new Professionnel());
-
         return "inscription";
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") Professionnel userForm, BindingResult bindingResult, HttpServletRequest request) throws RuntimeException {
+    public String registration(@ModelAttribute("userForm") Professionnel userForm, BindingResult bindingResult, HttpServletRequest request, @RequestParam(name="g-recaptcha-response") String captchaResponse) throws RuntimeException {
         try {
             userValidator.validate(userForm, bindingResult);
 
             if (bindingResult.hasErrors()) {
                 return "inscription";
             }
+            String url = "https://www.google.com/recaptcha/api/siteverify";
+            String params = "?secret=6LerQO0mAAAAADP0x9YCHpENyrlbf2ji9KF8O6yy&response="+captchaResponse;
+            ReCaptchaResponse reCaptchaResponse = restTemplate.exchange(url+params, HttpMethod.POST, null, ReCaptchaResponse.class).getBody();
+            if(reCaptchaResponse.isSuccess()){
 
-            // On génère un token de vérification
-            String token = verificationTokenService.generateToken();
+                // On génère un token de vérification
+                String token = verificationTokenService.generateToken();
 
-            // On sauvegarde le token de vérification
-            verificationTokenService.saveVerificationToken(userForm, token);
+                // On sauvegarde le token de vérification
+                verificationTokenService.saveVerificationToken(userForm, token);
 
-            // On envoie l'email de vérification avec le token
-            sendVerificationEmail(userForm.getEmail(), token, request);
+                // On envoie l'email de vérification avec le token
+                sendVerificationEmail(userForm.getEmail(), token, request);
 
-//            securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
+                professionnelService.savePro(userForm);
 
-            professionnelService.savePro(userForm);
+                return "redirect:/inscriptionSucces";
+            } else {
+                message = "SVP Vérifiez le CAPTCHA";
+                return "redirect:/register";
+            }
 
-            return "redirect:/inscriptionSucces";
         } catch (RuntimeException e) {
             return "redirect:/inscriptionEchec";
         }

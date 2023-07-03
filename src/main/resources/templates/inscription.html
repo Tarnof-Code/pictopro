@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="/css/inscription.css"/>
     <link rel="icon" type="favicon" th:href="@{/images/Logos/Logo.png}"/>
     <head>
-        <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdIW6ImAAAAAG4yrzp0NKLCEa55-r_ybydN1GCo"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 <div class="main">
     <form th:action="@{/registration}" method="post" th:object="${userForm}">
+
         <div class="container a-container" id="a-container">
             <div class="switch__container">
                 <h2 class="form_title title2">Coordonnées personnelles</h2>
@@ -41,6 +42,8 @@
                     <span th:class="has-error" th:errors="*{telephone}"></span>
                 </div>
                 <p>(*champ requis)</p><br>
+                <div class="g-recaptcha" data-sitekey="6LerQO0mAAAAAJ8IsBtySu7S408uI1TNAUcV1j02"></div>
+                <p th:class="has-error" th:text="${message}"></p>
             </div>
         </div>
         <div class="switch" id="connexion switch-cnt">
@@ -70,25 +73,13 @@
                     <a th:href="@{/}" class="form__link">Déjà inscrit ?</a>
                 </div>
                 <div>
-                    <button type="submit" id="logIn" class="switch__button button switch-btn a-button">S'inscrire
+                    <button type="submit" name="ok" id="logIn" class="switch__button button switch-btn a-button">S'inscrire
                     </button>
                 </div>
             </div>
         </div>
     </form>
 </div>
-<!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
-<script>
-    function onClick(e) {
-        e.preventDefault();
-        grecaptcha.enterprise.ready(async () => {
-            const token = await grecaptcha.enterprise.execute('6LdIW6ImAAAAAG4yrzp0NKLCEa55-r_ybydN1GCo', {action: 'REGISTER'});
-            // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
-            // reCAPTCHA Enterprise to the end user's browser.
-            // This token must be validated by creating an assessment.
-            // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
-        });
-    }
-</script>
+
 </body>
 </html>
