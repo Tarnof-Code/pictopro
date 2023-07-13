@@ -89,7 +89,6 @@ $("#mettreAuPasse").click(function(){
       textToSpeech(phrase);
 });
 
-
 // Supprimer tous les pictos
 $('#supprimerPictos').click(function(){
    $(".item2").each(function() {

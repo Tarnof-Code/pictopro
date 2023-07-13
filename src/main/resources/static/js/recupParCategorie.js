@@ -42,7 +42,6 @@ $(".categorieItem").click(function() {
     var nomCategorie = $(this).data("categorie-nom");
     textToSpeech(nomCategorie); // Fonction définie dans construireUnePhrase.js
 
-
 	// Afficher les mots
 	var url2 = "/listeMotsCat/"
 	url2 = url2 + id;

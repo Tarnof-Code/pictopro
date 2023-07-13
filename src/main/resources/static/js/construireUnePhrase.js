@@ -87,7 +87,7 @@ function updateTableauMots() {
         tableauMots.push(mot);
         tableauId.push(idMot);
         tableauTags.push(tags);
-
+console.log(mot)
         if(tableauMots.length > 2){
               if(tags.includes("'nom'") && tagsMoinsDeux.includes("'nom'") && motPrecedent == "et") {
                  tableauSingulierPluriel.push("pluriel");
@@ -106,7 +106,7 @@ function updateTableauMots() {
         transformerEnQuestion();
      }
 
-    phrase = tableauMots.join(' ');
+    phrase = tableauMots.join(' ').replace(/'\s+/g, "'"); // Le "replace" supprime l'espace du join si le mot finit par une apostrophe;
     $("#contenuPhrase").text(phrase);
 
     indexMotActuel = 0;

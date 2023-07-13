@@ -7,8 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CategorieRepository extends JpaRepository<Categorie,Integer> {
-//    Iterable<Categorie> findAllByQuestionId(int id);
-
-//    List<Categorie> findAllByQuestion(List<Questions> questions);
-
 }
+
+
+
